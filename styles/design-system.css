@@ -1,0 +1,108 @@
+:root {
+  /* Colors */
+  --color-white: #FFFFFF;
+  --color-gray-soft: #F5F7FA;
+  --color-surface-light: #EEF2F7;
+  --color-blue-primary: #245BDB;
+  --color-blue-hover: #1947B8;
+  --color-blue-light: #EAF1FF;
+  --color-blue-secondary-border: #C7D7FF;
+  --color-text-primary: #171B24;
+  --color-text-secondary: #667085;
+  --color-text-muted: #98A2B3;
+  --color-border: #E5E7EB;
+  --color-border-input: #D0D5DD;
+  --color-navy-dark: #101828;
+  --color-green-success: #15803D;
+  --color-amber-warning: #B45309;
+  --color-red-error: #DC2626;
+  --color-footer-text: #FFFFFF;
+  --color-footer-supporting: #C2CAD6;
+  --color-footer-link: #D5DEEF;
+  --color-footer-link-hover: #8FB0FF;
+  --color-whatsapp: #25D366;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-s: 8px;
+  --space-m: 12px;
+  --space-l: 16px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+  --space-3xl: 48px;
+  --space-4xl: 64px;
+  --space-5xl: 88px;
+  --space-6xl: 112px;
+
+  /* Radius */
+  --radius-badge: 6px;
+  --radius-input: 10px;
+  --radius-button: 10px;
+  --radius-card: 14px;
+  --radius-category-card: 16px;
+  --radius-banner: 20px;
+  --radius-modal: 18px;
+  --radius-circular: 50%;
+
+  /* Shadows */
+  --shadow-card: 0 2px 8px rgba(16, 24, 40, 0.04);
+  --shadow-card-hover: 0 10px 28px rgba(16, 24, 40, 0.09);
+  --shadow-dropdown: 0 12px 32px rgba(16, 24, 40, 0.12);
+  --shadow-modal: 0 24px 64px rgba(16, 24, 40, 0.18);
+
+  /* Breakpoints */
+  --bp-desktop-max: 1440px;
+  --bp-desktop: 1200px;
+  --bp-tablet-wide: 992px;
+  --bp-tablet: 768px;
+  --bp-mobile: 480px;
+
+  /* Motion */
+  --motion-button: 180ms;
+  --motion-icon: 180ms;
+  --motion-card: 250ms;
+  --motion-dropdown: 210ms;
+  --motion-modal: 260ms;
+  --motion-scroll-reveal: 500ms;
+  --motion-hero: 700ms;
+  --motion-bg-transition: 1000ms;
+
+  /* Typography Families */
+  --font-primary: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+
+  /* Typography Scale */
+  --type-hero: clamp(36px, 5vw, 72px);
+  --type-page-heading: clamp(32px, 4vw, 56px);
+  --type-section-heading: clamp(28px, 3.4vw, 44px);
+  --type-subsection-heading: clamp(22px, 2.4vw, 30px);
+  --type-product-title: clamp(14px, 1.2vw, 18px);
+  --type-body: clamp(14px, 1.1vw, 17px);
+  --type-supporting: clamp(12px, 0.9vw, 14px);
+  --type-eyebrow: 12px;
+  --type-price: clamp(20px, 2vw, 28px);
+  --type-specs: clamp(13px, 1vw, 15px);
+
+  /* Line Heights */
+  --lh-tight: 1.05;
+  --lh-heading: 1.12;
+  --lh-section: 1.15;
+  --lh-subsection: 1.25;
+  --lh-title: 1.4;
+  --lh-body: 1.65;
+  --lh-supporting: 1.5;
+  --lh-price: 1.2;
+  --lh-specs: 1.55;
+
+  /* Font Weights */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* Container */
+  --container-max: 1320px;
+  --container-pad-desktop: 40px;
+  --container-pad-tablet: 24px;
+  --container-pad-mobile: 16px;
+}

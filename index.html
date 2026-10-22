@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Microsys | Computer & Accessories</title>
+  <meta name="description" content="Biharsharif’s Most Complete Computer Store — Laptops, PCs, Gaming & More.">
+  <link rel="stylesheet" href="styles/home.css">
+  <noscript>
+    <style>
+      #landing-overlay { display: none !important; }
+      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    </style>
+  </noscript>
+</head>
+<body>
+
+  <!-- Landing Overlay -->
+  <div id="landing-overlay" class="landing-overlay" role="dialog" aria-modal="true" aria-label="Welcome to Microsys">
+    <div class="landing-overlay__grid" aria-hidden="true"></div>
+    <div class="landing-overlay__radial" aria-hidden="true"></div>
+    <div class="landing-overlay__content">
+      <span class="landing-overlay__eyebrow">
+        YOUR TRUSTED TECH PARTNER IN BIHARSHARIF
+        <svg class="landing-overlay__eyebrow-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </span>
+      <h1 class="landing-overlay__title">Microsys Computer &amp; Accessories</h1>
+      <p class="landing-overlay__subtitle">Biharsharif's Most Complete Computer Store — Laptops, PCs, Gaming &amp; More.</p>
+      <button type="button" class="landing-overlay__cta" id="landing-explore-btn">Explore</button>
+    </div>
+  </div>
+
+  <!-- Top Announcement Bar -->
+  <div id="announcement-bar" data-type="announcement_bar">
+    <span><!-- PHP: echo $promotion['text_content']; -->🎉 Grand Opening Offer: Get FREE RAM Upgrade on all Laptops this week! Visit our showroom today.</span>
+    <button type="button" id="close-announcement" aria-label="Close announcement">&times;</button>
+  </div>
+
+  <!-- 1. Utility Bar -->
+  <div class="utility-bar">
+    <div class="container" style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+      <span class="desktop-only" style="display: inline-flex; align-items: center; gap: 6px;">
+        <span class="icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></span>
+        Ramchandrapur, Bihar Sharif, Bihar 803216
+      </span>
+      <span style="display: inline-flex; align-items: center; gap: 8px;">
+        <span class="icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></span>
+        <a href="tel:+919431687928" style="color: inherit; text-decoration: none;">9431687928</a>
+        <span style="opacity: 0.7;">&bull;</span>
+        <span class="icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></span>
+        Open Daily 10 am – 9 pm
+      </span>
+    </div>
+  </div>
+
+  <!-- 2. Main Header -->
+  <header class="main-header" id="main-header">
+    <div class="container" style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+      <div class="mobile-only">
+        <button id="drawer-toggle" aria-label="Open Menu" style="background:none; border:none; cursor:pointer;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+      <a href="/" class="header-logo" style="display: flex; align-items: center; gap: var(--space-s); text-decoration: none;">
+        <img src="assets/microsys-logo.svg" alt="Microsys Computer & Accessories logo" class="header__logo-img" style="width: auto;">
+        <span class="desktop-only">Computer & Accessories</span>
+      </a>
+      <div class="search-wrapper desktop-only">
+        <span class="search-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-text-muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </span>
+        <input type="text" class="search-input" id="desktop-search" placeholder="Search laptops, components, accessories…">
+        <div class="search-suggestions" id="desktop-suggestions"></div>
+      </div>
+      <div class="header-actions">
+        <button class="mobile-only" aria-label="Search" style="background:none; border:none; cursor:pointer;" id="mobile-search-toggle">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+        <a href="https://wa.me/919431687928" class="btn-whatsapp-icon" aria-label="Enquire on WhatsApp">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+        </a>
+        <a href="#final-cta" class="btn btn-primary desktop-only">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3. Category Navigation -->
+  <nav class="category-nav desktop-only">
+    <div class="container">
+      <a href="aboutus.html" class="nav-link">About</a>
+      <a href="laptops.html" class="nav-link">Laptops</a>
+      <a href="desktop-pcs.html" class="nav-link">Desktop PCs</a>
+      
+      <!-- Mega Menu Trigger -->
+      <div class="mega-menu-wrapper" id="mega-menu-trigger" tabindex="0">
+        <a href="components.html" class="nav-link">Components</a>
+        <div class="mega-menu" id="mega-menu">
+          <div class="mega-menu-column">
+            <h4 style="margin-bottom: var(--space-s);">Shop Components</h4>
+            <a href="components.html#processors">Processors</a>
+            <a href="components.html#motherboards">Motherboards</a>
+            <a href="components.html#graphics-cards">Graphics Cards</a>
+            <a href="components.html#ram">RAM</a>
+            <a href="components.html#storage">Storage</a>
+            <a href="components.html#power-supplies">Power Supplies</a>
+            <a href="components.html#cabinets">Cabinets</a>
+            <a href="components.html#cooling">Cooling</a>
+          </div>
+          <div class="mega-menu-column">
+            <h4 style="margin-bottom: var(--space-s);">Popular</h4>
+            <a href="#">[Brand] Processors</a>
+            <a href="#">[Brand] Graphics Cards</a>
+            <a href="#">Featured Categories</a>
+            <a href="#">Common Use Cases</a>
+          </div>
+          <div class="mega-menu-column">
+            <h4 style="margin-bottom: var(--space-s);">Featured</h4>
+            <div class="card" style="margin-bottom: var(--space-m); padding: var(--space-m);">
+              <div style="background: var(--color-surface-light); height: 100px; margin-bottom: var(--space-s);"></div>
+              <div class="card-title" style="font-size: var(--type-supporting);">[Placeholder Card]</div>
+            </div>
+            <a href="components.html" class="btn btn-primary" style="width: 100%;">View All Components</a>
+          </div>
+        </div>
+      </div>
+      
+      <a href="#shop-by-category" class="nav-link">Monitors</a>
+      <a href="#shop-by-category" class="nav-link">Peripherals</a>
+      <a href="#shop-by-category" class="nav-link">Printers</a>
+      <a href="#shop-by-category" class="nav-link">Networking</a>
+      <a href="#shop-by-category" class="nav-link">Accessories</a>
+      <a href="aboutus.html#repair-services" class="nav-link">Services</a>
+      <a href="#featured-campaign" class="nav-link">Offers</a>
+      <a href="#final-cta" class="nav-link">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Mobile Drawer -->
+  <div class="drawer-overlay" id="drawer-overlay"></div>
+  <div class="drawer" id="drawer" aria-expanded="false">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-l);">
+      <span style="font-weight: var(--fw-bold);">Menu</span>
+      <button id="drawer-close" aria-label="Close Menu" style="background:none; border:none; cursor:pointer;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div style="margin-bottom: var(--space-m); font-size: var(--type-supporting);">
+      <div><span class="icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></span>Ramchandrapur, Bihar Sharif, Bihar 803216</div>
+      <div style="margin-top: var(--space-xs);"><span class="icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></span><a href="tel:+919431687928" style="color: inherit;">9431687928</a></div>
+      <div style="margin-top: var(--space-xs);"><span class="icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></span>Open Daily 10 am – 9 pm</div>
+    </div>
+    <div style="margin-bottom: var(--space-l); position: relative;">
+      <input type="text" class="search-input" id="mobile-search" placeholder="Search laptops, components, accessories…">
+      <div class="search-suggestions" id="mobile-suggestions"></div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: var(--space-m);">
+      <a href="aboutus.html" class="nav-link">About</a>
+      <a href="laptops.html" class="nav-link">Laptops</a>
+      <a href="desktop-pcs.html" class="nav-link">Desktop PCs</a>
+      
+      <details>
+        <summary class="nav-link" style="cursor: pointer; list-style: none;">Components</summary>
+        <div style="padding-left: var(--space-m); display: flex; flex-direction: column; gap: var(--space-s); margin-top: var(--space-s);">
+          <a href="components.html#processors" class="nav-link" style="color: var(--color-text-secondary);">Processors</a>
+          <a href="components.html#motherboards" class="nav-link" style="color: var(--color-text-secondary);">Motherboards</a>
+          <a href="components.html#graphics-cards" class="nav-link" style="color: var(--color-text-secondary);">Graphics Cards</a>
+          <a href="components.html#ram" class="nav-link" style="color: var(--color-text-secondary);">RAM</a>
+          <a href="components.html#storage" class="nav-link" style="color: var(--color-text-secondary);">Storage</a>
+          <a href="components.html#power-supplies" class="nav-link" style="color: var(--color-text-secondary);">Power Supplies</a>
+          <a href="components.html#cabinets" class="nav-link" style="color: var(--color-text-secondary);">Cabinets</a>
+          <a href="components.html#cooling" class="nav-link" style="color: var(--color-text-secondary);">Cooling</a>
+        </div>
+      </details>
+
+      <a href="#shop-by-category" class="nav-link">Monitors</a>
+      <a href="#shop-by-category" class="nav-link">Peripherals</a>
+      <a href="#shop-by-category" class="nav-link">Printers</a>
+      <a href="#shop-by-category" class="nav-link">Networking</a>
+      <a href="#shop-by-category" class="nav-link">Accessories</a>
+      <a href="aboutus.html#repair-services" class="nav-link">Services</a>
+      <a href="#featured-campaign" class="nav-link">Offers</a>
+      <a href="#final-cta" class="nav-link">Contact</a>
+    </div>
+    <div style="margin-top: var(--space-xl); display: flex; flex-direction: column; gap: var(--space-m);">
+      <a href="https://wa.me/919431687928" class="btn btn-whatsapp" style="width: 100%;">Enquire on WhatsApp</a>
+      <a href="#final-cta" class="btn btn-primary" style="width: 100%;">Contact</a>
+    </div>
+  </div>
+
+  <!-- 4. Hero Section -->
+  <section class="section bg-white hero-section" id="hero">
+    <div class="hero-bg-parallax desktop-only" id="hero-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 120%; background: linear-gradient(to bottom, var(--color-blue-light) 0%, transparent 15%); opacity: 0.15; z-index: 0;"></div>
+    <div class="hero-decor desktop-only" id="hero-decor" style="position: absolute; top: 20%; right: 10%; width: 300px; height: 300px; border-radius: var(--radius-circular); background: radial-gradient(circle, var(--color-blue-light) 0%, transparent 70%); opacity: 0.3; z-index: 0;"></div>
+    <div class="container hero-container">
+      <div class="hero-content">
+        <div class="hero-rating-badge">
+          <svg class="hero-rating-star" width="14" height="14" viewBox="0 0 24 24" fill="#B45309" stroke="#B45309" stroke-width="1" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <span><strong>4.8</strong> Rated | 5000+ Customers in Nalanda</span>
+        </div>
+        <span class="eyebrow" style="color: var(--color-blue-primary); letter-spacing: 0.08em; display: block; margin-bottom: var(--space-s);">YOUR COMPLETE TECH DESTINATION</span>
+        <h1 class="hero-heading" style="margin-bottom: var(--space-m);">Biharsharif's Biggest PC Showroom</h1>
+        <p class="supporting-text hero-supporting" style="margin-bottom: var(--space-xl); max-width: 520px;">Microsys is Biharsharif’s leading computer showroom, offering the widest range of laptops, desktop PCs, gaming computers, printers, tablets, and PC components in Nalanda, Bihar.</p>
+        <div class="hero-trust-badges">
+          <div class="hero-trust-badge">
+            <span class="hero-trust-badge__icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+            </span>
+            <span class="hero-trust-badge__text">EMI Available</span>
+          </div>
+          <div class="hero-trust-badge">
+            <span class="hero-trust-badge__icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+            </span>
+            <span class="hero-trust-badge__text">Authorized Dealer</span>
+          </div>
+          <div class="hero-trust-badge">
+            <span class="hero-trust-badge__icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+            </span>
+            <span class="hero-trust-badge__text">Since 2015</span>
+          </div>
+        </div>
+        <div class="hero-ctas">
+          <a href="#laptops" class="btn hero-btn-primary">
+            <span>Explore Laptops - 30+ Models</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+          <a href="https://wa.me/919431687928?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20laptop%20prices." class="btn hero-btn-whatsapp" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 6.46 17.5 2 12.04 2M12.04 20.17C10.57 20.17 9.13 19.77 7.87 19.03L7.57 18.85L4.45 19.67L5.28 16.63L5.09 16.32C4.28 15.03 3.85 13.5 3.85 11.92C3.85 7.4 7.52 3.72 12.04 3.72C16.56 3.72 20.23 7.4 20.23 11.92C20.23 16.44 16.56 20.17 12.04 20.17M16.52 14.39C16.27 14.27 15.06 13.67 14.83 13.59C14.6 13.51 14.44 13.47 14.27 13.72C14.11 13.97 13.62 14.54 13.47 14.71C13.32 14.87 13.17 14.89 12.92 14.77C12.67 14.65 11.87 14.39 10.92 13.54C10.18 12.88 9.68 12.06 9.53 11.81C9.38 11.56 9.51 11.43 9.64 11.31C9.75 11.2 9.89 11.02 10.01 10.88C10.13 10.74 10.17 10.64 10.25 10.48C10.33 10.32 10.29 10.18 10.23 10.06C10.17 9.94 9.68 8.74 9.47 8.24C9.27 7.76 9.07 7.82 8.92 7.82C8.78 7.82 8.61 7.81 8.45 7.81C8.28 7.81 8.02 7.87 7.79 8.12C7.57 8.37 6.94 8.96 6.94 10.16C6.94 11.36 7.81 12.52 7.94 12.68C8.06 12.85 9.66 15.32 12.12 16.38C12.7 16.63 13.16 16.78 13.51 16.89C14.1 17.08 14.64 17.05 15.07 16.99C15.54 16.92 16.52 16.4 16.72 15.82C16.92 15.25 16.92 14.76 16.86 14.65C16.8 14.54 16.64 14.47 16.39 14.35L16.52 14.39Z"></path></svg>
+            <span>Ask Price on WhatsApp</span>
+          </a>
+        </div>
+      </div>
+      <div class="hero-video-card">
+        <div class="hero__video-box">
+          <video
+            class="hero__video"
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="metadata"
+            poster="assets/hero/hero-desktop-poster.webp"
+            aria-hidden="true"
+            tabindex="-1"
+          >
+            <source src="assets/hero/hero-mobile.mp4" type="video/mp4" media="(max-width: 767px)">
+            <source src="assets/hero/hero-desktop.mp4" type="video/mp4" media="(min-width: 768px)">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Trust Strip -->
+  <section class="section bg-soft trust-strip" id="trust-strip" aria-label="Trust factors">
+    <div class="trust-strip__track">
+      <!-- Set 1 (Canonical) -->
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="1.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </div>
+        <div class="trust-text">
+          <strong class="trust-heading">Genuine Products</strong>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        </div>
+        <div class="trust-text">
+          <strong class="trust-heading">Warranty Information</strong>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2m8-10a4 4 0 100-8 4 4 0 000 8z"></path></svg>
+        </div>
+        <div class="trust-text">
+          <strong class="trust-heading">Expert Guidance</strong>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="1.5"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg>
+        </div>
+        <div class="trust-text">
+          <strong class="trust-heading">Technical Support</strong>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="1.5"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+        </div>
+        <div class="trust-text">
+          <strong class="trust-heading">Affordable Prices</strong>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="1.5"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+        </div>
+        <div class="trust-text">
+          <strong class="trust-heading">After-Sales Support</strong>
+        </div>
+      </div>
+
+      <!-- Set 2 (Duplicate for Seamless Loop) -->
+      <div class="trust-item" aria-hidden="true">
+        <div class="trust-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="1.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </div>
+        <div class="trust-text">
+          <strong class="trust-heading">Genuine Products</strong>
+        </div>
+      </div>
+      <div class="trust-item" aria-hidden="true">
+        <div class="trust-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        </div>
+        <div class="trust-text">
+          <strong class="trust-heading">Warranty Information</strong>
+        </div>
+      </div>
+      <div class="trust-item" aria-hidden="true">
+        <div class="trust-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2m8-10a4 4 0 100-8 4 4 0 000 8z"></path></svg>
+        </div>
+        <div class="trust-text">
+          <strong class="trust-heading">Expert Guidance</strong>
+        </div>
+      </div>
+      <div class="trust-item" aria-hidden="true">
+        <div class="trust-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="1.5"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg>
+        </div>
+        <div class="trust-text">
+          <strong class="trust-heading">Technical Support</strong>
+        </div>
+      </div>
+      <div class="trust-item" aria-hidden="true">
+        <div class="trust-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="1.5"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+        </div>
+        <div class="trust-text">
+          <strong class="trust-heading">Affordable Prices</strong>
+        </div>
+      </div>
+      <div class="trust-item" aria-hidden="true">
+        <div class="trust-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="1.5"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+        </div>
+        <div class="trust-text">
+          <strong class="trust-heading">After-Sales Support</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5B: Brand Strip -->
+  <section id="brands-strip" aria-label="Brands we stock">
+    <div class="brands-strip">
+      <div class="brands-strip__track">
+        <!-- Set 1 (Canonical) -->
+        <div class="brands-strip__item">
+          <img src="assets/brands/amd.png" alt="AMD logo" loading="lazy" decoding="async" width="225" height="225">
+        </div>
+        <div class="brands-strip__item">
+          <img src="assets/brands/asus.png" alt="ASUS logo" loading="lazy" decoding="async" width="738" height="414">
+        </div>
+        <div class="brands-strip__item">
+          <img src="assets/brands/canon.png" alt="Canon logo" loading="lazy" decoding="async" width="246" height="75">
+        </div>
+        <div class="brands-strip__item">
+          <img src="assets/brands/dell.png" alt="Dell logo" loading="lazy" decoding="async" width="225" height="225">
+        </div>
+        <div class="brands-strip__item">
+          <img src="assets/brands/epson.png" alt="Epson logo" loading="lazy" decoding="async" width="246" height="138">
+        </div>
+        <div class="brands-strip__item">
+          <img src="assets/brands/hp.png" alt="HP logo" loading="lazy" decoding="async" width="225" height="224">
+        </div>
+        <div class="brands-strip__item">
+          <img src="assets/brands/intel.png" alt="Intel logo" loading="lazy" decoding="async" width="246" height="95">
+        </div>
+        <div class="brands-strip__item">
+          <img src="assets/brands/lenovo.png" alt="Lenovo logo" loading="lazy" decoding="async" width="246" height="82">
+        </div>
+        <div class="brands-strip__item">
+          <img src="assets/brands/msi.png" alt="MSI logo" loading="lazy" decoding="async" width="246" height="138">
+        </div>
+        <div class="brands-strip__item">
+          <img src="assets/brands/nvidia.png" alt="NVIDIA logo" loading="lazy" decoding="async" width="246" height="139">
+        </div>
+        <div class="brands-strip__item">
+          <img src="assets/brands/tp-link.png" alt="TP-Link logo" loading="lazy" decoding="async" width="246" height="93">
+        </div>
+
+        <!-- Set 2 (Duplicate for Seamless Loop) -->
+        <div class="brands-strip__item" aria-hidden="true">
+          <img src="assets/brands/amd.png" alt="AMD logo" loading="lazy" decoding="async" width="225" height="225">
+        </div>
+        <div class="brands-strip__item" aria-hidden="true">
+          <img src="assets/brands/asus.png" alt="ASUS logo" loading="lazy" decoding="async" width="738" height="414">
+        </div>
+        <div class="brands-strip__item" aria-hidden="true">
+          <img src="assets/brands/canon.png" alt="Canon logo" loading="lazy" decoding="async" width="246" height="75">
+        </div>
+        <div class="brands-strip__item" aria-hidden="true">
+          <img src="assets/brands/dell.png" alt="Dell logo" loading="lazy" decoding="async" width="225" height="225">
+        </div>
+        <div class="brands-strip__item" aria-hidden="true">
+          <img src="assets/brands/epson.png" alt="Epson logo" loading="lazy" decoding="async" width="246" height="138">
+        </div>
+        <div class="brands-strip__item" aria-hidden="true">
+          <img src="assets/brands/hp.png" alt="HP logo" loading="lazy" decoding="async" width="225" height="224">
+        </div>
+        <div class="brands-strip__item" aria-hidden="true">
+          <img src="assets/brands/intel.png" alt="Intel logo" loading="lazy" decoding="async" width="246" height="95">
+        </div>
+        <div class="brands-strip__item" aria-hidden="true">
+          <img src="assets/brands/lenovo.png" alt="Lenovo logo" loading="lazy" decoding="async" width="246" height="82">
+        </div>
+        <div class="brands-strip__item" aria-hidden="true">
+          <img src="assets/brands/msi.png" alt="MSI logo" loading="lazy" decoding="async" width="246" height="138">
+        </div>
+        <div class="brands-strip__item" aria-hidden="true">
+          <img src="assets/brands/nvidia.png" alt="NVIDIA logo" loading="lazy" decoding="async" width="246" height="139">
+        </div>
+        <div class="brands-strip__item" aria-hidden="true">
+          <img src="assets/brands/tp-link.png" alt="TP-Link logo" loading="lazy" decoding="async" width="246" height="93">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Shop by Category -->
+  <section class="section bg-white" id="shop-by-category">
+    <div class="container">
+      <h2 class="section-heading" style="margin-bottom: var(--space-xs);">Shop by Category</h2>
+      <p class="supporting-text" style="margin-bottom: var(--space-xl);">Browse laptops, desktops, gaming PCs, components, printers & accessories — all available in-store at Biharsharif.</p>
+      <div class="categories-grid">
+        <!-- PHP: foreach($categories as $category) { -->
+        <!-- DATA-BIND: categories.laptops -->
+        <a href="#" class="category-card"><!-- LINK: category page pending -->
+          <div class="category-card-img"><img src="assets/categoryimage/laptops.webp" alt="Buy laptops in Biharsharif, HP, Dell, Lenovo & Asus laptops available at Microsys, Biharsharif, Nalanda Bihar and barbigha Sheikhpura" loading="lazy" decoding="async" width="400" height="300" style="width: 100%; height: 100%; object-fit: contain;"></div>
+          <div class="category-card-title">Laptops <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+          <div class="category-card-desc">Explore top laptop brands for students, professionals & businesses — best prices in Biharsharif, Nalanda.</div>
+        </a>
+        <!-- DATA-BIND: categories.desktops -->
+        <a href="#" class="category-card"><!-- LINK: category page pending -->
+          <div class="category-card-img"><img src="assets/categoryimage/desktop-pcs.webp" alt="Desktop computers for home and office use in Nalanda, buy desktop PCs at Microsys, Biharsharif Bihar and barbigha Sheikhpura" loading="lazy" decoding="async" width="400" height="300" style="width: 100%; height: 100%; object-fit: contain;"></div>
+          <div class="category-card-title">Desktop PCs <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+          <div class="category-card-desc">High-performance desktop computers for home & office use — available at Microsys, Bihar Sharif.</div>
+        </a>
+        <!-- DATA-BIND: categories.gaming -->
+        <a href="#" class="category-card"><!-- LINK: category page pending -->
+          <div class="category-card-img"><img src="assets/categoryimage/gaming-pcs.webp" alt="Gaming PC available in Biharsharif, high-performance gaming computers at Microsys, Nalanda Bihar and barbigha Sheikhpura" loading="lazy" decoding="async" width="400" height="300" style="width: 100%; height: 100%; object-fit: contain;"></div>
+          <div class="category-card-title">Gaming PCs <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+          <div class="category-card-desc">Pre-built gaming PCs & custom gaming rigs — powerful performance, competitive prices in Bihar.</div>
+        </a>
+        <!-- DATA-BIND: categories.processors -->
+        <a href="#" class="category-card"><!-- LINK: category page pending -->
+          <div class="category-card-img"><img src="assets/categoryimage/processors.webp" alt="Intel and AMD processors in Nawada and Nalanda, buy CPU upgrades at Microsys, Biharsharif" loading="lazy" decoding="async" width="400" height="300" style="width: 100%; height: 100%; object-fit: contain;"></div>
+          <div class="category-card-title">Processors <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+          <div class="category-card-desc">Intel & AMD processors for every budget — upgrade your PC’s speed at Microsys, Biharsharif.</div>
+        </a>
+        <!-- DATA-BIND: categories.graphics -->
+        <a href="#" class="category-card"><!-- LINK: category page pending -->
+          <div class="category-card-img"><img src="assets/categoryimage/graphics-cards.webp" alt="Graphics cards available in Rajgir and Biharsharif, buy GPU at Microsys computer store, Nalanda Bihar" loading="lazy" decoding="async" width="400" height="300" style="width: 100%; height: 100%; object-fit: contain;"></div>
+          <div class="category-card-title">Graphics Cards <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+          <div class="category-card-desc">Dedicated GPUs for gaming, design & video editing — genuine graphics cards available in Nalanda, Bihar.</div>
+        </a>
+        <!-- DATA-BIND: categories.motherboards -->
+        <a href="#" class="category-card"><!-- LINK: category page pending -->
+          <div class="category-card-img"><img src="assets/categoryimage/motherboards.webp" alt="Motherboards for PC builds in Sheikhpura and Nalanda, shop at Microsys, Biharsharif Bihar" loading="lazy" decoding="async" width="400" height="300" style="width: 100%; height: 100%; object-fit: contain;"></div>
+          <div class="category-card-title">Motherboards <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+          <div class="category-card-desc">Compatible motherboards for Intel & AMD builds — shop trusted brands at Microsys, Bihar Sharif.</div>
+        </a>
+        <!-- DATA-BIND: categories.ram-storage -->
+        <a href="#" class="category-card"><!-- LINK: category page pending -->
+          <div class="category-card-img"><img src="assets/categoryimage/ram-storage.webp" alt="RAM and SSD storage upgrade in Barbigha and Biharsharif, available at Microsys computer store, Nalanda and Bihar Sharif" loading="lazy" decoding="async" width="400" height="300" style="width: 100%; height: 100%; object-fit: contain;"></div>
+          <div class="category-card-title">RAM & Storage <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+          <div class="category-card-desc">Upgrade your system with fast RAM & high-capacity SSDs/HDDs — in stock at Biharsharif’s top computer store.</div>
+        </a>
+        <!-- DATA-BIND: categories.monitors -->
+        <a href="#" class="category-card"><!-- LINK: category page pending -->
+          <div class="category-card-img"><img src="assets/categoryimage/monitors.webp" alt="Computer monitors for office and home use in Gaya and Nalanda, buy at Microsys, Biharsharif Bihar" loading="lazy" decoding="async" width="400" height="300" style="width: 100%; height: 100%; object-fit: contain;"></div>
+          <div class="category-card-title">Monitors <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+          <div class="category-card-desc">Full HD & 4K monitors for work, study & gaming — wide display range available in Bihar Sharif.</div>
+        </a>
+        <!-- DATA-BIND: categories.keyboards-mice -->
+        <a href="#" class="category-card"><!-- LINK: category page pending -->
+          <div class="category-card-img"><img src="assets/categoryimage/keyboards-mice.webp" alt="Keyboard and mouse combo available in Biharsharif, wired and wireless peripherals at Microsys, Nalanda Bihar" loading="lazy" decoding="async" width="400" height="300" style="width: 100%; height: 100%; object-fit: contain;"></div>
+          <div class="category-card-title">Keyboards & Mice <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+          <div class="category-card-desc">Wired & wireless keyboards and mice for every setup — quality peripherals at Microsys, Nalanda.</div>
+        </a>
+        <!-- DATA-BIND: categories.printers -->
+        <a href="#" class="category-card"><!-- LINK: category page pending -->
+          <div class="category-card-img"><img src="assets/categoryimage/printers.webp" alt="HP and Canon printers in Nawada and Rajgir, buy inkjet and laser printers at Microsys, Biharsharif" loading="lazy" decoding="async" width="400" height="300" style="width: 100%; height: 100%; object-fit: contain;"></div>
+          <div class="category-card-title">Printers <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+          <div class="category-card-desc">Inkjet & laser printers from HP, Canon & Epson — best printer prices in Biharsharif, Bihar.</div>
+        </a>
+        <!-- DATA-BIND: categories.networking -->
+        <a href="#" class="category-card"><!-- LINK: category page pending -->
+          <div class="category-card-img"><img src="assets/categoryimage/networking.webp" alt="WiFi routers and networking equipment in Barbigha and Sheikhpura, available at Microsys, Nalanda Bihar" loading="lazy" decoding="async" width="400" height="300" style="width: 100%; height: 100%; object-fit: contain;"></div>
+          <div class="category-card-title">Networking <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+          <div class="category-card-desc">Routers, switches & networking solutions for home & business — available at Microsys, Bihar Sharif.</div>
+        </a>
+        <!-- DATA-BIND: categories.accessories -->
+        <a href="#" class="category-card"><!-- LINK: category page pending -->
+          <div class="category-card-img"><img src="assets/categoryimage/accessories.webp" alt="Computer accessories in Gaya and Biharsharif, laptop bags, USB hubs, mousepads at Microsys, Nalanda" loading="lazy" decoding="async" width="400" height="300" style="width: 100%; height: 100%; object-fit: contain;"></div>
+          <div class="category-card-title">Accessories <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+          <div class="category-card-desc">Laptop bags, USB hubs, cooling pads & more — complete your setup at Biharsharif’s largest computer showroom.</div>
+        </a>
+        <!-- PHP: } endforeach; // categories -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Featured Campaign -->
+  <!-- New Arrivals Auto-Slider -->
+  <section id="new-arrivals">
+
+    <!--
+      ADMIN CONTROL — sliders table columns per slide:
+      label      → sliders.label (future column — add to schema)
+      eyebrow    → sliders.eyebrow (future column — add to schema)  
+      title      → sliders.title
+      subtitle   → sliders.subtitle (future column — add to schema)
+      image_url  → sliders.image_url
+      link_url   → sliders.link_url
+      PHP dev: SELECT * FROM sliders WHERE is_active=1 
+               ORDER BY display_order ASC
+    -->
+    <div id="slider-track">
+
+      <!-- SLIDE 1 -->
+      <!-- PHP foreach: $sliders as $slide — start -->
+      <div class="slide">
+        <div class="slide-text">
+          <span class="slide-label" data-php="sliders.label">
+            New Arrivals
+          </span>
+          <p class="slide-eyebrow" data-php="sliders.eyebrow">
+            BUILT FOR PERFORMANCE
+          </p>
+          <h2 class="slide-heading" data-php="sliders.title">
+            Upgrade Your Setup
+          </h2>
+          <p class="slide-sub" data-php="sliders.subtitle">
+            Explore carefully selected hardware for work, 
+            gaming and creative performance.
+          </p>
+          <a href="products.html" class="slide-cta">
+            Explore Products
+          </a>
+        </div>
+        <div class="slide-image">
+          <img src="assets/campaign/poster.webp"
+               alt="New Arrivals"
+               data-php-src="<?php echo $slide['image_url']; ?>">
+        </div>
+      </div>
+      <!-- PHP foreach end -->
+
+      <!-- SLIDE 2 -->
+      <div class="slide">
+        <div class="slide-text">
+          <span class="slide-label">Hot Deals</span>
+          <p class="slide-eyebrow">LIMITED TIME OFFER</p>
+          <h2 class="slide-heading">Power Meets Value</h2>
+          <p class="slide-sub">
+            Top-rated laptops and desktops at unbeatable prices.
+          </p>
+          <a href="laptops.html" class="slide-cta">
+            Shop Laptops
+          </a>
+        </div>
+        <div class="slide-image">
+          <img src="assets/productimage/hp-15s-core-i3.webp"
+               alt="HP Laptop"
+               data-php-src="<?php echo $slide['image_url']; ?>">
+        </div>
+      </div>
+
+      <!-- SLIDE 3 -->
+      <div class="slide">
+        <div class="slide-text">
+          <span class="slide-label">Gaming Zone</span>
+          <p class="slide-eyebrow">BUILT TO DOMINATE</p>
+          <h2 class="slide-heading">Level Up Your Game</h2>
+          <p class="slide-sub">
+            RTX-powered rigs and accessories built for champions.
+          </p>
+          <a href="gaming.html" class="slide-cta">
+            Explore Gaming
+          </a>
+        </div>
+        <div class="slide-image">
+          <img src="assets/productimage/tuf-gaming-a15-rtx-4050.webp"
+               alt="Gaming Laptop"
+               data-php-src="<?php echo $slide['image_url']; ?>">
+        </div>
+      </div>
+
+    </div><!-- end #slider-track -->
+
+    <!-- Slider controls -->
+    <button class="slider-btn" id="slider-prev" 
+            aria-label="Previous slide">&#8592;</button>
+    <button class="slider-btn" id="slider-next" 
+            aria-label="Next slide">&#8594;</button>
+    <div id="slider-dots"></div>
+
+  </section>
+
+  <!-- 8. Popular Products -->
+  <section class="section bg-white" id="popular-products">
+    <div class="container">
+      <h2 class="section-heading reveal" style="margin-bottom: var(--space-xs);">Popular Products</h2>
+      <p class="supporting-text reveal" style="margin-bottom: var(--space-xl);">Hand-picked bestsellers across laptops, desktops, gaming rigs & components — trusted by students, professionals & businesses across Biharsharif.</p>
+      
+      <div class="products-tabs" role="tablist" aria-label="Popular Products">
+        <button role="tab" aria-selected="true" aria-controls="panel-laptops" id="tab-laptops" class="products-tab" tabindex="0">Laptops</button>
+        <button role="tab" aria-selected="false" aria-controls="panel-desktops" id="tab-desktops" class="products-tab" tabindex="-1">Desktop PCs</button>
+        <button role="tab" aria-selected="false" aria-controls="panel-gaming" id="tab-gaming" class="products-tab" tabindex="-1">Gaming</button>
+        <button role="tab" aria-selected="false" aria-controls="panel-components" id="tab-components" class="products-tab" tabindex="-1">Components</button>
+      </div>
+      
+      <!-- DATA-BIND: products.laptops -->
+      <div id="panel-laptops" role="tabpanel" tabindex="0" aria-labelledby="tab-laptops" class="products-panel">
+        <div class="products-grid reveal-group">
+          <!-- PHP: foreach($products as $product) { -->
+          <!-- Card 1 -->
+          <div class="product-card reveal">
+            <div class="product-image-wrapper"><div class="product-image-inner"><img src="assets/productimage/hp-15s-core-i3.webp" alt="" loading="lazy" decoding="async" width="400" height="300" style="width: 100%; height: 100%; object-fit: contain;"></div><div class="product-badge">In Stock</div></div>
+            <div class="product-brand">HP</div>
+            <div class="product-name" data-product-name="HP 15s — Core i3 Laptop">HP 15s — Core i3 Laptop</div>
+            <div class="product-specs">12th Gen Core i3 / 16GB RAM / 512GB SSD / Windows 11 Home</div>
+            <div class="product-price">₹33,990</div>
+            <div class="product-avail">Available at Microsys, Biharsharif</div>
+            <div class="product-actions">
+              <a href="#" class="btn btn-secondary" style="width: 100%;">View Details</a>
+              <a href="#" class="btn btn-whatsapp whatsapp-btn" style="width: 100%;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>Enquire on WhatsApp</a>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="product-card reveal">
+            <div class="product-image-wrapper"><div class="product-image-inner"><img src="assets/productimage/ideapad-slim-3-ryzen-5.webp" alt="" loading="lazy" decoding="async" width="400" height="300" style="width: 100%; height: 100%; object-fit: contain;"></div><div class="product-badge">In Stock</div></div>
+            <div class="product-brand">Lenovo</div>
+            <div class="product-name" data-product-name="IdeaPad Slim 3 — Ryzen 5 Laptop">IdeaPad Slim 3 — Ryzen 5 Laptop</div>
+            <div class="product-specs">AMD Ryzen 5 5500U / 16GB RAM / 512GB SSD / Windows 11 Home</div>
+            <div class="product-price">₹38,990</div>
+            <div class="product-avail">Available at Microsys, Biharsharif</div>
+            <div class="product-actions">
+              <a href="#" class="btn btn-secondary" style="width: 100%;">View Details</a>
+              <a href="#" class="btn btn-whatsapp whatsapp-btn" style="width: 100%;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>Enquire on WhatsApp</a>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="product-card reveal">
+            <div class="product-image-wrapper"><div class="product-image-inner"><img src="assets/productimage/inspiron-3520-core-i5.webp" alt="" loading="lazy" decoding="async" width="400" height="300" style="width: 100%; height: 100%; object-fit: contain;"></div><div class="product-badge">In Stock</div></div>
+            <div class="product-brand">Dell</div>
+            <div class="product-name" data-product-name="Inspiron 3520 — Core i5 Laptop">Inspiron 3520 — Core i5 Laptop</div>
+            <div class="product-specs">12th Gen Core i5 / 8GB RAM / 512GB SSD / Windows 11</div>
+            <div class="product-price">₹52,990</div>
+            <div class="product-avail">Available at Microsys, Biharsharif</div>
+            <div class="product-actions">
+              <a href="#" class="btn btn-secondary" style="width: 100%;">View Details</a>
+              <a href="#" class="btn btn-whatsapp whatsapp-btn" style="width: 100%;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>Enquire on WhatsApp</a>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div class="product-card reveal">
+            <div class="product-image-wrapper"><div class="product-image-inner"><img src="assets/productimage/tuf-gaming-a15-rtx-4050.webp" alt="" loading="lazy" decoding="async" width="400" height="300" style="width: 100%; height: 100%; object-fit: contain;"></div><div class="product-badge">In Stock</div></div>
+            <div class="product-brand">ASUS</div>
+            <div class="product-name" data-product-name="TUF Gaming A15 — RTX 4050 Laptop">TUF Gaming A15 — RTX 4050 Laptop</div>
+            <div class="product-specs">AMD Ryzen 7 / 16GB RAM / 1TB SSD / RTX 4050 6GB / Windows 11</div>
+            <div class="product-price">₹79,990</div>
+            <div class="product-avail">Available at Microsys, Biharsharif</div>
+            <div class="product-actions">
+              <a href="#" class="btn btn-secondary" style="width: 100%;">View Details</a>
+              <a href="#" class="btn btn-whatsapp whatsapp-btn" style="width: 100%;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>Enquire on WhatsApp</a>
+            </div>
+          </div>
+          <!-- PHP: } endforeach; // products -->
+        </div>
+      </div>
+      
+      <!-- DATA-BIND: products.desktops -->
+      <div id="panel-desktops" role="tabpanel" tabindex="-1" aria-labelledby="tab-desktops" class="products-panel" hidden>
+        <div class="products-grid reveal-group">
+          <!-- Card 1 -->
+          <div class="product-card reveal"><!-- PLACEHOLDER: product card - desktops -->
+            <div class="product-image-wrapper"><div class="product-image-inner">[Product image]</div><div class="product-badge">[Availability]</div></div>
+            <div class="product-brand">[Brand]</div>
+            <div class="product-name" data-product-name="[Product Name]">[Product Name]</div>
+            <div class="product-specs">[Key spec line]</div>
+            <div class="product-price"><!-- PLACEHOLDER: Product Price -->[Price — search pending]</div>
+            <div class="product-avail">[Availability]</div>
+            <div class="product-actions">
+              <a href="#" class="btn btn-secondary" style="width: 100%;">View Details</a>
+              <a href="#" class="btn btn-whatsapp whatsapp-btn" style="width: 100%;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>Enquire on WhatsApp</a>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="product-card reveal"><!-- PLACEHOLDER: product card - desktops -->
+            <div class="product-image-wrapper"><div class="product-image-inner">[Product image]</div><div class="product-badge">[Availability]</div></div>
+            <div class="product-brand">[Brand]</div>
+            <div class="product-name" data-product-name="[Product Name]">[Product Name]</div>
+            <div class="product-specs">[Key spec line]</div>
+            <div class="product-price"><!-- PLACEHOLDER: Product Price -->[Price — search pending]</div>
+            <div class="product-avail">[Availability]</div>
+            <div class="product-actions">
+              <a href="#" class="btn btn-secondary" style="width: 100%;">View Details</a>
+              <a href="#" class="btn btn-whatsapp whatsapp-btn" style="width: 100%;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>Enquire on WhatsApp</a>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="product-card reveal"><!-- PLACEHOLDER: product card - desktops -->
+            <div class="product-image-wrapper"><div class="product-image-inner">[Product image]</div><div class="product-badge">[Availability]</div></div>
+            <div class="product-brand">[Brand]</div>
+            <div class="product-name" data-product-name="[Product Name]">[Product Name]</div>
+            <div class="product-specs">[Key spec line]</div>
+            <div class="product-price"><!-- PLACEHOLDER: Product Price -->[Price — search pending]</div>
+            <div class="product-avail">[Availability]</div>
+            <div class="product-actions">
+              <a href="#" class="btn btn-secondary" style="width: 100%;">View Details</a>
+              <a href="#" class="btn btn-whatsapp whatsapp-btn" style="width: 100%;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>Enquire on WhatsApp</a>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div class="product-card reveal"><!-- PLACEHOLDER: product card - desktops -->
+            <div class="product-image-wrapper"><div class="product-image-inner">[Product image]</div><div class="product-badge">[Availability]</div></div>
+            <div class="product-brand">[Brand]</div>
+            <div class="product-name" data-product-name="[Product Name]">[Product Name]</div>
+            <div class="product-specs">[Key spec line]</div>
+            <div class="product-price"><!-- PLACEHOLDER: Product Price -->[Price — search pending]</div>
+            <div class="product-avail">[Availability]</div>
+            <div class="product-actions">
+              <a href="#" class="btn btn-secondary" style="width: 100%;">View Details</a>
+              <a href="#" class="btn btn-whatsapp whatsapp-btn" style="width: 100%;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>Enquire on WhatsApp</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- DATA-BIND: products.gaming -->
+      <div id="panel-gaming" role="tabpanel" tabindex="-1" aria-labelledby="tab-gaming" class="products-panel" hidden>
+        <div class="products-grid reveal-group">
+          <!-- Card 1 -->
+          <div class="product-card reveal"><!-- PLACEHOLDER: product card - gaming -->
+            <div class="product-image-wrapper"><div class="product-image-inner">[Product image]</div><div class="product-badge">[Availability]</div></div>
+            <div class="product-brand">[Brand]</div>
+            <div class="product-name" data-product-name="[Product Name]">[Product Name]</div>
+            <div class="product-specs">[Key spec line]</div>
+            <div class="product-price"><!-- PLACEHOLDER: Product Price -->[Price — search pending]</div>
+            <div class="product-avail">[Availability]</div>
+            <div class="product-actions">
+              <a href="#" class="btn btn-secondary" style="width: 100%;">View Details</a>
+              <a href="#" class="btn btn-whatsapp whatsapp-btn" style="width: 100%;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>Enquire on WhatsApp</a>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="product-card reveal"><!-- PLACEHOLDER: product card - gaming -->
+            <div class="product-image-wrapper"><div class="product-image-inner">[Product image]</div><div class="product-badge">[Availability]</div></div>
+            <div class="product-brand">[Brand]</div>
+            <div class="product-name" data-product-name="[Product Name]">[Product Name]</div>
+            <div class="product-specs">[Key spec line]</div>
+            <div class="product-price"><!-- PLACEHOLDER: Product Price -->[Price — search pending]</div>
+            <div class="product-avail">[Availability]</div>
+            <div class="product-actions">
+              <a href="#" class="btn btn-secondary" style="width: 100%;">View Details</a>
+              <a href="#" class="btn btn-whatsapp whatsapp-btn" style="width: 100%;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>Enquire on WhatsApp</a>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="product-card reveal"><!-- PLACEHOLDER: product card - gaming -->
+            <div class="product-image-wrapper"><div class="product-image-inner">[Product image]</div><div class="product-badge">[Availability]</div></div>
+            <div class="product-brand">[Brand]</div>
+            <div class="product-name" data-product-name="[Product Name]">[Product Name]</div>
+            <div class="product-specs">[Key spec line]</div>
+            <div class="product-price"><!-- PLACEHOLDER: Product Price -->[Price — search pending]</div>
+            <div class="product-avail">[Availability]</div>
+            <div class="product-actions">
+              <a href="#" class="btn btn-secondary" style="width: 100%;">View Details</a>
+              <a href="#" class="btn btn-whatsapp whatsapp-btn" style="width: 100%;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>Enquire on WhatsApp</a>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div class="product-card reveal"><!-- PLACEHOLDER: product card - gaming -->
+            <div class="product-image-wrapper"><div class="product-image-inner">[Product image]</div><div class="product-badge">[Availability]</div></div>
+            <div class="product-brand">[Brand]</div>
+            <div class="product-name" data-product-name="[Product Name]">[Product Name]</div>
+            <div class="product-specs">[Key spec line]</div>
+            <div class="product-price"><!-- PLACEHOLDER: Product Price -->[Price — search pending]</div>
+            <div class="product-avail">[Availability]</div>
+            <div class="product-actions">
+              <a href="#" class="btn btn-secondary" style="width: 100%;">View Details</a>
+              <a href="#" class="btn btn-whatsapp whatsapp-btn" style="width: 100%;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>Enquire on WhatsApp</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- DATA-BIND: products.components -->
+      <div id="panel-components" role="tabpanel" tabindex="-1" aria-labelledby="tab-components" class="products-panel" hidden>
+        <div class="products-grid reveal-group">
+          <!-- Card 1 -->
+          <div class="product-card reveal"><!-- PLACEHOLDER: product card - components -->
+            <div class="product-image-wrapper"><div class="product-image-inner">[Product image]</div><div class="product-badge">[Availability]</div></div>
+            <div class="product-brand">[Brand]</div>
+            <div class="product-name" data-product-name="[Product Name]">[Product Name]</div>
+            <div class="product-specs">[Key spec line]</div>
+            <div class="product-price"><!-- PLACEHOLDER: Product Price -->[Price — search pending]</div>
+            <div class="product-avail">[Availability]</div>
+            <div class="product-actions">
+              <a href="#" class="btn btn-secondary" style="width: 100%;">View Details</a>
+              <a href="#" class="btn btn-whatsapp whatsapp-btn" style="width: 100%;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>Enquire on WhatsApp</a>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="product-card reveal"><!-- PLACEHOLDER: product card - components -->
+            <div class="product-image-wrapper"><div class="product-image-inner">[Product image]</div><div class="product-badge">[Availability]</div></div>
+            <div class="product-brand">[Brand]</div>
+            <div class="product-name" data-product-name="[Product Name]">[Product Name]</div>
+            <div class="product-specs">[Key spec line]</div>
+            <div class="product-price"><!-- PLACEHOLDER: Product Price -->[Price — search pending]</div>
+            <div class="product-avail">[Availability]</div>
+            <div class="product-actions">
+              <a href="#" class="btn btn-secondary" style="width: 100%;">View Details</a>
+              <a href="#" class="btn btn-whatsapp whatsapp-btn" style="width: 100%;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>Enquire on WhatsApp</a>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="product-card reveal"><!-- PLACEHOLDER: product card - components -->
+            <div class="product-image-wrapper"><div class="product-image-inner">[Product image]</div><div class="product-badge">[Availability]</div></div>
+            <div class="product-brand">[Brand]</div>
+            <div class="product-name" data-product-name="[Product Name]">[Product Name]</div>
+            <div class="product-specs">[Key spec line]</div>
+            <div class="product-price"><!-- PLACEHOLDER: Product Price -->[Price — search pending]</div>
+            <div class="product-avail">[Availability]</div>
+            <div class="product-actions">
+              <a href="#" class="btn btn-secondary" style="width: 100%;">View Details</a>
+              <a href="#" class="btn btn-whatsapp whatsapp-btn" style="width: 100%;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>Enquire on WhatsApp</a>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div class="product-card reveal"><!-- PLACEHOLDER: product card - components -->
+            <div class="product-image-wrapper"><div class="product-image-inner">[Product image]</div><div class="product-badge">[Availability]</div></div>
+            <div class="product-brand">[Brand]</div>
+            <div class="product-name" data-product-name="[Product Name]">[Product Name]</div>
+            <div class="product-specs">[Key spec line]</div>
+            <div class="product-price"><!-- PLACEHOLDER: Product Price -->[Price — search pending]</div>
+            <div class="product-avail">[Availability]</div>
+            <div class="product-actions">
+              <a href="#" class="btn btn-secondary" style="width: 100%;">View Details</a>
+              <a href="#" class="btn btn-whatsapp whatsapp-btn" style="width: 100%;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>Enquire on WhatsApp</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REMOVED: Gaming Zone (Section 9) — locked for future re-use. -->
+
+  <!-- REMOVED: Computer Components (Section 10) — locked for future re-use. -->
+
+  <!-- 11. Custom PC Building -->
+  <section class="section custom-pc" id="custom-pc">
+    <div class="container custom-pc__container">
+      <div class="custom-pc__visual-col">
+        <div class="custom-pc__visual reveal">
+          <!-- PLACEHOLDER: custom PC visual -->
+          [Custom PC build visual — pending]
+        </div>
+      </div>
+      <div class="custom-pc__content-col">
+        <h2 class="custom-pc__title reveal">Custom PC Building</h2>
+        <p class="custom-pc__subtitle reveal"><!-- PLACEHOLDER: Custom PC subtitle -->[Custom PC subtitle — pending]</p>
+        
+        <p class="custom-pc__intro reveal"><!-- PLACEHOLDER: Custom PC intro -->[Custom PC intro — pending]</p>
+        <h3 class="custom-pc__subheading reveal">Built for your use case</h3>
+        
+        <ul class="use-case-list reveal-group">
+          <li class="use-case-item reveal">
+            <span class="use-case-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></span>
+            Gaming
+          </li>
+          <li class="use-case-item reveal">
+            <span class="use-case-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></span>
+            Content Creation
+          </li>
+          <li class="use-case-item reveal">
+            <span class="use-case-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></span>
+            Programming
+          </li>
+          <li class="use-case-item reveal">
+            <span class="use-case-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg></span>
+            Office
+          </li>
+          <li class="use-case-item reveal">
+            <span class="use-case-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></span>
+            Workstation
+          </li>
+        </ul>
+        
+        <!-- ACTION: open enquiry / WhatsApp — pending -->
+        <a href="#contact" class="btn btn-primary reveal">Discuss Your PC Build</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- REMOVED: Business Computing (Section 12) — locked for future re-use. -->
+
+  <!-- REMOVED: Repair Services — moved to aboutus.html (Section 13) -->
+
+  <!-- 14. Featured Brands (Section removed - placeholder preserved for future re-use) -->
+
+  <!-- 15. Why Choose Us -->
+  <section class="section why-choose" id="why-choose-us">
+    <div class="container">
+      <div class="why-choose__header">
+        <h2 class="why-choose__title">Why Choose Us</h2>
+        <p class="why-choose__subtitle"><!-- PLACEHOLDER: Why choose us subtitle -->[Why choose us subtitle — pending]</p>
+      </div>
+      
+      <div class="why-choose__grid">
+        <div class="why-choose-item">
+          <div class="why-choose-item__icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9 12l2 2 4-4"></path></svg></div>
+          <h3 class="why-choose-item__title">Expert Guidance</h3>
+          <p class="why-choose-item__desc"><!-- PLACEHOLDER: why-choose-us detail -->[Description pending confirmation]</p>
+        </div>
+        <div class="why-choose-item">
+          <div class="why-choose-item__icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></div>
+          <h3 class="why-choose-item__title">Transparent Pricing</h3>
+          <p class="why-choose-item__desc"><!-- PLACEHOLDER: why-choose-us detail -->[Description pending confirmation]</p>
+        </div>
+        <div class="why-choose-item">
+          <div class="why-choose-item__icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 9.36l-7.1 7.1a1 1 0 0 1-1.4 0l-2.8-2.8a1 1 0 0 1 0-1.4l7.1-7.1a6 6 0 0 1 9.36-7.94l-3.77 3.77z"></path></svg></div>
+          <h3 class="why-choose-item__title">Technical Services</h3>
+          <p class="why-choose-item__desc"><!-- PLACEHOLDER: why-choose-us detail -->[Description pending confirmation]</p>
+        </div>
+        <div class="why-choose-item">
+          <div class="why-choose-item__icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
+          <h3 class="why-choose-item__title">Warranty Assistance</h3>
+          <p class="why-choose-item__desc"><!-- PLACEHOLDER: why-choose-us detail -->[Description pending confirmation]</p>
+        </div>
+        <div class="why-choose-item">
+          <div class="why-choose-item__icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg></div>
+          <h3 class="why-choose-item__title">Custom PC Builds</h3>
+          <p class="why-choose-item__desc"><!-- PLACEHOLDER: why-choose-us detail -->[Description pending confirmation]</p>
+        </div>
+        <div class="why-choose-item">
+          <div class="why-choose-item__icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg></div>
+          <h3 class="why-choose-item__title">After-Sales Support</h3>
+          <p class="why-choose-item__desc"><!-- PLACEHOLDER: why-choose-us detail -->[Description pending confirmation]</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REMOVED: Buying Guides — moved to aboutus.html (Section 16) -->
+
+  <!-- 17. Final Contact CTA -->
+  <!-- DATA-BIND: contact -->
+  <section class="section contact-cta" id="final-cta">
+    <span id="contact"></span>
+    <div class="container">
+      <div class="contact-cta__grid">
+        <div class="contact-cta__content">
+          <h2 class="contact-cta__title">Need Help Choosing the Right Computer?</h2>
+          <p class="contact-cta__subtitle">Tell us what you need. Our team can help you explore suitable options.</p>
+          
+          <div class="contact-cta__buttons">
+            <a href="#contact-form" class="btn btn-primary">Contact Showroom</a>
+            <a href="https://wa.me/919431687928?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20your%20products.%20Please%20share%20more%20details." class="btn btn-whatsapp whatsapp-contact-cta" target="_blank" rel="noopener noreferrer">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+              Enquire on WhatsApp
+            </a>
+          </div>
+          
+          <ul class="contact-details">
+            <li class="contact-details__item">
+              <span class="contact-details__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></span>
+              <a href="https://www.google.com/maps?q=Ramchandrapur,+Bihar+Sharif,+Bihar+803216" target="_blank" rel="noopener noreferrer" class="contact-details__text">Ramchandrapur, Bihar Sharif, Bihar 803216</a>
+            </li>
+            <li class="contact-details__item">
+              <span class="contact-details__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></span>
+              <a href="tel:+919431687928" class="contact-details__text">9431687928</a>
+            </li>
+            <li class="contact-details__item">
+              <span class="contact-details__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></span>
+              <span class="contact-details__text">Saturday–Friday: 10 am – 9 pm</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="contact-cta__map">
+          <!-- MAP-EMBED: business location -->
+          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d451.28255726356855!2d85.5093125!3d25.1944375!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f2f30057c19a4b%3A0x39118b5f00dbb329!2sMICROSYS%20COMPUTER%20SHOP!5e0!3m2!1sen!2sin!4v1791602127533!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+      </div>
+      
+      <div class="contact-form-wrapper" id="contact-form">
+        <form class="contact-form" action="#" method="POST" id="mainContactForm">
+          <!-- PHP dev: Tracking submission source -->
+          <input type="hidden" name="form_source" value="homepage_contact">
+          <!-- FORM-ENDPOINT: pending -->
+          <h3 class="contact-form__title">Send an Enquiry</h3>
+          <div class="contact-form__grid">
+            <label style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;" for="contact-name">Full Name</label>
+            <input type="text" id="contact-name" name="full_name" placeholder="Full Name" class="contact-form__field" required>
+            
+            <label style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;" for="contact-phone">Phone Number</label>
+            <input type="tel" id="contact-phone" name="phone_number" placeholder="Phone Number" class="contact-form__field" required>
+            
+            <label style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;" for="contact-email">Email (optional)</label>
+            <input type="email" id="contact-email" name="email" placeholder="Email (optional)" class="contact-form__field">
+            
+            <label style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;" for="contact-type">Enquiry Type</label>
+            <input type="text" id="contact-type" name="enquiry_type" placeholder="Enquiry Type" class="contact-form__field" required>
+            
+            <label style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;" for="contact-product">Product or Service</label>
+            <input type="text" id="contact-product" name="product_or_service" placeholder="Product or Service" class="contact-form__field" required>
+          </div>
+          <label style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;" for="contact-message">Message</label>
+          <textarea id="contact-message" name="message" placeholder="Message" class="contact-form__field contact-form__textarea" required></textarea>
+          <div class="contact-form__footer">
+            <button type="submit" id="contact-submit-btn" class="btn btn-primary contact-form__submit">Submit Enquiry</button>
+            <span class="contact-form__message" style="display: none; color: var(--color-blue-primary); font-weight: var(--fw-medium); margin-left: var(--space-m);"><!-- PLACEHOLDER: Thank you message -->[Thank you — pending confirmation]</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- 18. Footer -->
+  <!-- DATA-BIND: footer -->
+  <footer class="section footer" id="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__col footer__brand">
+          <img src="assets/microsys-logo.svg" alt="Microsys Computer & Accessories logo" style="height: 44px; width: auto; filter: brightness(0) invert(1); margin-bottom: var(--space-m);">
+          <div style="font-family: var(--font-display); font-weight: var(--fw-semibold); color: var(--color-white); margin-bottom: var(--space-s);">Microsys | Computer & Accessories</div>
+          <div class="footer__supporting">Biharsharif’s Most Complete Computer Store — Laptops, PCs, Gaming & More.</div>
+        </div>
+        
+        <div class="footer__col">
+          <div class="footer__heading">Quick Links</div>
+          <a href="aboutus.html" class="footer__link">About</a>
+          <a href="aboutus.html#repair-services" class="footer__link">Services</a>
+          <a href="#featured-campaign" class="footer__link">Offers</a>
+          <a href="#final-cta" class="footer__link">Contact</a>
+        </div>
+        
+        <div class="footer__col">
+          <div class="footer__heading">Categories</div>
+          <a href="laptops.html" class="footer__link">Laptops</a>
+          <a href="desktop-pcs.html" class="footer__link">Desktop PCs</a>
+          <a href="components.html" class="footer__link">Components</a>
+          <a href="gaming.html" class="footer__link">Gaming PCs</a>
+          <a href="#shop-by-category" class="footer__link">Monitors</a>
+          <a href="#shop-by-category" class="footer__link">Accessories</a>
+        </div>
+        
+        <div class="footer__col">
+          <div class="footer__heading">Contact</div>
+          <div class="footer__contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <span>Ramchandrapur, Bihar Sharif, Bihar 803216</span>
+          </div>
+          <div class="footer__contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <a href="tel:+919431687928" class="footer__link">9431687928</a>
+          </div>
+          <div class="footer__contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            <a href="https://wa.me/919431687928" class="footer__link">919431687928</a>
+          </div>
+          <div class="footer__contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>Saturday–Friday: 10 am – 9 pm</span>
+          </div>
+        </div>
+        
+        <div class="footer__col">
+          <div class="footer__heading">Follow Us</div>
+          <div class="footer__socials">
+            <a href="#" class="footer__social" aria-label="Facebook"><!-- LINK: social pending --><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+            <a href="#" class="footer__social" aria-label="Instagram"><!-- LINK: social pending --><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+            <a href="#" class="footer__social" aria-label="WhatsApp"><!-- LINK: social pending --><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></a>
+            <a href="#" class="footer__social" aria-label="YouTube"><!-- LINK: social pending --><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a>
+          </div>
+          <div class="footer__heading" style="margin-top: var(--space-l);">Legal</div>
+          <div style="display: flex; flex-direction: column; gap: var(--space-s);">
+            <a href="#" class="footer__link"><!-- LINK: legal pending -->Privacy Policy</a>
+            <a href="#" class="footer__link"><!-- LINK: legal pending -->Terms of Service</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer__bottom">
+        <div>&copy; <span class="footer__year"><!-- FALLBACK: 2026 --></span> Microsys | Computer & Accessories. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MAP-EMBED: pending section -->
+  <script>
+    const SEARCH_TERMS = [
+      'Laptops', 'Desktop PCs', 'Gaming PCs', 'Processors', 'Graphics Cards',
+      'Motherboards', 'RAM', 'SSD', 'HDD', 'Power Supplies', 'Cabinets', 'Cooling',
+      'Monitors', 'Keyboards', 'Mice', 'Printers', 'Networking', 'Accessories'
+    ];
+
+    function setupSearch(inputId, suggestionsId) {
+      const input = document.getElementById(inputId);
+      const suggestions = document.getElementById(suggestionsId);
+      if(!input || !suggestions) return;
+      
+      input.addEventListener('input', (e) => {
+        const val = e.target.value.toLowerCase();
+        suggestions.innerHTML = '';
+        if (val.length < 2) {
+          suggestions.style.display = 'none';
+          return;
+        }
+        
+        const matches = SEARCH_TERMS.filter(t => t.toLowerCase().includes(val)).slice(0, 8);
+        if (matches.length > 0) {
+          matches.forEach(match => {
+            const a = document.createElement('a');
+            a.href = "#";
+            a.className = "suggestion-item";
+            a.innerHTML = match + ' <!-- SEARCH-HANDLER: pending -->';
+            suggestions.appendChild(a);
+          });
+          suggestions.style.display = 'block';
+        } else {
+          suggestions.style.display = 'none';
+        }
+      });
+      
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          suggestions.style.display = 'none';
+          input.blur();
+        }
+      });
+      
+      document.addEventListener('click', (e) => {
+        if (!input.contains(e.target) && !suggestions.contains(e.target)) {
+          suggestions.style.display = 'none';
+        }
+      });
+    }
+
+    setupSearch('desktop-search', 'desktop-suggestions');
+    setupSearch('mobile-search', 'mobile-suggestions');
+
+    // Drawer Logic
+    const drawer = document.getElementById('drawer');
+    const drawerOverlay = document.getElementById('drawer-overlay');
+    const drawerToggle = document.getElementById('drawer-toggle');
+    const drawerClose = document.getElementById('drawer-close');
+
+    function openDrawer() {
+      if (drawer) {
+        drawer.classList.add('open');
+        drawer.setAttribute('aria-expanded', 'true');
+      }
+      if (drawerOverlay) drawerOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      if (drawer) {
+        drawer.classList.remove('open');
+        drawer.setAttribute('aria-expanded', 'false');
+      }
+      if (drawerOverlay) drawerOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+      if (drawerToggle) drawerToggle.focus();
+    }
+
+    if (drawerToggle) drawerToggle.addEventListener('click', openDrawer);
+    if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+    if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
+    
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && drawer && drawer.classList.contains('open')) {
+        closeDrawer();
+      }
+    });
+
+    // Mobile search toggle (header icon)
+    const mobileSearchToggle = document.getElementById('mobile-search-toggle');
+    if (mobileSearchToggle) {
+      mobileSearchToggle.addEventListener('click', () => {
+        openDrawer();
+        setTimeout(() => {
+          const mobileSearch = document.getElementById('mobile-search');
+          if (mobileSearch) mobileSearch.focus();
+        }, 300);
+      });
+    }
+
+    // Components Mega Menu Desktop Interaction
+    const megaTrigger = document.getElementById('mega-menu-trigger');
+    if (megaTrigger) {
+      megaTrigger.addEventListener('click', (e) => {
+        if (e.target.closest('.mega-menu')) return;
+        e.preventDefault();
+        const isOpen = megaTrigger.classList.toggle('is-open');
+        megaTrigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!megaTrigger.contains(e.target)) {
+          megaTrigger.classList.remove('is-open');
+          megaTrigger.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && (megaTrigger.classList.contains('is-open') || megaTrigger.contains(document.activeElement))) {
+          megaTrigger.classList.remove('is-open');
+          megaTrigger.setAttribute('aria-expanded', 'false');
+          megaTrigger.focus();
+        }
+      });
+    }
+    
+    // Sticky header logic
+    const header = document.getElementById('main-header');
+    window.addEventListener('scroll', () => {
+      if (!header) return;
+      if (window.scrollY > 40) {
+        header.classList.add('is-compact');
+      } else {
+        header.classList.remove('is-compact');
+      }
+    });
+
+    // Hero and Trust Strip Logic
+    document.addEventListener('DOMContentLoaded', () => {
+      // Trust Strip scroll reveal
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+
+        const trustItems = document.querySelectorAll('.trust-item');
+        trustItems.forEach((item, index) => {
+          item.classList.add('js-reveal');
+          item.style.transitionDelay = `${index * 50}ms`;
+          observer.observe(item);
+        });
+      }
+
+      // Hero Parallax
+      const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!isReducedMotion && window.innerWidth >= 768) {
+        const bg = document.getElementById('hero-bg');
+        const visual = document.getElementById('hero-visual');
+        const decor = document.getElementById('hero-decor');
+        
+        window.addEventListener('scroll', () => {
+          const scrollY = window.scrollY;
+          if (scrollY > 800) return; // Optimize
+          
+          if (bg) bg.style.transform = `translateY(${scrollY * 0.05}px)`;
+          if (visual) visual.style.transform = `translateY(${scrollY * 0.1}px) scale(1)`;
+          if (decor) decor.style.transform = `translateY(${scrollY * 0.12}px)`;
+        }, { passive: true });
+      }
+      // Tabs Logic
+      const tablist = document.querySelector('[role="tablist"]');
+      if (tablist) {
+        const tabs = tablist.querySelectorAll('[role="tab"]');
+        const panels = document.querySelectorAll('[role="tabpanel"]');
+        
+        const switchTab = (newTab) => {
+          tabs.forEach(t => {
+            t.setAttribute('aria-selected', false);
+            t.tabIndex = -1;
+          });
+          panels.forEach(p => p.hidden = true);
+          
+          newTab.setAttribute('aria-selected', true);
+          newTab.tabIndex = 0;
+          const panel = document.getElementById(newTab.getAttribute('aria-controls'));
+          if(panel) {
+            panel.hidden = false;
+            var unrevealed = panel.querySelectorAll('.reveal:not(.is-visible)');
+            unrevealed.forEach(function (el, index) {
+              el.style.transitionDelay = (index * 50) + 'ms';
+              requestAnimationFrame(function () {
+                el.classList.add('is-visible');
+              });
+            });
+          }
+        };
+
+        tabs.forEach((tab, index) => {
+          tab.addEventListener('click', () => switchTab(tab));
+          tab.addEventListener('keydown', e => {
+            let nextIndex = index;
+            if (e.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
+            else if (e.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
+            else if (e.key === 'Home') nextIndex = 0;
+            else if (e.key === 'End') nextIndex = tabs.length - 1;
+            
+            if (nextIndex !== index) {
+              e.preventDefault();
+              switchTab(tabs[nextIndex]);
+              tabs[nextIndex].focus();
+            }
+          });
+        });
+      }
+
+      // WhatsApp Prefill
+      const waBtns = document.querySelectorAll('.whatsapp-btn');
+      waBtns.forEach(btn => {
+        if(btn.classList.contains('whatsapp-contact-cta')) return; // handled statically
+        const card = btn.closest('.product-card');
+        const nameEl = card ? card.querySelector('.product-name') : null;
+        const pName = nameEl ? nameEl.getAttribute('data-product-name') : '';
+        const msg = pName && pName !== '[Product Name]' 
+          ? `Hello, I would like to enquire about ${pName}. Please share the current price and availability.`
+          : `Hello, I would like to enquire about a product. Please share the current price and availability.`;
+        btn.href = `https://wa.me/919431687928?text=${encodeURIComponent(msg)}`;
+      });
+
+      // Contact Form Dual-Action Submit Handler (Database Placeholder + WhatsApp Redirect)
+      // [PHP TO CONFIRM]: Replace simulated async submit with real fetch/XMLHttpRequest to backend endpoint:
+      // POST endpoint placeholder: contact-submit.php (Target SQL table: inquiries)
+      const mainContactForm = document.getElementById('mainContactForm');
+      const contactSubmitBtn = document.getElementById('contact-submit-btn') || mainContactForm?.querySelector('.contact-form__submit');
+
+      if (mainContactForm && contactSubmitBtn) {
+        mainContactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+
+          const originalBtnText = contactSubmitBtn.textContent;
+          contactSubmitBtn.textContent = 'Sending...';
+          contactSubmitBtn.disabled = true;
+
+          // Read form values by exact field names (FIELD-NAMING-CONVENTION.md / FORM-FIELD-MAP.md)
+          const fullName = (mainContactForm.elements['full_name'] || document.getElementById('contact-name'))?.value.trim() || '';
+          const phoneNumber = (mainContactForm.elements['phone_number'] || document.getElementById('contact-phone'))?.value.trim() || '';
+          const email = (mainContactForm.elements['email'] || document.getElementById('contact-email'))?.value.trim() || '';
+          const enquiryType = (mainContactForm.elements['enquiry_type'] || document.getElementById('contact-type'))?.value.trim() || '';
+          const productOrService = (mainContactForm.elements['product_or_service'] || document.getElementById('contact-product'))?.value.trim() || '';
+          const message = (mainContactForm.elements['message'] || document.getElementById('contact-message'))?.value.trim() || '';
+
+          // Build branded WhatsApp message
+          let waText = `Hi Microsys, I have submitted an enquiry:\n` +
+            `• Name: ${fullName}\n` +
+            `• Phone: ${phoneNumber}`;
+          if (email) waText += `\n• Email: ${email}`;
+          if (enquiryType) waText += `\n• Type: ${enquiryType}`;
+          if (productOrService) waText += `\n• Product/Service: ${productOrService}`;
+          if (message) waText += `\n• Message: ${message}`;
+
+          // Simulate async database submission delay (PHP dev: replace with backend endpoint fetch)
+          setTimeout(() => {
+            const waUrl = `https://wa.me/919431687928?text=${encodeURIComponent(waText)}`;
+            window.open(waUrl, '_blank', 'noopener');
+
+            contactSubmitBtn.textContent = 'Enquiry Sent!';
+
+            setTimeout(() => {
+              mainContactForm.reset();
+              contactSubmitBtn.textContent = originalBtnText;
+              contactSubmitBtn.disabled = false;
+            }, 2000);
+          }, 800);
+        });
+      }
+
+      // Footer Copyright Year
+      const yearEl = document.querySelector('.footer__year');
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
+
+      // Hero Video Autoplay Safety Net & Poster Swap
+      const heroVideo = document.querySelector('.hero__video');
+      if (heroVideo) {
+        heroVideo.muted = true;
+        if (window.innerWidth < 768) {
+          heroVideo.setAttribute('poster', 'assets/hero/hero-mobile-poster.webp');
+        }
+        const playPromise = heroVideo.play();
+        if (playPromise && typeof playPromise.catch === 'function') {
+          playPromise.catch(function () {
+            heroVideo.classList.add('hero__video--paused');
+          });
+        }
+      }
+
+      // Scroll Reveal Stagger Animation (Sections 7, 8, 9, 11)
+      (function () {
+        var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (prefersReduced) return;
+
+        var revealEls = document.querySelectorAll(".reveal");
+        if (!revealEls.length) return;
+
+        if (!("IntersectionObserver" in window)) {
+          revealEls.forEach(function (el) { el.classList.add("is-visible"); });
+          return;
+        }
+
+        var observer = new IntersectionObserver(function (entries, obs) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            var el = entry.target;
+
+            // Stagger if inside a reveal-group
+            var group = el.closest(".reveal-group");
+            if (group) {
+              var siblings = Array.prototype.slice.call(group.querySelectorAll(".reveal"));
+              var index = siblings.indexOf(el);
+              var delay = Math.max(0, index) * 50; // 50ms stagger
+              el.style.transitionDelay = delay + "ms";
+            }
+
+            el.classList.add("is-visible");
+            obs.unobserve(el);
+          });
+        }, {
+          threshold: 0.12,
+          rootMargin: "0px 0px -60px 0px"
+        });
+
+        revealEls.forEach(function (el) {
+          if (el.classList.contains("is-visible")) return;
+          observer.observe(el);
+        });
+      })();
+
+      // Landing Overlay Logic
+      (function () {
+        var overlay = document.getElementById('landing-overlay');
+        var cta = document.getElementById('landing-explore-btn');
+        if (!overlay || !cta) return;
+
+        var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var alreadySeen = sessionStorage.getItem('microsys-intro-seen') === 'true';
+
+        if (prefersReduced || alreadySeen) {
+          overlay.classList.add('is-hidden');
+          return;
+        }
+
+        document.body.style.overflow = 'hidden';
+
+        var exiting = false;
+
+        function exitOverlayFade() {
+          if (exiting) return;
+          exiting = true;
+          overlay.classList.add("is-fading");
+          window.setTimeout(function () {
+            overlay.classList.add("is-hidden");
+            overlay.classList.remove("is-fading");
+            document.body.style.overflow = "";
+            sessionStorage.setItem("microsys-intro-seen", "true");
+          }, 750);
+        }
+
+        function exitOverlayZoom() {
+          if (exiting) return;
+          exiting = true;
+          overlay.classList.add("is-exiting");
+          window.setTimeout(function () {
+            overlay.classList.add("is-hidden");
+            overlay.classList.remove("is-exiting");
+            document.body.style.overflow = "";
+            sessionStorage.setItem("microsys-intro-seen", "true");
+          }, 950);
+        }
+
+        cta.addEventListener("click", exitOverlayZoom);
+
+        window.addEventListener("wheel", function (e) {
+          if (overlay.classList.contains("is-hidden") || exiting) return;
+          if (e.deltaY > 0) exitOverlayFade();
+        }, { passive: true });
+
+        window.addEventListener("touchmove", function () {
+          if (overlay.classList.contains("is-hidden") || exiting) return;
+          exitOverlayFade();
+        }, { passive: true });
+
+        document.addEventListener("keydown", function (e) {
+          if (overlay.classList.contains("is-hidden") || exiting) return;
+          if (e.key === "Escape") {
+            exitOverlayFade();
+          } else if (e.key === "ArrowDown" || e.key === "PageDown" || e.key === " ") {
+            exitOverlayFade();
+          } else if (e.key === "Tab") {
+            e.preventDefault();
+            cta.focus();
+          }
+        });
+
+        cta.focus();
+      })();
+    });
+  </script>
+  <script>
+    const announcementBar = document.getElementById('announcement-bar');
+    const closeBtn = document.getElementById('close-announcement');
+    if (closeBtn && announcementBar) {
+      closeBtn.addEventListener('click', () => {
+        announcementBar.classList.add('hidden');
+      });
+    }
+  </script>
+
+  <!-- Promo Popup Modal -->
+  <div id="promo-popup-overlay" class="hidden">
+    <div id="promo-popup" data-type="popup_modal">
+      <button type="button" id="close-promo-popup" aria-label="Close">&times;</button>
+      <img id="promo-popup-image" 
+           src="assets/campaign/poster.webp" 
+           alt="Special Offer"
+           data-php-src="<?php echo $promotion['image_url']; ?>">
+      <!-- Note for PHP dev: replace src with PHP echo for dynamic image -->
+      <p id="promo-popup-text">
+        <!-- PHP: echo $promotion['text_content']; -->
+        Limited Time: Free Installation on Desktop Builds!
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const promoOverlay = document.getElementById('promo-popup-overlay');
+    const closePromo = document.getElementById('close-promo-popup');
+
+    if (promoOverlay) {
+      const SESSION_KEY = 'microsys_promo_shown';
+      if (!sessionStorage.getItem(SESSION_KEY)) {
+        setTimeout(() => {
+          promoOverlay.classList.remove('hidden');
+        }, 1500);
+        sessionStorage.setItem(SESSION_KEY, 'true');
+      }
+    }
+    if (closePromo && promoOverlay) {
+      closePromo.addEventListener('click', () => {
+        promoOverlay.classList.add('hidden');
+      });
+    }
+
+    (function() {
+      const track = document.getElementById('slider-track');
+      const slides = track ? track.querySelectorAll('.slide') : [];
+      const dotsContainer = document.getElementById('slider-dots');
+      let current = 0;
+      let autoTimer;
+
+      if (!slides.length) return;
+
+      // Build dots
+      slides.forEach((_, i) => {
+        const dot = document.createElement('span');
+        dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+        dot.addEventListener('click', () => goTo(i));
+        dotsContainer.appendChild(dot);
+      });
+
+      function goTo(index) {
+        current = (index + slides.length) % slides.length;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        document.querySelectorAll('.slider-dot')
+          .forEach((d, i) => d.classList.toggle('active', i === current));
+      }
+
+      function startAuto() {
+        autoTimer = setInterval(() => goTo(current + 1), 2500);
+      }
+
+      document.getElementById('slider-prev')
+        ?.addEventListener('click', () => { clearInterval(autoTimer); 
+          goTo(current - 1); startAuto(); });
+      document.getElementById('slider-next')
+        ?.addEventListener('click', () => { clearInterval(autoTimer); 
+          goTo(current + 1); startAuto(); });
+
+      startAuto();
+    })();
+  </script>
+
+  <!-- Mobile Sticky Bottom Bar -->
+  <div id="mobile-sticky-bar" role="navigation" aria-label="Quick contact actions">
+    <a href="tel:+919431687928" class="sticky-bar-btn sticky-bar-btn--call">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      <span>Call</span>
+    </a>
+    <a href="https://wa.me/919431687928?text=Hi%20Microsys%2C%20I%20would%20like%20to%20enquire%20about%20your%20products%20and%20services." class="sticky-bar-btn sticky-bar-btn--whatsapp" target="_blank" rel="noopener">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+      <span>WhatsApp</span>
+    </a>
+    <a href="https://www.google.com/maps?q=Ramchandrapur,+Bihar+Sharif,+Bihar+803216" class="sticky-bar-btn sticky-bar-btn--directions" target="_blank" rel="noopener">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+      <span>Directions</span>
+    </a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!-- ==========================================================================
+     MASTER PRODUCT CARD TEMPLATE (CANONICAL REFERENCE SNIPPET)
+     Standardized against 17-Field Product Schema & FIELD-NAMING-CONVENTION.md
+     Notice: Reference template only. Do not paste directly into live pages
+     until scheduled migration in Phase 0 Step 4.
+     ========================================================================== -->
+
+<!-- DATA-BIND: products.<scope> -->
+<!-- Outer loop note for backend developer:
+     Wrap this article element in a foreach loop: foreach ($products as $row) { ... }
+     The query source is filtered by is_popular = 1 (for homepage tabs) or category = '<category_slug>' (for catalog pages). -->
+
+<!-- PHP: Data attributes mapped from:
+     data-product-id   <- htmlspecialchars($row['product_id_sku'])
+     data-category     <- htmlspecialchars($row['category'])
+     data-sub-category <- htmlspecialchars($row['sub_category'])
+     data-is-popular   <- (int)$row['is_popular']
+     data-stock-status <- htmlspecialchars($row['availability']) -->
+<article class="product-card"
+         data-product-id="[Product ID / SKU]"
+         data-category="[Category Slug]"
+         data-sub-category="[Sub-Category Slug]"
+         data-is-popular="[0 or 1]"
+         data-stock-status="[Availability Slug]">
+
+  <!-- 1. Product Image & Promotional Badge Overlay -->
+  <div class="product-image-wrapper">
+    <!-- PHP: if (!empty($row['badge'])) { echo '<div class="product-badge">' . htmlspecialchars($row['badge']) . '</div>'; } -->
+    <!-- Promotional tag only (e.g., 'Bestseller', 'New Arrival', 'Special Offer') — decoupled from stock availability -->
+    <div class="product-badge">[Badge — e.g., Bestseller]</div>
+
+    <!-- PHP: Primary image path from $row['image_primary']
+         Secondary and tertiary gallery angles stored in data attributes for future modal/gallery hydration:
+         data-image-secondary <- htmlspecialchars($row['image_secondary']) [NOT YET DISPLAYED]
+         data-image-tertiary  <- htmlspecialchars($row['image_tertiary']) [NOT YET DISPLAYED] -->
+    <div class="product-image-inner">
+      <img src="assets/productimage/placeholder.webp"
+           alt="[Product Name]"
+           loading="lazy"
+           decoding="async"
+           width="400"
+           height="300"
+           data-image-secondary="[Secondary Image Path]"
+           data-image-tertiary="[Tertiary Image Path]">
+    </div>
+  </div>
+
+  <!-- 2. Brand Identifier -->
+  <!-- PHP: echo htmlspecialchars($row['brand']) -->
+  <div class="product-brand">[Brand]</div>
+
+  <!-- 3. Product Display Name -->
+  <!-- PHP: echo htmlspecialchars($row['product_name'])
+       data-product-name attribute is scraped by client-side JavaScript for WhatsApp prefilled message composition -->
+  <h3 class="product-name" data-product-name="[Product Name]">[Product Name]</h3>
+
+  <!-- 4. Manufacturer Model Number -->
+  <!-- PHP: if (!empty($row['model_number'])) { echo '<div class="product-model">' . htmlspecialchars($row['model_number']) . '</div>'; } -->
+  <!-- Note: .product-model is [NEW — CSS NOT YET DEFINED — to be added] -->
+  <div class="product-model">[Model Number]</div>
+
+  <!-- 5. Key Specifications Teaser -->
+  <!-- PHP: echo htmlspecialchars($row['key_specs']) -->
+  <div class="product-specs">[Key specs summary — e.g., processor / RAM / storage / OS]</div>
+
+  <!-- PHP: Technical full specifications ($row['full_specs'])
+       [NOT YET DISPLAYED — reserved for product detail modal / expanded view in future phase] -->
+
+  <!-- 6. Price Block (Selling Price & Optional MRP Strikethrough) -->
+  <div class="product-pricing">
+    <!-- PHP: echo htmlspecialchars($row['price']) — unformatted numeric decimal stored in data-raw-price; formatted with currency symbol for display -->
+    <span class="product-price" data-raw-price="[Raw Selling Price]">[Selling Price]</span>
+
+    <!-- PHP: if (!empty($row['mrp']) && $row['mrp'] > $row['price']) { echo '<span class="product-mrp" data-raw-mrp="' . htmlspecialchars($row['mrp']) . '">[MRP]</span>'; } -->
+    <!-- Note: .product-mrp is [NEW — CSS NOT YET DEFINED — to be added] -->
+    <span class="product-mrp" data-raw-mrp="[Raw MRP]">[MRP — optional]</span>
+  </div>
+
+  <!-- 7. Inventory Stock Status -->
+  <!-- PHP: echo htmlspecialchars(ucwords(str_replace('_', ' ', $row['availability'])))
+       data-stock-status attribute reflects raw enum value ('in_stock', 'out_of_stock', 'on_order')
+       Note: .product-availability is [NEW / REFACTORED — separated from badge; CSS NOT YET DEFINED — to be added] -->
+  <div class="product-availability" data-stock-status="[Availability Slug]">[Availability — In Stock / Out of Stock / On Order]</div>
+
+  <!-- 8. Manufacturer Warranty -->
+  <!-- PHP: if (!empty($row['warranty'])) { echo '<div class="product-warranty">' . htmlspecialchars($row['warranty']) . '</div>'; } -->
+  <!-- Note: .product-warranty is [NEW — CSS NOT YET DEFINED — to be added] -->
+  <div class="product-warranty">[Warranty — e.g., 1 Year Onsite]</div>
+
+  <!-- 9. User Action Buttons -->
+  <div class="product-actions">
+    <!-- View Details: Opens product modal or routes to product view -->
+    <a href="#" class="btn btn-secondary">View Details</a>
+
+    <!-- WhatsApp Enquiry: URL composition pattern for PHP backend rendering:
+         $wa_msg = urlencode("Hello, I would like to enquire about " . $row['product_name'] . " (SKU: " . $row['product_id_sku'] . "). Please share current price and availability.");
+         $wa_url = "https://wa.me/919431687928?text=" . $wa_msg; -->
+    <a href="https://wa.me/919431687928?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20a%20product."
+       class="btn btn-whatsapp whatsapp-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+      </svg>
+      <span>Enquire on WhatsApp</span>
+    </a>
+  </div>
+
+</article>
+
+<!-- ==========================================================================
+     USAGE NOTES FOR PHP BACKEND DEVELOPER
+     ==========================================================================
+     1. Applicable Pages:
+        - index.html (Popular Products section: Laptops, Desktops, Gaming, Components tabs)
+        - laptops.html (Featured Laptops catalog grid)
+        - desktop-pcs.html (Featured Desktops catalog grid)
+        - components.html (8 hardware sub-sections: Processors, Motherboards, GPUs, RAM, Storage, PSUs, Cases, Cooling)
+        - gaming.html (Featured Gaming Systems catalog grid)
+
+     2. What Varies per Page / Section:
+        - Database query:
+          - Homepage tabs: SELECT * FROM products WHERE is_popular = 1 AND category = '<tab_slug>'
+          - Category pages: SELECT * FROM products WHERE category = '<category_slug>'
+          - Components sub-sections: SELECT * FROM products WHERE category = 'components' AND sub_category = '<sub_slug>'
+        - Scope token: Replace 'products.<scope>' in DATA-BIND with category/section token
+
+     3. What Remains Strictly Identical:
+        - Inner markup hierarchy, classes, data attributes, button styles, and SVG iconography
+        - CSS styling rules in styles/home.css
+     ========================================================================== -->
+
+<!-- ==========================================================================
+     MIGRATION NOTES (Traceable to AUDIT-FIELDS.md Section 7)
+     ==========================================================================
+     1. New Elements Added in this Standard:
+        - .product-model: Isolated model number container [NEW]
+        - .product-mrp: Strikethrough list price container [NEW]
+        - .product-availability: Dedicated inventory stock status pill [NEW / REFACTORED]
+        - .product-warranty: Direct manufacturer warranty duration label [NEW]
+
+     2. Decoupled Fields:
+        - .product-badge is now restricted strictly to promotional/marketing badges (e.g., 'Bestseller').
+          Stock status has been completely moved out of .product-badge into .product-availability.
+
+     3. New Data Attributes Added:
+        - data-product-id (maps to product_id_sku)
+        - data-category (maps to category)
+        - data-sub-category (maps to sub_category)
+        - data-is-popular (maps to is_popular)
+        - data-stock-status (maps to availability)
+        - data-raw-price (unformatted numeric decimal for price)
+        - data-raw-mrp (unformatted numeric decimal for mrp)
+        - data-image-secondary (image asset path for secondary photo)
+        - data-image-tertiary (image asset path for tertiary photo)
+
+     4. Un-rendered 17-Standard Fields Accounted For:
+        - full_specs: Documented with comment; reserved for product detail modal / expanded drawer
+        - image_secondary: Preserved in data-image-secondary attribute
+        - image_tertiary: Preserved in data-image-tertiary attribute
+
+     5. Pages Scheduled for Card Migration in Phase 0 Step 4:
+        - index.html (16 cards)
+        - laptops.html (6 cards)
+        - desktop-pcs.html (6 cards)
+        - components.html (16 cards across 8 sub-sections)
+        - gaming.html (6 cards)
+        Total: 50 product cards to be replaced with this master loop template.
+     ========================================================================== -->
