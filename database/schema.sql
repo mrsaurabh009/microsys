@@ -51,13 +51,18 @@ CREATE TABLE IF NOT EXISTS `blogs` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NOT NULL,
   `slug` VARCHAR(280) NOT NULL UNIQUE,
-  `cover_image_url` VARCHAR(255) DEFAULT NULL,
   `category` VARCHAR(100) DEFAULT NULL,
-  `body` LONGTEXT NOT NULL,
-  `author` VARCHAR(100) DEFAULT 'Admin',
-  `is_published` TINYINT(1) DEFAULT 0,
+  `thumbnail_url` VARCHAR(255) NOT NULL,
+  `author_name` VARCHAR(100) DEFAULT 'Microsys Team',
+  `meta_description` TEXT DEFAULT NULL,
+  `content_html` LONGTEXT NOT NULL,
+  `status` ENUM('draft', 'published') DEFAULT 'draft',
+  `is_featured` TINYINT(1) DEFAULT 0,
+  `published_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  INDEX `idx_blogs_status` (`status`),
+  INDEX `idx_blogs_category` (`category`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `comments` (
@@ -84,7 +89,10 @@ CREATE TABLE IF NOT EXISTS `promotions` (
 
 CREATE TABLE IF NOT EXISTS `sliders` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `label` VARCHAR(100) DEFAULT NULL,
+  `eyebrow` VARCHAR(150) DEFAULT NULL,
   `title` VARCHAR(255) DEFAULT NULL,
+  `subtitle` VARCHAR(500) DEFAULT NULL,
   `image_url` VARCHAR(255) NOT NULL,
   `link_url` VARCHAR(255) DEFAULT NULL,
   `display_order` TINYINT UNSIGNED DEFAULT 0,
@@ -96,10 +104,12 @@ CREATE TABLE IF NOT EXISTS `sliders` (
 CREATE TABLE IF NOT EXISTS `inquiries` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `full_name` VARCHAR(150) NOT NULL,
-  `phone` VARCHAR(20) NOT NULL,
+  `phone_number` VARCHAR(20) NOT NULL,
   `email` VARCHAR(150) DEFAULT NULL,
+  `enquiry_type` VARCHAR(100) DEFAULT NULL,
   `message` TEXT DEFAULT NULL,
   `product_interest` VARCHAR(255) DEFAULT NULL,
+  `status` ENUM('new', 'read', 'contacted', 'closed') DEFAULT 'new',
   `submitted_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

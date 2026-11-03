@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Blog — Laptop Guides & PC Tips in Biharsharif | Microsys</title>
+  <meta name="description" content="Expert advice on buying laptops, building PCs, and hardware maintenance. Read the latest tech guides from Microsys, Biharsharif's top computer store.">
+  <link rel="canonical" href="https://microsys.in/blog.html">
+
+  <!-- Open Graph Metadata -->
+  <meta property="og:title" content="Tech Blog — Laptop Guides & PC Tips in Biharsharif | Microsys">
+  <meta property="og:description" content="Expert advice on buying laptops, building PCs, and hardware maintenance. Read the latest tech guides from Microsys, Biharsharif's top computer store.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://microsys.in/blog.html">
+  <meta property="og:site_name" content="Microsys">
+  <meta property="og:locale" content="en_IN">
+
+  <!-- Twitter Card Metadata -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tech Blog — Laptop Guides & PC Tips in Biharsharif | Microsys">
+  <meta name="twitter:description" content="Expert advice on buying laptops, building PCs, and hardware maintenance. Read the latest tech guides from Microsys, Biharsharif's top computer store.">
+
+  <!-- Marked.js CDN for Markdown parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js" defer></script>
+  
+  <link rel="stylesheet" href="blogs/style.css">
+  <link rel="stylesheet" href="styles/home.css">
+</head>
+<body>
+
+  <!-- 1. Utility Bar -->
+  <div class="utility-bar">
+    <div class="container" style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+      <span class="desktop-only" style="display: inline-flex; align-items: center; gap: 6px;">
+        <span class="icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></span>
+        Ramchandrapur, Bihar Sharif, Bihar 803216
+      </span>
+      <span style="display: inline-flex; align-items: center; gap: 8px;">
+        <span class="icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></span>
+        <a href="tel:+919431687928" style="color: inherit; text-decoration: none;">9431687928</a>
+        <span style="opacity: 0.7;">&bull;</span>
+        <span class="icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></span>
+        Open Daily 10 am – 9 pm
+      </span>
+    </div>
+  </div>
+
+  <!-- 2. Main Header -->
+  <header class="main-header" id="main-header">
+    <div class="container" style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+      <div class="mobile-only">
+        <button id="drawer-toggle" aria-label="Open Menu" style="background:none; border:none; cursor:pointer;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+      <a href="index.html" class="header-logo" style="display: flex; align-items: center; gap: var(--space-s); text-decoration: none;">
+        <img src="assets/microsys-logo.svg" alt="Microsys Computer & Accessories logo" class="header__logo-img" style="width: auto;">
+        <span class="desktop-only">Computer & Accessories</span>
+      </a>
+      <div class="search-wrapper desktop-only">
+        <form action="products.html" method="GET" role="search" style="width: 100%; display: flex; align-items: center; position: relative;">
+          <span class="search-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-text-muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </span>
+          <input type="text" class="search-input" id="desktop-search" name="q" placeholder="Search laptops, components, accessories…">
+          <div class="search-suggestions" id="desktop-suggestions"></div>
+        </form>
+      </div>
+      <div class="header-actions">
+        <button class="mobile-only" aria-label="Search" style="background:none; border:none; cursor:pointer;" id="mobile-search-toggle">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+        <a href="https://wa.me/919431687928" class="btn-whatsapp-icon" aria-label="Enquire on WhatsApp">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+        </a>
+        <a href="index.html#final-cta" class="btn btn-primary desktop-only">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3. Category Navigation -->
+  <nav class="category-nav desktop-only">
+    <div class="container">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="products.html" class="nav-link">Catalog</a>
+      <a href="aboutus.html" class="nav-link">About Us</a>
+      <a href="aboutus.html#repair-services" class="nav-link">Services</a>
+      <a href="index.html#featured-campaign" class="nav-link">Offers</a>
+      <a href="blog.html" class="nav-link" aria-current="page">Blogs</a>
+      <a href="index.html#final-cta" class="nav-link">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Mobile Drawer -->
+  <div class="drawer-overlay" id="drawer-overlay"></div>
+  <div class="drawer" id="drawer" aria-expanded="false">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-l);">
+      <span style="font-weight: var(--fw-bold);">Menu</span>
+      <button id="drawer-close" aria-label="Close Menu" style="background:none; border:none; cursor:pointer;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div style="margin-bottom: var(--space-m); font-size: var(--type-supporting);">
+      <div><span class="icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></span>Ramchandrapur, Bihar Sharif, Bihar 803216</div>
+      <div style="margin-top: var(--space-xs);"><span class="icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></span><a href="tel:+919431687928" style="color: inherit;">9431687928</a></div>
+      <div style="margin-top: var(--space-xs);"><span class="icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></span>Open Daily 10 am – 9 pm</div>
+    </div>
+    <div style="margin-bottom: var(--space-l); position: relative;">
+      <form action="products.html" method="GET" role="search" style="position: relative;">
+        <input type="text" class="search-input" id="mobile-search" name="q" placeholder="Search laptops, components, accessories…">
+        <div class="search-suggestions" id="mobile-suggestions"></div>
+      </form>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: var(--space-m);">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="products.html" class="nav-link">Catalog</a>
+      <a href="aboutus.html" class="nav-link">About Us</a>
+      <a href="aboutus.html#repair-services" class="nav-link">Services</a>
+      <a href="index.html#featured-campaign" class="nav-link">Offers</a>
+      <a href="blog.html" class="nav-link" aria-current="page">Blogs</a>
+      <a href="index.html#final-cta" class="nav-link">Contact</a>
+    </div>
+    <div style="margin-top: var(--space-xl); display: flex; flex-direction: column; gap: var(--space-m);">
+      <a href="https://wa.me/919431687928" class="btn btn-whatsapp" style="width: 100%;">Enquire on WhatsApp</a>
+      <a href="index.html#final-cta" class="btn btn-primary" style="width: 100%;">Contact</a>
+    </div>
+  </div>
+
+  <!-- ==================== BLOG HERO SECTION ==================== -->
+  <section class="blog-hero">
+    <div class="container blog-hero__container">
+      <span class="blog-hero__eyebrow eyebrow">OUR BLOG</span>
+      <h1 class="blog-hero__title">Tech Insights &amp; Guides</h1>
+      <p class="blog-hero__subtitle">Expert advice on laptops, PC builds, and hardware maintenance from the Microsys team.</p>
+    </div>
+  </section>
+
+  <!-- ==================== POSTS GRID & TOOLBAR ==================== -->
+  <main id="posts-grid" class="posts-section">
+    <div class="container posts-container">
+      <!-- Toolbar (Search + Category Filters) -->
+      <div class="blog-toolbar">
+        <div class="blog-toolbar__top">
+          <!-- Search Bar: id="blog-search" and placeholder "Search articles..." -->
+          <div class="blog-search-wrapper">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="blog-search" class="search-input" placeholder="Search articles..." autocomplete="off" aria-label="Search articles">
+            <button id="search-clear" class="search-clear" aria-label="Clear search" style="display: none;">&times;</button>
+          </div>
+
+          <!-- Sort dropdown control -->
+          <div class="sort-control">
+            <label for="sort-posts">Sort By:</label>
+            <select id="sort-posts" class="sort-select" aria-label="Sort articles">
+              <option value="latest" selected>Latest</option>
+              <option value="oldest">Oldest</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Category Tabs: id="blog-categories" with category filter buttons -->
+        <div class="blog-categories" id="blog-categories" role="tablist" aria-label="Filter articles by category">
+          <button type="button" class="blog-category-btn active" role="tab" aria-selected="true" data-category="all">All</button>
+          <button type="button" class="blog-category-btn" role="tab" aria-selected="false" data-category="Local Businesses">Local Businesses</button>
+          <button type="button" class="blog-category-btn" role="tab" aria-selected="false" data-category="Web Development">Web Development</button>
+          <button type="button" class="blog-category-btn" role="tab" aria-selected="false" data-category="Buying Guides">Buying Guides</button>
+          <button type="button" class="blog-category-btn" role="tab" aria-selected="false" data-category="Hardware Tips">Hardware Tips</button>
+        </div>
+
+        <!-- Hidden compatibility select for script.js category filter -->
+        <select id="post-category" class="visually-hidden" aria-hidden="true" tabindex="-1">
+          <option value="all" selected>All Categories</option>
+          <option value="Articles">Articles</option>
+          <option value="Blogs">Blogs</option>
+          <option value="SEO">SEO</option>
+          <option value="Web Development">Web Development</option>
+          <option value="Local Businesses">Local Businesses</option>
+          <option value="App Development">App Development</option>
+          <option value="Research">Research</option>
+          <option value="AI Automation">AI Automation</option>
+          <option value="Trends">Trends</option>
+          <option value="Technology">Technology</option>
+          <option value="Case Study">Case Study</option>
+          <option value="Buying Guides">Buying Guides</option>
+          <option value="Hardware Tips">Hardware Tips</option>
+          <option value="News">News</option>
+        </select>
+        <div id="search-live-region" class="visually-hidden" aria-live="polite"></div>
+      </div>
+
+      <!-- Preserved Posts Container (id="posts-grid-container" class="posts-grid") -->
+      <!-- DATA-BIND: blogs -->
+      <div id="posts-grid-container" class="posts-grid">
+        <!-- PHP: foreach($blogs as $blog) { -->
+        <!-- PHP Card Template for PHP Developer:
+        <article class="post-card" tabindex="0" role="link" aria-label="Read article: <!-- PHP: echo $blog['title']; -->">
+          <!-- PHP: if ($blog['is_featured']) { --><div class="latest-badge">Featured</div><!-- PHP: } -->
+          <!-- PHP: Category: echo $blog['category']; -->
+          <div class="category-tag post-card-category"><!-- PHP: echo $blog['category']; --></div>
+          <!-- PHP: Thumbnail: echo $blog['thumbnail_url']; -->
+          <img class="post-card-thumbnail" src="<!-- PHP: echo $blog['thumbnail_url']; -->" alt="<!-- PHP: echo $blog['title']; -->" loading="lazy">
+          <div class="post-card-body">
+            <!-- PHP: Date: echo date('M d, Y', strtotime($blog['published_date'])); -->
+            <span class="post-card-date"><!-- PHP: echo $blog['published_date']; --></span>
+            <!-- PHP: Title: echo $blog['title']; -->
+            <h3 class="post-card-title"><!-- PHP: echo $blog['title']; --></h3>
+            <!-- PHP: Excerpt: echo $blog['meta_description']; -->
+            <p class="post-card-excerpt"><!-- PHP: echo $blog['meta_description']; --></p>
+            <!-- PHP: Link: href="blog-detail.php?slug=<!-- PHP: echo $blog['slug']; -->" -->
+            <a class="post-card-link" href="blog-detail.html?slug=<!-- PHP: echo $blog['slug']; -->">Read Article &rarr;</a>
+          </div>
+        </article>
+        <!-- PHP: } // end foreach -->
+        -->
+        <!-- Dynamically populated by script.js (Fallback prototype) -->
+        <div class="loading-spinner">Loading articles…</div>
+      </div>
+
+      <!-- Preserved Pagination Controls -->
+      <nav class="pagination-container" aria-label="Pagination Navigation" id="pagination-controls" style="display: none;">
+        <!-- Generated dynamically -->
+      </nav>
+    </div>
+  </main>
+
+  <!-- 18. Footer -->
+  <!-- DATA-BIND: footer -->
+  <footer class="section footer" id="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__col footer__brand">
+          <img src="assets/microsys-logo.svg" alt="Microsys Computer & Accessories logo" style="height: 44px; width: auto; filter: brightness(0) invert(1); margin-bottom: var(--space-m);">
+          <div style="font-family: var(--font-display); font-weight: var(--fw-semibold); color: var(--color-white); margin-bottom: var(--space-s);">Microsys | Computer & Accessories</div>
+          <div class="footer__supporting">Biharsharif’s Most Complete Computer Store — Laptops, PCs, Gaming & More.</div>
+        </div>
+        
+        <div class="footer__col">
+          <div class="footer__heading">Quick Links</div>
+          <a href="aboutus.html" class="footer__link">About</a>
+          <a href="aboutus.html#repair-services" class="footer__link">Services</a>
+          <a href="index.html#featured-campaign" class="footer__link">Offers</a>
+          <a href="blog.html" class="footer__link">Blogs</a>
+          <a href="index.html#final-cta" class="footer__link">Contact</a>
+        </div>
+        
+        <div class="footer__col">
+          <div class="footer__heading">Categories</div>
+          <a href="products.html?category=laptops" class="footer__link">Laptops</a>
+          <a href="products.html?category=desktops" class="footer__link">Desktop PCs</a>
+          <a href="products.html?category=components" class="footer__link">Components</a>
+          <a href="products.html?category=gaming" class="footer__link">Gaming PCs</a>
+          <a href="index.html#shop-by-category" class="footer__link">Monitors</a>
+          <a href="index.html#shop-by-category" class="footer__link">Accessories</a>
+        </div>
+        
+        <div class="footer__col">
+          <div class="footer__heading">Contact</div>
+          <div class="footer__contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <span>Ramchandrapur, Bihar Sharif, Bihar 803216</span>
+          </div>
+          <div class="footer__contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <a href="tel:+919431687928" class="footer__link">9431687928</a>
+          </div>
+          <div class="footer__contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            <a href="https://wa.me/919431687928" class="footer__link">919431687928</a>
+          </div>
+          <div class="footer__contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>Saturday–Friday: 10 am – 9 pm</span>
+          </div>
+        </div>
+        
+        <div class="footer__col">
+          <div class="footer__heading">Follow Us</div>
+          <div class="footer__socials">
+            <a href="#" class="footer__social" aria-label="Facebook"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+            <a href="#" class="footer__social" aria-label="Instagram"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+            <a href="#" class="footer__social" aria-label="WhatsApp"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></a>
+            <a href="#" class="footer__social" aria-label="YouTube"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a>
+          </div>
+          <div class="footer__heading" style="margin-top: var(--space-l);">Legal</div>
+          <div style="display: flex; flex-direction: column; gap: var(--space-s);">
+            <a href="#" class="footer__link">Privacy Policy</a>
+            <a href="#" class="footer__link">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer__bottom">
+        <div>&copy; <span class="footer__year">2026</span> Microsys | Computer & Accessories. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Sticky Bottom Bar -->
+  <div id="mobile-sticky-bar" role="navigation" aria-label="Quick contact actions">
+    <a href="tel:+919431687928" class="sticky-bar-btn sticky-bar-btn--call">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      <span>Call</span>
+    </a>
+    <a href="https://wa.me/919431687928?text=Hi%20Microsys%2C%20I%20would%20like%20to%20enquire%20about%20your%20products%20and%20services." class="sticky-bar-btn sticky-bar-btn--whatsapp" target="_blank" rel="noopener">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+      <span>WhatsApp</span>
+    </a>
+    <a href="https://www.google.com/maps?q=Ramchandrapur,+Bihar+Sharif,+Bihar+803216" class="sticky-bar-btn sticky-bar-btn--directions" target="_blank" rel="noopener">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+      <span>Directions</span>
+    </a>
+  </div>
+
+  <!-- Blog Fetch Interceptor & Root Path Mapping -->
+  <script>
+    (function() {
+      // Map post-search to blog-search so existing script.js attaches listeners seamlessly
+      const origGetElementById = document.getElementById.bind(document);
+      document.getElementById = function(id) {
+        if (id === 'post-search') {
+          return origGetElementById('blog-search') || origGetElementById('post-search');
+        }
+        return origGetElementById(id);
+      };
+
+      const origFetch = window.fetch;
+      window.fetch = function(url, options) {
+        if (typeof url === 'string') {
+          if (url === './posts.json' || url === 'posts.json' || url === '/blogs/posts.json') {
+            return origFetch('blogs/posts.json', options).then(async (res) => {
+              if (!res.ok) return res;
+              const data = await res.json();
+              if (Array.isArray(data)) {
+                data.forEach(item => {
+                  if (item.thumbnail && !item.thumbnail.startsWith('http') && !item.thumbnail.startsWith('blogs/')) {
+                    item.thumbnail = 'blogs/' + item.thumbnail;
+                  }
+                });
+              }
+              return new Response(JSON.stringify(data), {
+                status: res.status,
+                statusText: res.statusText,
+                headers: { 'Content-Type': 'application/json' }
+              });
+            });
+          }
+        }
+        return origFetch(url, options);
+      };
+
+      // Map card navigation to blog-detail.html
+      document.addEventListener('click', function(e) {
+        const link = e.target.closest('.post-card-link, .post-card');
+        if (link) {
+          const href = link.classList.contains('post-card-link') ? link.getAttribute('href') : (link.querySelector('.post-card-link') ? link.querySelector('.post-card-link').getAttribute('href') : '');
+          if (href) {
+            const match = href.match(/posts\/(.+)\.html/);
+            if (match) {
+              e.preventDefault();
+              e.stopImmediatePropagation();
+              window.location.href = 'blog-detail.html?file=' + match[1];
+            }
+          }
+        }
+      }, true);
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          const card = e.target.closest('.post-card');
+          if (card) {
+            const link = card.querySelector('.post-card-link');
+            if (link) {
+              const href = link.getAttribute('href');
+              const match = href && href.match(/posts\/(.+)\.html/);
+              if (match) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                window.location.href = 'blog-detail.html?file=' + match[1];
+              }
+            }
+          }
+        }
+      }, true);
+    })();
+  </script>
+
+  <!-- Blog Logic Script -->
+  <script src="blogs/script.js"></script>
+
+  <!-- Microsys Global Scripts -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const SEARCH_TERMS = [
+        'Laptops', 'Desktop PCs', 'Gaming PCs', 'Processors', 'Graphics Cards',
+        'Motherboards', 'RAM', 'SSD', 'HDD', 'Power Supplies', 'Cabinets', 'Cooling',
+        'Monitors', 'Keyboards', 'Mice', 'Printers', 'Networking', 'Accessories'
+      ];
+
+      function setupSearch(inputId, suggestionsId) {
+        const input = document.getElementById(inputId);
+        const suggestions = document.getElementById(suggestionsId);
+        if(!input || !suggestions) return;
+        
+        input.addEventListener('input', (e) => {
+          const val = e.target.value.toLowerCase();
+          suggestions.innerHTML = '';
+          if (val.length < 2) {
+            suggestions.style.display = 'none';
+            return;
+          }
+          
+          const matches = SEARCH_TERMS.filter(t => t.toLowerCase().includes(val)).slice(0, 8);
+          if (matches.length > 0) {
+            matches.forEach(match => {
+              const a = document.createElement('a');
+              a.href = "products.html?q=" + encodeURIComponent(match);
+              a.className = "suggestion-item";
+              a.textContent = match;
+              suggestions.appendChild(a);
+            });
+            suggestions.style.display = 'block';
+          } else {
+            suggestions.style.display = 'none';
+          }
+        });
+        
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            suggestions.style.display = 'none';
+            input.blur();
+          }
+        });
+        
+        document.addEventListener('click', (e) => {
+          if (!input.contains(e.target) && !suggestions.contains(e.target)) {
+            suggestions.style.display = 'none';
+          }
+        });
+      }
+
+      setupSearch('desktop-search', 'desktop-suggestions');
+      setupSearch('mobile-search', 'mobile-suggestions');
+
+      // Drawer Logic
+      const drawer = document.getElementById('drawer');
+      const drawerOverlay = document.getElementById('drawer-overlay');
+      const drawerToggle = document.getElementById('drawer-toggle');
+      const drawerClose = document.getElementById('drawer-close');
+
+      function openDrawer() {
+        if (drawer) {
+          drawer.classList.add('open', 'is-open');
+          drawer.setAttribute('aria-expanded', 'true');
+        }
+        if (drawerOverlay) drawerOverlay.classList.add('open', 'is-open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeDrawer() {
+        if (drawer) {
+          drawer.classList.remove('open', 'is-open');
+          drawer.setAttribute('aria-expanded', 'false');
+        }
+        if (drawerOverlay) drawerOverlay.classList.remove('open', 'is-open');
+        document.body.style.overflow = '';
+        if (drawerToggle) drawerToggle.focus();
+      }
+
+      if (drawerToggle) drawerToggle.addEventListener('click', openDrawer);
+      if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+      if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
+      
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && drawer && (drawer.classList.contains('open') || drawer.classList.contains('is-open'))) {
+          closeDrawer();
+        }
+      });
+
+      // Mobile search toggle (header icon)
+      const mobileSearchToggle = document.getElementById('mobile-search-toggle');
+      if (mobileSearchToggle) {
+        mobileSearchToggle.addEventListener('click', () => {
+          openDrawer();
+          setTimeout(() => {
+            const mobileSearch = document.getElementById('mobile-search');
+            if (mobileSearch) mobileSearch.focus();
+          }, 300);
+        });
+      }
+
+      // Components Mega Menu Desktop Interaction
+      const megaTrigger = document.getElementById('mega-menu-trigger');
+      if (megaTrigger) {
+        megaTrigger.addEventListener('click', (e) => {
+          if (e.target.closest('.mega-menu')) return;
+          const isOpen = megaTrigger.classList.toggle('is-open');
+          megaTrigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!megaTrigger.contains(e.target)) {
+            megaTrigger.classList.remove('is-open');
+            megaTrigger.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && (megaTrigger.classList.contains('is-open') || megaTrigger.contains(document.activeElement))) {
+            megaTrigger.classList.remove('is-open');
+            megaTrigger.setAttribute('aria-expanded', 'false');
+            megaTrigger.focus();
+          }
+        });
+      }
+      
+      // Sticky header logic
+      const header = document.getElementById('main-header');
+      window.addEventListener('scroll', () => {
+        if (!header) return;
+        if (window.scrollY > 40) {
+          header.classList.add('is-compact');
+        } else {
+          header.classList.remove('is-compact');
+        }
+      });
+
+      // Footer Copyright Year
+      const yearEl = document.querySelector('.footer__year');
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
+    });
+  </script>
+</body>
+</html>

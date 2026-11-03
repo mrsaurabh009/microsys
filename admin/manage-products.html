@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Products | Microsys Admin</title>
+
+  <!-- Google Fonts Preconnect & Inter / Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Core Design Tokens & Admin Specific Stylesheet -->
+  <link rel="stylesheet" href="../styles/design-system.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ==================== ADMIN SIDEBAR ==================== -->
+  <aside class="admin-sidebar" aria-label="Admin Navigation Sidebar">
+    <div class="admin-sidebar-header">
+      <a href="index.html" class="admin-sidebar-logo">
+        <span class="admin-sidebar-logo-text">Microsys Admin</span>
+        <span class="admin-sidebar-logo-badge">Portal</span>
+      </a>
+      <button type="button" id="close-sidebar" class="close-sidebar-btn" aria-label="Close Sidebar">&times;</button>
+    </div>
+
+    <nav class="admin-nav" aria-label="Main Admin Navigation">
+      <a href="index.html" class="admin-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        <span>Dashboard</span>
+      </a>
+      <a href="manage-products.html" class="admin-nav-item active" aria-current="page">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+        <span>Products</span>
+      </a>
+      <a href="manage-blogs.html" class="admin-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        <span>Blogs</span>
+      </a>
+      <a href="manage-comments.html" class="admin-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        <span>Comments</span>
+      </a>
+      <a href="manage-inquiries.html" class="admin-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        <span>Inquiries</span>
+      </a>
+      <a href="manage-banners.html" class="admin-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="5" x2="5" y2="19"></line><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle></svg>
+        <span>Promotions</span>
+      </a>
+      <a href="manage-sliders.html" class="admin-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+        <span>Sliders</span>
+      </a>
+      <a href="manage-categories.html" class="admin-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+        <span>Categories</span>
+      </a>
+      <a href="manage-services.html" class="admin-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+        <span>Services</span>
+      </a>
+    </nav>
+
+    <div class="admin-sidebar-footer">
+      <a href="../index.html" class="admin-nav-external" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        <span>View Website</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Sidebar Mobile Backdrop Overlay -->
+  <div id="sidebar-overlay" class="admin-sidebar-overlay" aria-hidden="true"></div>
+
+  <!-- ==================== ADMIN MAIN AREA ==================== -->
+  <main class="admin-main">
+    <!-- Topbar -->
+    <header class="admin-topbar">
+      <div class="admin-topbar-left">
+        <button type="button" id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+        <h1 class="admin-page-title">Manage Products</h1>
+      </div>
+      <div class="admin-topbar-actions">
+        <div class="admin-user-profile">
+          <div class="admin-avatar" aria-hidden="true">AU</div>
+          <span class="admin-user-name">Admin User</span>
+        </div>
+        <a href="login.html" class="admin-logout-btn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+          <span>Logout</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Content Area -->
+    <div class="admin-content">
+
+      <!-- ==================== DATA TABLE SECTION ==================== -->
+      <section class="dashboard-section manage-table-section" aria-labelledby="products-table-heading">
+        <div class="section-header-row">
+          <div>
+            <h2 id="products-table-heading" class="section-title">Products Inventory</h2>
+            <p class="section-subtitle">Manage catalog items, pricing, stock availability, and specifications</p>
+          </div>
+          <a href="#add-edit-form" id="toggle-form-btn" class="btn-primary">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>+ Add New Product</span>
+          </a>
+        </div>
+
+        <div class="table-responsive">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th scope="col">Image</th>
+                <th scope="col">SKU</th>
+                <th scope="col">Name</th>
+                <th scope="col">Category</th>
+                <th scope="col">Price</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- PHP: foreach($products as $product) { -->
+              <tr>
+                <td>
+                  <!-- PHP: echo '<img src="' . htmlspecialchars($product['image_primary']) . '" alt="' . htmlspecialchars($product['product_name']) . '" class="table-thumb">'; -->
+                  <img src="../assets/productimage/placeholder.webp" alt="HP 15s" class="table-thumb" width="44" height="44">
+                </td>
+                <td>
+                  <!-- PHP: echo htmlspecialchars($product['product_id_sku']); -->
+                  <span class="table-sku">LAP-HP-15S-001</span>
+                </td>
+                <td>
+                  <!-- PHP: echo htmlspecialchars($product['product_name']); -->
+                  <strong class="table-product-name">HP 15s 12th Gen Intel Core i3</strong>
+                  <span class="table-meta-brand"><!-- PHP: echo htmlspecialchars($product['brand']); -->HP</span>
+                </td>
+                <td>
+                  <!-- PHP: echo htmlspecialchars($product['category']); -->
+                  <span class="table-category-tag">Laptops</span>
+                </td>
+                <td>
+                  <!-- PHP: echo '₹' . number_format($product['price'], 2); -->
+                  <span class="table-price">₹38,990.00</span>
+                </td>
+                <td>
+                  <!-- PHP: echo '<span class="status-badge status-' . htmlspecialchars($product['availability']) . '">' . htmlspecialchars($product['availability']) . '</span>'; -->
+                  <span class="status-badge status-in-stock">In Stock</span>
+                </td>
+                <td>
+                  <div class="table-actions">
+                    <!-- PHP: href="manage-products.html?edit=<?php echo $product['id']; ?>#product-form-container" -->
+                    <a href="#product-form-container" class="btn-table-action btn-edit" title="Edit Product">Edit</a>
+                    <!-- PHP: href="manage-products.html?delete=<?php echo $product['id']; ?>" onclick="return confirm('Are you sure you want to delete this product?');" -->
+                    <a href="#delete" class="btn-table-action btn-delete" title="Delete Product">Delete</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <!-- PHP: echo '<img src="' . htmlspecialchars($product['image_primary']) . '" alt="' . htmlspecialchars($product['product_name']) . '" class="table-thumb">'; -->
+                  <img src="../assets/productimage/placeholder.webp" alt="ASUS TUF Gaming" class="table-thumb" width="44" height="44">
+                </td>
+                <td>
+                  <!-- PHP: echo htmlspecialchars($product['product_id_sku']); -->
+                  <span class="table-sku">GAM-ASUS-TUF-002</span>
+                </td>
+                <td>
+                  <!-- PHP: echo htmlspecialchars($product['product_name']); -->
+                  <strong class="table-product-name">ASUS TUF Gaming F15</strong>
+                  <span class="table-meta-brand"><!-- PHP: echo htmlspecialchars($product['brand']); -->ASUS</span>
+                </td>
+                <td>
+                  <!-- PHP: echo htmlspecialchars($product['category']); -->
+                  <span class="table-category-tag">Gaming</span>
+                </td>
+                <td>
+                  <!-- PHP: echo '₹' . number_format($product['price'], 2); -->
+                  <span class="table-price">₹54,990.00</span>
+                </td>
+                <td>
+                  <!-- PHP: echo '<span class="status-badge status-' . htmlspecialchars($product['availability']) . '">' . htmlspecialchars($product['availability']) . '</span>'; -->
+                  <span class="status-badge status-in-stock">In Stock</span>
+                </td>
+                <td>
+                  <div class="table-actions">
+                    <!-- PHP: href="manage-products.html?edit=<?php echo $product['id']; ?>#product-form-container" -->
+                    <a href="#product-form-container" class="btn-table-action btn-edit" title="Edit Product">Edit</a>
+                    <!-- PHP: href="manage-products.html?delete=<?php echo $product['id']; ?>" onclick="return confirm('Are you sure you want to delete this product?');" -->
+                    <a href="#delete" class="btn-table-action btn-delete" title="Delete Product">Delete</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <!-- PHP: echo '<img src="' . htmlspecialchars($product['image_primary']) . '" alt="' . htmlspecialchars($product['product_name']) . '" class="table-thumb">'; -->
+                  <img src="../assets/productimage/placeholder.webp" alt="Dell Vostro" class="table-thumb" width="44" height="44">
+                </td>
+                <td>
+                  <!-- PHP: echo htmlspecialchars($product['product_id_sku']); -->
+                  <span class="table-sku">LAP-DELL-3520-003</span>
+                </td>
+                <td>
+                  <!-- PHP: echo htmlspecialchars($product['product_name']); -->
+                  <strong class="table-product-name">Dell Vostro 3520</strong>
+                  <span class="table-meta-brand"><!-- PHP: echo htmlspecialchars($product['brand']); -->Dell</span>
+                </td>
+                <td>
+                  <!-- PHP: echo htmlspecialchars($product['category']); -->
+                  <span class="table-category-tag">Laptops</span>
+                </td>
+                <td>
+                  <!-- PHP: echo '₹' . number_format($product['price'], 2); -->
+                  <span class="table-price">₹41,500.00</span>
+                </td>
+                <td>
+                  <!-- PHP: echo '<span class="status-badge status-' . htmlspecialchars($product['availability']) . '">' . htmlspecialchars($product['availability']) . '</span>'; -->
+                  <span class="status-badge status-out-of-stock">Out of Stock</span>
+                </td>
+                <td>
+                  <div class="table-actions">
+                    <!-- PHP: href="manage-products.html?edit=<?php echo $product['id']; ?>#product-form-container" -->
+                    <a href="#product-form-container" class="btn-table-action btn-edit" title="Edit Product">Edit</a>
+                    <!-- PHP: href="manage-products.html?delete=<?php echo $product['id']; ?>" onclick="return confirm('Are you sure you want to delete this product?');" -->
+                    <a href="#delete" class="btn-table-action btn-delete" title="Delete Product">Delete</a>
+                  </div>
+                </td>
+              </tr>
+              <!-- PHP: } -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ==================== ADD / EDIT PRODUCT FORM ==================== -->
+      <section id="add-edit-form" class="admin-form-container" aria-labelledby="form-heading">
+        <div class="form-header">
+          <h2 id="form-heading" class="section-title">Add / Edit Product</h2>
+          <p class="section-subtitle">Ensure frontend parity by filling out all canonical 17 fields matching FIELD-NAMING-CONVENTION.md</p>
+        </div>
+
+        <!-- PHP: action="save-product.php" -->
+        <form id="product-form" method="POST" enctype="multipart/form-data">
+          <!-- Hidden Security CSRF Token & Product ID for Edit Mode -->
+          <input type="hidden" name="csrf_token" value="<!-- PHP: echo $csrf_token; -->">
+          <input type="hidden" name="product_id" value="<!-- PHP: echo $product['id'] ?? ''; -->">
+
+          <div class="admin-form-grid">
+            <!-- 1. product_id_sku -->
+            <div class="form-group">
+              <label for="product_id_sku">Product SKU (product_id_sku) *</label>
+              <!-- PHP: value="<?php echo htmlspecialchars($product['product_id_sku'] ?? ''); ?>" -->
+              <input 
+                type="text" 
+                id="product_id_sku" 
+                name="product_id_sku" 
+                required 
+                placeholder="e.g. LAP-HP-15S-001" 
+                value="[PHP: echo $product['product_id_sku'] ?? '']"
+              >
+            </div>
+
+            <!-- 2. category -->
+            <div class="form-group">
+              <label for="category">Category (category) *</label>
+              <!-- PHP: selected options based on $product['category'] -->
+              <select id="category" name="category" required>
+                <option value="">-- Select Category --</option>
+                <option value="laptops">Laptops</option>
+                <option value="desktop-pcs">Desktop PCs</option>
+                <option value="gaming">Gaming PCs</option>
+                <option value="components">Components</option>
+                <option value="processors">Processors</option>
+                <option value="graphics-cards">Graphics Cards</option>
+                <option value="motherboards">Motherboards</option>
+                <option value="ram-storage">RAM & Storage</option>
+                <option value="monitors">Monitors</option>
+                <option value="keyboards-mice">Keyboards & Mice</option>
+                <option value="printers">Printers</option>
+                <option value="networking">Networking</option>
+                <option value="accessories">Accessories</option>
+              </select>
+            </div>
+
+            <!-- 3. sub_category -->
+            <div class="form-group">
+              <label for="sub_category">Sub-Category (sub_category)</label>
+              <!-- PHP Dev: You can use JS to toggle this dropdown based on the 'category' selected, but it's not mandatory. -->
+              <!-- PHP: selected options based on $product['sub_category'] -->
+              <select id="sub_category" name="sub_category">
+                <option value="">-- None (Only for Components) --</option>
+                <option value="processors">Processors</option>
+                <option value="motherboards">Motherboards</option>
+                <option value="graphics-cards">Graphics Cards</option>
+                <option value="ram">RAM</option>
+                <option value="storage">Storage</option>
+                <option value="power-supplies">Power Supplies</option>
+                <option value="cabinets">Cabinets</option>
+                <option value="cooling">Cooling</option>
+              </select>
+              <small class="form-help">Select a sub-category only if the main category is 'Components'.</small>
+            </div>
+
+            <!-- 4. brand -->
+            <div class="form-group">
+              <label for="brand">Brand (brand) *</label>
+              <!-- PHP: value="<?php echo htmlspecialchars($product['brand'] ?? ''); ?>" -->
+              <input 
+                type="text" 
+                id="brand" 
+                name="brand" 
+                required 
+                placeholder="e.g. HP, Lenovo, Dell, ASUS, Intel, AMD" 
+                value="[PHP: echo $product['brand'] ?? '']"
+              >
+            </div>
+
+            <!-- 5. product_name -->
+            <div class="form-group form-group-full">
+              <label for="product_name">Product Name (product_name) *</label>
+              <!-- PHP: value="<?php echo htmlspecialchars($product['product_name'] ?? ''); ?>" -->
+              <input 
+                type="text" 
+                id="product_name" 
+                name="product_name" 
+                required 
+                placeholder="e.g. HP 15s 12th Gen Intel Core i3" 
+                value="[PHP: echo $product['product_name'] ?? '']"
+              >
+            </div>
+
+            <!-- 6. model_number -->
+            <div class="form-group">
+              <label for="model_number">Model Number (model_number)</label>
+              <!-- PHP: value="<?php echo htmlspecialchars($product['model_number'] ?? ''); ?>" -->
+              <input 
+                type="text" 
+                id="model_number" 
+                name="model_number" 
+                placeholder="e.g. 15s-fq5000 / 3520" 
+                value="[PHP: echo $product['model_number'] ?? '']"
+              >
+            </div>
+
+            <!-- 7. key_specs -->
+            <div class="form-group form-group-full">
+              <label for="key_specs">Key Specs Summary (key_specs) *</label>
+              <!-- PHP: value="<?php echo htmlspecialchars($product['key_specs'] ?? ''); ?>" -->
+              <input 
+                type="text" 
+                id="key_specs" 
+                name="key_specs" 
+                required 
+                placeholder="e.g. 12th Gen Core i3 / 8GB RAM / 512GB SSD / Win 11" 
+                value="[PHP: echo $product['key_specs'] ?? '']"
+              >
+            </div>
+
+            <!-- 8. full_specs -->
+            <div class="form-group form-group-full">
+              <label for="full_specs">Full Technical Specs (full_specs)</label>
+              <!-- PHP: echo htmlspecialchars($product['full_specs'] ?? ''); -->
+              <textarea 
+                id="full_specs" 
+                name="full_specs" 
+                rows="5" 
+                placeholder="Processor: Intel Core i3 1215U&#10;RAM: 8GB DDR4 3200MHz&#10;Storage: 512GB NVMe M.2 SSD&#10;Display: 15.6-inch Full HD Antiglare&#10;Graphics: Intel UHD Integrated&#10;OS: Windows 11 Home"
+              >[PHP: echo $product['full_specs'] ?? '']</textarea>
+            </div>
+
+            <!-- 9. price -->
+            <div class="form-group">
+              <label for="price">Selling Price in INR (price) *</label>
+              <!-- PHP: value="<?php echo htmlspecialchars($product['price'] ?? ''); ?>" -->
+              <input 
+                type="number" 
+                id="price" 
+                name="price" 
+                step="0.01" 
+                min="0" 
+                required 
+                placeholder="38990.00" 
+                value="[PHP: echo $product['price'] ?? '']"
+              >
+            </div>
+
+            <!-- 10. mrp -->
+            <div class="form-group">
+              <label for="mrp">Maximum Retail Price (mrp)</label>
+              <!-- PHP: value="<?php echo htmlspecialchars($product['mrp'] ?? ''); ?>" -->
+              <input 
+                type="number" 
+                id="mrp" 
+                name="mrp" 
+                step="0.01" 
+                min="0" 
+                placeholder="47500.00" 
+                value="[PHP: echo $product['mrp'] ?? '']"
+              >
+            </div>
+
+            <!-- 11. availability -->
+            <div class="form-group">
+              <label for="availability">Availability State (availability) *</label>
+              <!-- PHP: selected options based on $product['availability'] -->
+              <select id="availability" name="availability" required>
+                <!-- PHP: <option value="in_stock" <?php echo ($product['availability'] ?? '') === 'in_stock' ? 'selected' : ''; ?>>In Stock</option> -->
+                <option value="in_stock">in_stock (In Stock)</option>
+                <option value="out_of_stock">out_of_stock (Out of Stock)</option>
+                <option value="on_order">on_order (On Order)</option>
+              </select>
+            </div>
+
+            <!-- 12. warranty -->
+            <div class="form-group">
+              <label for="warranty">Warranty Coverage (warranty)</label>
+              <!-- PHP: value="<?php echo htmlspecialchars($product['warranty'] ?? ''); ?>" -->
+              <input 
+                type="text" 
+                id="warranty" 
+                name="warranty" 
+                placeholder="e.g. 1 Year Onsite / 2 Years Domestic" 
+                value="[PHP: echo $product['warranty'] ?? '']"
+              >
+            </div>
+
+            <!-- 13. badge -->
+            <div class="form-group">
+              <label for="badge">Marketing Badge (badge)</label>
+              <!-- PHP: value="<?php echo htmlspecialchars($product['badge'] ?? ''); ?>" -->
+              <input 
+                type="text" 
+                id="badge" 
+                name="badge" 
+                placeholder="e.g. Bestseller, New Arrival, Hot Deal" 
+                value="[PHP: echo $product['badge'] ?? '']"
+              >
+            </div>
+
+            <!-- 14. is_popular -->
+            <div class="form-group form-group-checkbox form-group-full">
+              <!-- PHP: checked="<?php echo (!empty($product['is_popular'])) ? 'checked' : ''; ?>" -->
+              <label class="checkbox-container">
+                <input 
+                  type="checkbox" 
+                  id="is_popular" 
+                  name="is_popular" 
+                  value="1"
+                  [PHP: echo !empty($product['is_popular']) ? 'checked' : '';]
+                >
+                <span class="checkbox-text">Feature in Homepage Popular Products (is_popular = 1)</span>
+              </label>
+            </div>
+
+            <!-- 15. image_primary -->
+            <div class="form-group">
+              <label for="image_primary">Primary Image (image_primary) *</label>
+              <!-- PHP: echo !empty($product['image_primary']) ? '<div class="current-asset">Current: ' . htmlspecialchars($product['image_primary']) . '</div>' : ''; -->
+              <input 
+                type="file" 
+                id="image_primary" 
+                name="image_primary" 
+                accept="image/*"
+              >
+              <span class="form-help">Main catalog card thumbnail. Recommended 800x600px WebP/PNG</span>
+            </div>
+
+            <!-- 16. image_secondary -->
+            <div class="form-group">
+              <label for="image_secondary">Secondary Image (image_secondary)</label>
+              <!-- PHP: echo !empty($product['image_secondary']) ? '<div class="current-asset">Current: ' . htmlspecialchars($product['image_secondary']) . '</div>' : ''; -->
+              <input 
+                type="file" 
+                id="image_secondary" 
+                name="image_secondary" 
+                accept="image/*"
+              >
+              <span class="form-help">Detail page gallery angle 2</span>
+            </div>
+
+            <!-- 17. image_tertiary -->
+            <div class="form-group">
+              <label for="image_tertiary">Tertiary Image (image_tertiary)</label>
+              <!-- PHP: echo !empty($product['image_tertiary']) ? '<div class="current-asset">Current: ' . htmlspecialchars($product['image_tertiary']) . '</div>' : ''; -->
+              <input 
+                type="file" 
+                id="image_tertiary" 
+                name="image_tertiary" 
+                accept="image/*"
+              >
+              <span class="form-help">Detail page gallery angle 3</span>
+            </div>
+          </div>
+
+          <!-- Form Action Buttons -->
+          <div class="form-actions-row">
+            <button type="submit" class="btn-primary">Save Product</button>
+            <a href="manage-products.html" id="cancel-form-btn" class="btn-secondary">Cancel</a>
+          </div>
+        </form>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Admin Interaction Script -->
+  <script src="script.js" defer></script>
+</body>
+</html>

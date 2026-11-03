@@ -111,16 +111,12 @@
      ==========================================================================
      1. Applicable Pages:
         - index.html (Popular Products section: Laptops, Desktops, Gaming, Components tabs)
-        - laptops.html (Featured Laptops catalog grid)
-        - desktop-pcs.html (Featured Desktops catalog grid)
-        - components.html (8 hardware sub-sections: Processors, Motherboards, GPUs, RAM, Storage, PSUs, Cases, Cooling)
-        - gaming.html (Featured Gaming Systems catalog grid)
+        - products.html (Catalog grid for all categories and sub-categories)
 
      2. What Varies per Page / Section:
         - Database query:
           - Homepage tabs: SELECT * FROM products WHERE is_popular = 1 AND category = '<tab_slug>'
-          - Category pages: SELECT * FROM products WHERE category = '<category_slug>'
-          - Components sub-sections: SELECT * FROM products WHERE category = 'components' AND sub_category = '<sub_slug>'
+          - Catalog grid: SELECT * FROM products WHERE category = '<category_slug>' (optional: AND sub_category = '<sub_slug>')
         - Scope token: Replace 'products.<scope>' in DATA-BIND with category/section token
 
      3. What Remains Strictly Identical:
@@ -157,11 +153,7 @@
         - image_secondary: Preserved in data-image-secondary attribute
         - image_tertiary: Preserved in data-image-tertiary attribute
 
-     5. Pages Scheduled for Card Migration in Phase 0 Step 4:
+     5. Pages Scheduled for Card Migration:
         - index.html (16 cards)
-        - laptops.html (6 cards)
-        - desktop-pcs.html (6 cards)
-        - components.html (16 cards across 8 sub-sections)
-        - gaming.html (6 cards)
-        Total: 50 product cards to be replaced with this master loop template.
+        - products.html (Catalog grid for all categories and sub-categories)
      ========================================================================== -->

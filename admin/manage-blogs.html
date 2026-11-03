@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Blogs | Microsys Admin</title>
+
+  <!-- Google Fonts Preconnect & Inter / Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Core Design Tokens & Admin Specific Stylesheet -->
+  <link rel="stylesheet" href="../styles/design-system.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ==================== ADMIN SIDEBAR ==================== -->
+  <aside class="admin-sidebar" aria-label="Admin Navigation Sidebar">
+    <div class="admin-sidebar-header">
+      <a href="index.html" class="admin-sidebar-logo">
+        <span class="admin-sidebar-logo-text">Microsys Admin</span>
+        <span class="admin-sidebar-logo-badge">Portal</span>
+      </a>
+      <button type="button" id="close-sidebar" class="close-sidebar-btn" aria-label="Close Sidebar">&times;</button>
+    </div>
+
+    <nav class="admin-nav" aria-label="Main Admin Navigation">
+      <a href="index.html" class="admin-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        <span>Dashboard</span>
+      </a>
+      <a href="manage-products.html" class="admin-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+        <span>Products</span>
+      </a>
+      <a href="manage-blogs.html" class="admin-nav-item active" aria-current="page">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        <span>Blogs</span>
+      </a>
+      <a href="manage-comments.html" class="admin-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        <span>Comments</span>
+      </a>
+      <a href="manage-inquiries.html" class="admin-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        <span>Inquiries</span>
+      </a>
+      <a href="manage-banners.html" class="admin-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="5" x2="5" y2="19"></line><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle></svg>
+        <span>Promotions</span>
+      </a>
+      <a href="manage-sliders.html" class="admin-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+        <span>Sliders</span>
+      </a>
+      <a href="manage-categories.html" class="admin-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+        <span>Categories</span>
+      </a>
+      <a href="manage-services.html" class="admin-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+        <span>Services</span>
+      </a>
+    </nav>
+
+    <div class="admin-sidebar-footer">
+      <a href="../index.html" class="admin-nav-external" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        <span>View Website</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Sidebar Mobile Backdrop Overlay -->
+  <div id="sidebar-overlay" class="admin-sidebar-overlay" aria-hidden="true"></div>
+
+  <!-- ==================== ADMIN MAIN AREA ==================== -->
+  <main class="admin-main">
+    <!-- Topbar -->
+    <header class="admin-topbar">
+      <div class="admin-topbar-left">
+        <button type="button" id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+        <h1 class="admin-page-title">Manage Blogs</h1>
+      </div>
+      <div class="admin-topbar-actions">
+        <div class="admin-user-profile">
+          <div class="admin-avatar" aria-hidden="true">AU</div>
+          <span class="admin-user-name">Admin User</span>
+        </div>
+        <a href="login.html" class="admin-logout-btn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+          <span>Logout</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Content Area -->
+    <div class="admin-content">
+
+      <!-- ==================== DATA TABLE SECTION ==================== -->
+      <section class="dashboard-section manage-table-section" aria-labelledby="blogs-table-heading">
+        <div class="section-header-row">
+          <div>
+            <h2 id="blogs-table-heading" class="section-title">Articles & Guides</h2>
+            <p class="section-subtitle">Manage showroom insights, buying guides, hardware tutorials, and publication status</p>
+          </div>
+          <a href="#add-edit-form" id="toggle-form-btn" class="btn-primary">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>+ Write New Article</span>
+          </a>
+        </div>
+
+        <div class="table-responsive">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th scope="col">Thumbnail</th>
+                <th scope="col">Title</th>
+                <th scope="col">Category</th>
+                <th scope="col">Status</th>
+                <th scope="col">Date</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- PHP: foreach($blogs as $blog) { -->
+              <tr>
+                <td>
+                  <!-- PHP: echo '<img src="' . htmlspecialchars($blog['thumbnail_url']) . '" alt="' . htmlspecialchars($blog['title']) . '" class="table-thumb">'; -->
+                  <img src="../assets/campaign/poster.webp" alt="Article Thumbnail" class="table-thumb" width="44" height="44">
+                </td>
+                <td>
+                  <!-- PHP: echo htmlspecialchars($blog['title']); -->
+                  <strong class="table-product-name">Top 5 Laptops for College Students in Bihar Sharif (2026)</strong>
+                  <span class="table-meta-brand"><!-- PHP: echo htmlspecialchars($blog['author_name']); -->By Microsys Team</span>
+                </td>
+                <td>
+                  <!-- PHP: echo htmlspecialchars($blog['category']); -->
+                  <span class="table-category-tag">Buying Guide</span>
+                </td>
+                <td>
+                  <!-- PHP: echo '<span class="status-badge status-' . strtolower(htmlspecialchars($blog['status'])) . '">' . htmlspecialchars($blog['status']) . '</span>'; -->
+                  <span class="status-badge status-published">Published</span>
+                </td>
+                <td>
+                  <!-- PHP: echo date('M d, Y', strtotime($blog['published_date'])); -->
+                  <span class="table-date">Oct 24, 2026</span>
+                </td>
+                <td>
+                  <div class="table-actions">
+                    <!-- PHP: href="manage-blogs.html?edit=<?php echo $blog['id']; ?>#blog-form-container" -->
+                    <a href="#blog-form-container" class="btn-table-action btn-edit" title="Edit Article">Edit</a>
+                    <!-- PHP: href="manage-blogs.html?delete=<?php echo $blog['id']; ?>" onclick="return confirm('Are you sure you want to delete this article?');" -->
+                    <a href="#delete" class="btn-table-action btn-delete" title="Delete Article">Delete</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <!-- PHP: echo '<img src="' . htmlspecialchars($blog['thumbnail_url']) . '" alt="' . htmlspecialchars($blog['title']) . '" class="table-thumb">'; -->
+                  <img src="../assets/campaign/poster.webp" alt="Article Thumbnail" class="table-thumb" width="44" height="44">
+                </td>
+                <td>
+                  <!-- PHP: echo htmlspecialchars($blog['title']); -->
+                  <strong class="table-product-name">How to Maintain Your Custom Gaming PC During Monsoon</strong>
+                  <span class="table-meta-brand"><!-- PHP: echo htmlspecialchars($blog['author_name']); -->By Tech Support</span>
+                </td>
+                <td>
+                  <!-- PHP: echo htmlspecialchars($blog['category']); -->
+                  <span class="table-category-tag">Hardware Tips</span>
+                </td>
+                <td>
+                  <!-- PHP: echo '<span class="status-badge status-' . strtolower(htmlspecialchars($blog['status'])) . '">' . htmlspecialchars($blog['status']) . '</span>'; -->
+                  <span class="status-badge status-draft">Draft</span>
+                </td>
+                <td>
+                  <!-- PHP: echo date('M d, Y', strtotime($blog['published_date'])); -->
+                  <span class="table-date">Oct 28, 2026</span>
+                </td>
+                <td>
+                  <div class="table-actions">
+                    <!-- PHP: href="manage-blogs.html?edit=<?php echo $blog['id']; ?>#blog-form-container" -->
+                    <a href="#blog-form-container" class="btn-table-action btn-edit" title="Edit Article">Edit</a>
+                    <!-- PHP: href="manage-blogs.html?delete=<?php echo $blog['id']; ?>" onclick="return confirm('Are you sure you want to delete this article?');" -->
+                    <a href="#delete" class="btn-table-action btn-delete" title="Delete Article">Delete</a>
+                  </div>
+                </td>
+              </tr>
+              <!-- PHP: } -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ==================== ADD / EDIT BLOG FORM ==================== -->
+      <section id="add-edit-form" class="admin-form-container" aria-labelledby="blog-form-heading">
+        <div class="form-header">
+          <h2 id="blog-form-heading" class="section-title">Add / Edit Blog Article</h2>
+          <p class="section-subtitle">Articles composed here strictly map to the posts.json schema and hydrate blog.html and blog-detail.html</p>
+        </div>
+
+        <!-- PHP: action="save-blog.php" -->
+        <form id="blog-form" method="POST" enctype="multipart/form-data">
+          <!-- Hidden CSRF Token for security -->
+          <input type="hidden" name="csrf_token" value="<!-- PHP: echo $csrf_token; -->">
+
+          <!-- Hidden Blog ID for Edit Mode -->
+          <input type="hidden" name="blog_id" value="<!-- PHP: echo $blog['id'] ?? ''; -->">
+
+          <div class="admin-form-grid">
+            <!-- 1. title -->
+            <div class="form-group form-group-half">
+              <label for="title">Article Title (title) *</label>
+              <!-- PHP: value="<?php echo htmlspecialchars($blog['title'] ?? ''); ?>" -->
+              <input 
+                type="text" 
+                id="title" 
+                name="title" 
+                required 
+                placeholder="e.g. Complete Guide to PC Assembly in Bihar Sharif" 
+                value="[PHP: echo $blog['title'] ?? '']"
+              >
+            </div>
+
+            <!-- 2. slug -->
+            <div class="form-group form-group-half">
+              <label for="slug">URL Slug (slug) *</label>
+              <!-- PHP: value="<?php echo htmlspecialchars($blog['slug'] ?? ''); ?>" -->
+              <input 
+                type="text" 
+                id="slug" 
+                name="slug" 
+                required 
+                placeholder="e.g. complete-guide-to-pc-assembly" 
+                value="[PHP: echo $blog['slug'] ?? '']"
+              >
+              <small class="form-help">SEO URL identifier loaded by blog-detail.html?slug=your-slug</small>
+            </div>
+
+            <!-- 3. category -->
+            <div class="form-group form-group-half">
+              <label for="category">Category (category) *</label>
+              <!-- PHP: selected options based on $blog['category'] -->
+              <select id="category" name="category" required>
+                <option value="">-- Select Category --</option>
+                <!-- PHP: <option value="Buying Guide" <?php echo ($blog['category'] ?? '') === 'Buying Guide' ? 'selected' : ''; ?>>Buying Guide</option> -->
+                <option value="Buying Guide">Buying Guide</option>
+                <option value="Hardware Tips">Hardware Tips</option>
+                <option value="News">News</option>
+                <option value="Maintenance">Maintenance</option>
+              </select>
+            </div>
+
+            <!-- 4. author_name -->
+            <div class="form-group form-group-half">
+              <label for="author_name">Author Name (author_name)</label>
+              <!-- PHP: value="<?php echo htmlspecialchars($blog['author_name'] ?? ''); ?>" -->
+              <input 
+                type="text" 
+                id="author_name" 
+                name="author_name" 
+                placeholder="e.g. Microsys Tech Team" 
+                value="[PHP: echo $blog['author_name'] ?? '']"
+              >
+            </div>
+
+            <!-- 5. thumbnail_url -->
+            <div class="form-group form-group-half">
+              <label for="thumbnail_url">Cover Thumbnail (thumbnail_url) *</label>
+              <!-- PHP: echo !empty($blog['thumbnail_url']) ? '<div class="current-asset">Current: <img src="' . htmlspecialchars($blog['thumbnail_url']) . '" width="60" style="vertical-align:middle; border-radius:4px;"> ' . htmlspecialchars($blog['thumbnail_url']) . '</div>' : ''; -->
+              <input 
+                type="file" 
+                id="thumbnail_url" 
+                name="thumbnail_url" 
+                accept="image/*"
+              >
+              <small class="form-help">Featured article banner. Recommended 16:9 ratio (1200x675px WebP/PNG)</small>
+            </div>
+
+            <!-- 6. status -->
+            <div class="form-group form-group-half">
+              <label for="status">Publication Status (status) *</label>
+              <!-- PHP: selected options based on $blog['status'] -->
+              <select id="status" name="status" required>
+                <!-- PHP: <option value="Draft" <?php echo ($blog['status'] ?? '') === 'Draft' ? 'selected' : ''; ?>>Draft</option> -->
+                <option value="Draft">Draft</option>
+                <option value="Published">Published</option>
+              </select>
+              <small class="form-help">Drafts remain hidden from public catalog and search listings</small>
+            </div>
+
+            <!-- 7. meta_description -->
+            <div class="form-group form-group-full">
+              <label for="meta_description">Meta Description (meta_description)</label>
+              <!-- PHP: echo htmlspecialchars($blog['meta_description'] ?? ''); -->
+              <textarea 
+                id="meta_description" 
+                name="meta_description" 
+                rows="3" 
+                placeholder="Concise 150-160 character summary for Google search results and blog card previews..."
+              >[PHP: echo $blog['meta_description'] ?? '']</textarea>
+              <small class="form-help">Displays in Google SERP snippets and article social sharing cards</small>
+            </div>
+
+            <!-- 8. content_file / Rich Text Editor -->
+            <div class="form-group form-group-full">
+              <label for="rich-text-editor">Article Body Content (content_file / Rich Text HTML) *</label>
+              <!-- PHP Dev: Integrate TinyMCE/Quill here for Bold, Italic, Lists, Links. The output will be HTML. -->
+              <!-- PHP: echo htmlspecialchars($blog['content'] ?? ''); -->
+              <textarea 
+                id="rich-text-editor" 
+                name="content_file" 
+                rows="14" 
+                required 
+                placeholder="Write your full article content here with headings, paragraphs, bullet lists, bold text, and links..."
+              >[PHP: echo $blog['content'] ?? '']</textarea>
+              <small class="form-help">Supports Rich Text HTML (headings, bold, italic, lists, links, blockquotes)</small>
+            </div>
+
+            <!-- 9. is_featured -->
+            <div class="form-group form-group-checkbox form-group-full">
+              <!-- PHP: checked="<?php echo (!empty($blog['is_featured'])) ? 'checked' : ''; ?>" -->
+              <label class="checkbox-container">
+                <input 
+                  type="checkbox" 
+                  id="is_featured" 
+                  name="is_featured" 
+                  value="1"
+                  [PHP: echo !empty($blog['is_featured']) ? 'checked' : '';]
+                >
+                <span class="checkbox-text">Feature this article on Blog Hero and Promo widgets (is_featured = 1)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Form Action Buttons -->
+          <div class="form-actions-row">
+            <button type="submit" name="status_action" value="Published" class="btn-primary">Publish Article</button>
+            <button type="submit" name="status_action" value="Draft" class="btn-secondary">Save as Draft</button>
+            <a href="manage-blogs.html" id="cancel-form-btn" class="btn-cancel-link">Cancel</a>
+          </div>
+        </form>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Admin Interaction Script -->
+  <script src="script.js" defer></script>
+</body>
+</html>

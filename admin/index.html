@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Microsys Admin</title>
+
+  <!-- Google Fonts Preconnect & Inter / Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Core Design Tokens & Admin Specific Stylesheet -->
+  <link rel="stylesheet" href="../styles/design-system.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ==================== ADMIN SIDEBAR ==================== -->
+  <aside class="admin-sidebar" aria-label="Admin Navigation Sidebar">
+    <div class="admin-sidebar-header">
+      <a href="index.html" class="admin-sidebar-logo">
+        <span class="admin-sidebar-logo-text">Microsys Admin</span>
+        <span class="admin-sidebar-logo-badge">Portal</span>
+      </a>
+      <button type="button" id="close-sidebar" class="close-sidebar-btn" aria-label="Close Sidebar">&times;</button>
+    </div>
+
+    <nav class="admin-nav" aria-label="Main Admin Navigation">
+      <a href="index.html" class="admin-nav-item active" aria-current="page">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        <span>Dashboard</span>
+      </a>
+      <a href="manage-products.html" class="admin-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+        <span>Products</span>
+      </a>
+      <a href="manage-blogs.html" class="admin-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        <span>Blogs</span>
+      </a>
+      <a href="manage-comments.html" class="admin-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        <span>Comments</span>
+      </a>
+      <a href="manage-inquiries.html" class="admin-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        <span>Inquiries</span>
+      </a>
+      <a href="manage-banners.html" class="admin-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="5" x2="5" y2="19"></line><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle></svg>
+        <span>Promotions</span>
+      </a>
+      <a href="manage-sliders.html" class="admin-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+        <span>Sliders</span>
+      </a>
+      <a href="manage-categories.html" class="admin-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+        <span>Categories</span>
+      </a>
+      <a href="manage-services.html" class="admin-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+        <span>Services</span>
+      </a>
+    </nav>
+
+    <div class="admin-sidebar-footer">
+      <a href="../index.html" class="admin-nav-external" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        <span>View Website</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Sidebar Mobile Backdrop Overlay -->
+  <div id="sidebar-overlay" class="admin-sidebar-overlay" aria-hidden="true"></div>
+
+  <!-- ==================== ADMIN MAIN AREA ==================== -->
+  <main class="admin-main">
+    <!-- Topbar -->
+    <header class="admin-topbar">
+      <div class="admin-topbar-left">
+        <button type="button" id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+        <h1 class="admin-page-title">Dashboard</h1>
+      </div>
+      <div class="admin-topbar-actions">
+        <div class="admin-user-profile">
+          <div class="admin-avatar" aria-hidden="true">AU</div>
+          <span class="admin-user-name">Admin User</span>
+        </div>
+        <a href="login.html" class="admin-logout-btn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+          <span>Logout</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Content Area -->
+    <div class="admin-content">
+      <!-- ==================== DASHBOARD METRICS ==================== -->
+      <section class="dashboard-metrics-section" aria-label="Key Performance Metrics">
+        <div class="dashboard-grid">
+          <!-- Total Products Metric Card -->
+          <div class="metric-card">
+            <div class="metric-card-header">
+              <span class="metric-title">Total Products</span>
+              <div class="metric-icon-wrap" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                  <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                </svg>
+              </div>
+            </div>
+            <div class="metric-number-container">
+              <!-- PHP: echo $total_products; -->
+              <span class="metric-number">0</span>
+            </div>
+            <span class="metric-subtext">Active catalog inventory</span>
+          </div>
+
+          <!-- Published Blogs Metric Card -->
+          <div class="metric-card">
+            <div class="metric-card-header">
+              <span class="metric-title">Published Blogs</span>
+              <div class="metric-icon-wrap" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+              </div>
+            </div>
+            <div class="metric-number-container">
+              <!-- PHP: echo $total_blogs; -->
+              <span class="metric-number">0</span>
+            </div>
+            <span class="metric-subtext">Live published articles</span>
+          </div>
+
+          <!-- New Inquiries Metric Card -->
+          <div class="metric-card">
+            <div class="metric-card-header">
+              <span class="metric-title">New Inquiries</span>
+              <div class="metric-icon-wrap" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+            </div>
+            <div class="metric-number-container">
+              <!-- PHP: echo $new_inquiries; -->
+              <span class="metric-number">0</span>
+            </div>
+            <span class="metric-subtext">Unread customer requests</span>
+          </div>
+
+          <!-- Pending Comments Metric Card -->
+          <div class="metric-card">
+            <div class="metric-card-header">
+              <span class="metric-title">Pending Comments</span>
+              <div class="metric-icon-wrap" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="metric-number-container">
+              <!-- PHP: echo $pending_comments; -->
+              <span class="metric-number">0</span>
+            </div>
+            <span class="metric-subtext">Awaiting admin moderation</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== QUICK ACTIONS & RECENT ACTIVITY ==================== -->
+      <div class="dashboard-activity-layout">
+        <!-- Quick Actions Section -->
+        <section class="dashboard-section quick-actions-section" aria-labelledby="quick-actions-title">
+          <div class="section-header-row">
+            <h2 id="quick-actions-title" class="section-title">Quick Actions</h2>
+          </div>
+          <div class="quick-actions-group">
+            <a href="manage-products.html" class="btn-primary">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <span>Add New Product</span>
+            </a>
+            <a href="manage-blogs.html" class="btn-secondary">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <span>Write Blog</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- Recent Inquiries Table Section -->
+        <section class="dashboard-section recent-inquiries-section" aria-labelledby="recent-inquiries-title">
+          <div class="section-header-row">
+            <h2 id="recent-inquiries-title" class="section-title">Recent Inquiries</h2>
+            <a href="inquiries.html" class="view-all-link">View All &rarr;</a>
+          </div>
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Phone</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- PHP: foreach($recent_inquiries as $inquiry) { -->
+                <tr>
+                  <td><!-- PHP: echo $inquiry['created_at']; -->2026-10-30</td>
+                  <td><!-- PHP: echo $inquiry['full_name']; -->Rahul Sharma</td>
+                  <td><!-- PHP: echo $inquiry['phone']; -->9876543210</td>
+                  <td><span class="status-badge status-new"><!-- PHP: echo $inquiry['status']; -->New</span></td>
+                </tr>
+                <tr>
+                  <td><!-- PHP: echo $inquiry['created_at']; -->2026-10-29</td>
+                  <td><!-- PHP: echo $inquiry['full_name']; -->Amit Kumar</td>
+                  <td><!-- PHP: echo $inquiry['phone']; -->9431687920</td>
+                  <td><span class="status-badge status-in-progress"><!-- PHP: echo $inquiry['status']; -->In Progress</span></td>
+                </tr>
+                <tr>
+                  <td><!-- PHP: echo $inquiry['created_at']; -->2026-10-28</td>
+                  <td><!-- PHP: echo $inquiry['full_name']; -->Priya Singh</td>
+                  <td><!-- PHP: echo $inquiry['phone']; -->9835012345</td>
+                  <td><span class="status-badge status-resolved"><!-- PHP: echo $inquiry['status']; -->Resolved</span></td>
+                </tr>
+                <!-- PHP: } -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- Admin Interaction Script -->
+  <script src="script.js" defer></script>
+</body>
+</html>

@@ -30,11 +30,13 @@ All product-related content across the platform must conform strictly to the fol
 16. badge: Promotional or marketing tag text. Optional (NULL allowed). Default: NULL.
 17. is_popular: Flag determining promotion in homepage Popular Products section. Required (NOT NULL). Indexed. Default: 0.
 
-### Database Infrastructure Columns (Non-Content Metadata)
-The 17 fields above represent product content. At the database layer, standard operational columns may be added by the backend engineer:
-- id: INT UNSIGNED AUTO_INCREMENT PRIMARY KEY
-- created_at: TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-- updated_at: TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+### Database Infrastructure & Dynamic SEO Columns (Non-Content Metadata)
+The 17 fields above represent core product content. At the database layer, standard operational and dynamic SEO columns are implemented by the backend engineer:
+- `id`: INT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+- `slug`: VARCHAR(280) UNIQUE NOT NULL — Canonical URL identifier used for SEO routing to product detail pages (`product-detail.php?slug=<slug>`), breadcrumb linking, and dynamic canonical / Open Graph tag generation.
+- `meta_description`: TEXT DEFAULT NULL — Search engine snippet (150-160 characters) used for dynamic SEO meta description and social card previews on product detail views (fallbacks to `key_specs` when NULL).
+- `created_at`: TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+- `updated_at`: TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 
 ---
 
@@ -45,7 +47,7 @@ Every locked field is mapped below to its corresponding SQL column type and fron
 | Field Name | SQL Column Type & Constraints | HTML Input Type & Mode | Requirement & Defaults | Usage Notes |
 | :--- | :--- | :--- | :--- | :--- |
 | product_id_sku | VARCHAR(64) NOT NULL UNIQUE | text (admin input) / data attribute (display) | Required, Unique, No Default | Alphanumeric SKU (e.g., LAP-HP-15S-001). Exposes primary reference for stock lookups. |
-| category | VARCHAR(64) NOT NULL | select dropdown (admin) / data attribute | Required, Indexed, No Default | Permitted slugs: laptops, desktop-pcs, components, gaming. Used for high-level catalog routing. |
+| category | VARCHAR(64) NOT NULL | select dropdown (admin) / data attribute | Required, Indexed, No Default | Permitted slugs: laptops, desktop-pcs (or desktops), components, gaming, etc. Determines where the product appears when filtering the unified Catalog page (`products.html?category=<slug>` / `products.php?category=<slug>`). |
 | sub_category | VARCHAR(64) DEFAULT NULL | select dropdown (admin) / data attribute | Optional, Indexed, Default: NULL | Permitted component slugs: processors, motherboards, graphics-cards, ram, storage, power-supplies, cabinets, cooling. |
 | brand | VARCHAR(64) NOT NULL | select dropdown or text (admin) | Required, Indexed, No Default | Brand title (e.g., HP, Lenovo, Dell, ASUS, Intel, AMD, NVIDIA). Displayed prominently on cards. |
 | product_name | VARCHAR(255) NOT NULL | text (admin) / heading element (display) | Required, No Default | Full display name. Also feeds WhatsApp enquiry message prefilling. |
@@ -61,6 +63,122 @@ Every locked field is mapped below to its corresponding SQL column type and fron
 | warranty | VARCHAR(100) DEFAULT NULL | text (admin) / warranty badge (display) | Optional, Default: NULL | Official manufacturer coverage (e.g., 1 Year Onsite, 3 Years Domestic). |
 | badge | VARCHAR(50) DEFAULT NULL | text or select dropdown (admin) | Optional, Default: NULL | Marketing flag (e.g., Bestseller, New Arrival, Hot Deal). Rendered only when non-empty. |
 | is_popular | TINYINT(1) NOT NULL DEFAULT 0 | checkbox (value="1") | Required, Indexed, Default: 0 | Boolean flag (0 = regular catalog item, 1 = featured in homepage popular products section). |
+
+---
+
+## 3.1 Blog Fields Specification
+
+All blog and article management entities across `blog.html`, `blog-detail.html`, `blogs/posts.json`, and `admin/manage-blogs.html` strictly adhere to the following 10 locked fields:
+
+| Field Name | SQL Column Type & Constraints | HTML Input Type & Mode | Requirement & Defaults | Usage Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| `id` | INT UNSIGNED AUTO_INCREMENT PRIMARY KEY | hidden input (`blog_id`) | Required, Auto-generated | Unique record identifier for database routing and comment foreign keys. |
+| `title` | VARCHAR(255) NOT NULL | text | Required, No Default | Main article headline displayed on cards and article header. |
+| `slug` | VARCHAR(280) NOT NULL UNIQUE | text | Required, Unique, No Default | Clean URL identifier used in `blog-detail.html?slug=<slug>`. |
+| `thumbnail_url` | VARCHAR(255) NOT NULL | file upload (`image/*`) / text | Required, No Default | Relative path or URL to 16:9 article banner asset (e.g., `blogs/thumbnails/post.webp`). |
+| `meta_description` | TEXT DEFAULT NULL | textarea (`rows="3"`) | Optional, Default: NULL | 150-160 char SEO snippet used in SERP and blog card previews. |
+| `content_html` | LONGTEXT NOT NULL | textarea (`#rich-text-editor`) | Required, No Default | Full sanitized HTML article body generated by Rich Text Editor (TinyMCE/Quill). |
+| `author_name` | VARCHAR(100) DEFAULT 'Microsys Team' | text | Optional, Default: 'Microsys Team' | Author byline displayed on article header and card meta. |
+| `published_date` | TIMESTAMP DEFAULT CURRENT_TIMESTAMP | date / timestamp | Optional, Default: CURRENT_TIMESTAMP | Publication timestamp; governs chronological sorting. |
+| `status` | ENUM('draft', 'published') DEFAULT 'draft' | select dropdown (`Draft`, `Published`) | Required, Default: 'draft' | Visibility state; only 'published' records appear on public storefront. |
+| `is_featured` | TINYINT(1) DEFAULT 0 | checkbox (value="1") | Optional, Default: 0 | Priority flag for highlighting articles on hero or promo widgets. |
+
+---
+
+## 3.2 Slider Fields Specification
+
+Homepage hero sliders and New Arrivals carousel records conform to the following 8 locked fields:
+
+| Field Name | SQL Column Type & Constraints | HTML Input Type & Mode | Requirement & Defaults | Usage Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| `id` | INT UNSIGNED AUTO_INCREMENT PRIMARY KEY | hidden input (`slider_id`) | Required, Auto-generated | Primary slide identifier. |
+| `image_url` | VARCHAR(255) NOT NULL | file upload / text | Required, No Default | Relative path to slide banner image. |
+| `link_url` | VARCHAR(255) DEFAULT NULL | url / text | Optional, Default: NULL | Target destination URL when user clicks slide CTA. |
+| `label` | VARCHAR(100) DEFAULT NULL | text | Optional, Default: NULL | Promotional pill or badge text (e.g., "Trending Now", "Exclusive"). |
+| `eyebrow` | VARCHAR(150) DEFAULT NULL | text | Optional, Default: NULL | Small uppercase accent header placed above the primary title. |
+| `title` | VARCHAR(255) DEFAULT NULL | text | Optional, Default: NULL | Main slide commercial title or headline. |
+| `subtitle` | VARCHAR(500) DEFAULT NULL | textarea / text | Optional, Default: NULL | Secondary descriptive copy expanding on the promotion or hardware specs. |
+| `display_order` | TINYINT UNSIGNED DEFAULT 0 | number | Required, Default: 0 | Sequential integer controlling slide rotation order. |
+| `is_active` | TINYINT(1) DEFAULT 1 | checkbox (value="1") | Required, Default: 1 | Boolean toggle controlling public storefront slide rendering. |
+
+---
+
+## 3.3 Inquiry Fields Specification
+
+Storefront customer submissions and administrative lead tracking conform to the following 9 locked fields:
+
+| Field Name | SQL Column Type & Constraints | HTML Input Type & Mode | Requirement & Defaults | Usage Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| `id` | INT UNSIGNED AUTO_INCREMENT PRIMARY KEY | hidden / system | Required, Auto-generated | Unique inquiry tracking ID. |
+| `full_name` | VARCHAR(150) NOT NULL | text | Required, No Default | Customer contact full name. |
+| `phone_number` | VARCHAR(20) NOT NULL | tel | Required, No Default | Customer 10-digit Indian mobile number. |
+| `email` | VARCHAR(150) DEFAULT NULL | email | Optional, Default: NULL | Customer email address for quotation dispatch. |
+| `enquiry_type` | VARCHAR(100) DEFAULT NULL | select dropdown | Optional, Default: NULL | Classification: Sales Enquiry, Repair & Service, Custom PC, Bulk Order. |
+| `product_or_service` | VARCHAR(255) DEFAULT NULL | text | Optional, Default: NULL | Specific hardware model or repair service of interest (maps to `product_interest`). |
+| `message` | TEXT DEFAULT NULL | textarea | Optional, Default: NULL | Detailed customer inquiry message body. |
+| `status` | ENUM('new', 'read', 'contacted', 'closed') DEFAULT 'new' | select dropdown | Required, Default: 'new' | Administrative lead workflow status. |
+| `submitted_at` | TIMESTAMP DEFAULT CURRENT_TIMESTAMP | timestamp | Required, Auto-generated | Form submission timestamp. |
+
+---
+
+## 3.4 Comment Fields Specification
+
+Article visitor discussions and administrative moderation queue records conform to the following 7 locked fields:
+
+| Field Name | SQL Column Type & Constraints | HTML Input Type & Mode | Requirement & Defaults | Usage Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| `id` | INT UNSIGNED AUTO_INCREMENT PRIMARY KEY | hidden input (`comment_id`) | Required, Auto-generated | Unique comment identifier for database routing and moderation actions. |
+| `blog_id` | INT UNSIGNED NOT NULL | hidden input (`blog_id`) | Required, Foreign Key | References `blogs(id)` ON DELETE CASCADE. |
+| `commenter_name` | VARCHAR(100) NOT NULL | text (`user_name` / `commenter_name`) | Required, No Default | Visitor author name displayed on approved comments. |
+| `commenter_email` | VARCHAR(150) DEFAULT NULL | email (`user_email` / `commenter_email`) | Optional, Default: NULL | Author contact email; never exposed on public storefront. |
+| `body` | TEXT NOT NULL | textarea (`comment_text` / `body`) | Required, No Default | Plaintext comment submission body. |
+| `is_approved` | TINYINT(1) DEFAULT 0 | hidden action / status badge | Required, Default: 0 | Moderation status: `0` = Pending, `1` = Approved, `-1` = Rejected. |
+| `created_at` | TIMESTAMP DEFAULT CURRENT_TIMESTAMP | timestamp / system | Required, Auto-generated | Submission timestamp; governs chronological sorting. |
+
+---
+
+## 3.5 Promotion Fields Specification
+
+Top announcement bar and promotional popup modal records conform to the following 6 locked fields:
+
+| Field Name | SQL Column Type & Constraints | HTML Input Type & Mode | Requirement & Defaults | Usage Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| `id` | INT UNSIGNED AUTO_INCREMENT PRIMARY KEY | hidden input (`promotion_id`) | Required, Auto-generated | Primary promotion identifier. |
+| `type` | ENUM('announcement_bar','popup_modal') NOT NULL | hidden input (`promo_type`) | Required, No Default | Differentiates top banner vs centered modal overlay. |
+| `text_content` | VARCHAR(500) DEFAULT NULL | text | Required, No Default | Headline or banner message copy displayed to customers. |
+| `image_url` | VARCHAR(255) DEFAULT NULL | file upload / text | Optional (Popup modal: Recommended) | Relative path to promotional visual banner asset. |
+| `is_active` | TINYINT(1) DEFAULT 1 | checkbox (value="1") | Required, Default: 1 | Toggle switch controlling active visibility on the public storefront. |
+| `created_at` | TIMESTAMP DEFAULT CURRENT_TIMESTAMP | timestamp / system | Required, Auto-generated | Record creation timestamp. |
+
+---
+
+## 3.6 Category Fields Specification
+
+Product categories and navigation taxonomy records across `index.html`, `products.html`, and `admin/manage-categories.html` strictly adhere to the following 6 locked fields:
+
+| Field Name | SQL Column Type & Constraints | HTML Input Type & Mode | Requirement & Defaults | Usage Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| `id` | INT UNSIGNED AUTO_INCREMENT PRIMARY KEY | hidden input (`category_id`) | Required, Auto-generated | Primary key; used for category identification and foreign keys. |
+| `name` | VARCHAR(100) NOT NULL | text (`name`) | Required, No Default | Commercial department title (e.g., Laptops, Components). |
+| `slug` | VARCHAR(100) NOT NULL UNIQUE | text (`slug`) | Required, Unique, No Default | URL parameter slug used in `products.html?category=<slug>`. |
+| `display_order` | INT NOT NULL DEFAULT 1 | number (`display_order`) | Required, Default: 1 | Sequential integer governing sort display order across navigation. |
+| `image_url` | VARCHAR(255) DEFAULT NULL | file upload (`image_url`) | Optional, Default: NULL | Relative asset path to department cover graphic in `/uploads/categories/`. |
+| `created_at` | TIMESTAMP DEFAULT CURRENT_TIMESTAMP | timestamp / system | Required, Auto-generated | Record creation timestamp. |
+
+---
+
+## 3.7 Service Fields Specification
+
+Technical support and repair service offerings displayed on `aboutus.html#repair-services` and managed in `admin/manage-services.html` strictly adhere to the following 6 locked fields:
+
+| Field Name | SQL Column Type & Constraints | HTML Input Type & Mode | Requirement & Defaults | Usage Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| `id` | INT UNSIGNED AUTO_INCREMENT PRIMARY KEY | hidden input (`service_id`) | Required, Auto-generated | Primary service record identifier. |
+| `title` | VARCHAR(200) NOT NULL | text (`title`) | Required, No Default | Official repair service headline (e.g., Laptop Diagnosis). |
+| `description` | TEXT DEFAULT NULL | textarea (`description`) | Optional, Default: NULL | Scope of diagnosis, repair, or configuration provided. |
+| `price_range` | VARCHAR(100) DEFAULT NULL | text (`price_range`) | Optional, Default: NULL | Fee guidance range or baseline (e.g., "₹500 - ₹1000", "Free Diagnosis"). |
+| `is_active` | TINYINT(1) DEFAULT 1 | checkbox / toggle (`is_active`, value="1") | Required, Default: 1 | Boolean toggle controlling public display on About Us page. |
+| `created_at` | TIMESTAMP DEFAULT CURRENT_TIMESTAMP | timestamp / system | Required, Auto-generated | Service record creation timestamp. |
 
 ---
 
@@ -191,10 +309,10 @@ The following naming deviations and structural ambiguities identified during the
 
 ## 9. Lock & Sign-off
 
-- Document Status: Permanently locked as the authoritative field specification.
+- Document Status: Permanently locked as the authoritative field specification. Fully verified and synchronized across all 8 modules (Products, Blogs, Sliders, Inquiries, Comments, Promotions, Categories, and Services).
 - Governance: In accordance with the project governance rules established in PROJECT-REPORT.md, no field names, attributes, or mappings defined in this document may be renamed, removed, or added without formal architectural sign-off.
-- Lock Date: 2026-10-15
-- Phase: Phase 0 Step 2 Completed
+- Lock Date: 2026-10-31
+- Phase: Phase 6 Complete (Full Admin & Storefront Schema Parity)
 
 ---
 
