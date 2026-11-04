@@ -121,11 +121,12 @@
 </head>
 <body>
 
-  <!-- Landing Overlay -->
+  <!-- Landing Overlay (Split-Curtain Gate Animation) -->
   <div id="landing-overlay" class="landing-overlay" role="dialog" aria-modal="true" aria-label="Welcome to Microsys">
-    <div class="landing-overlay__grid" aria-hidden="true"></div>
-    <div class="landing-overlay__radial" aria-hidden="true"></div>
-    <div class="landing-overlay__content">
+    <div class="overlay-panel overlay-left"></div>
+    <div class="overlay-panel overlay-right"></div>
+    <div class="overlay-content">
+      <button type="button" class="overlay-skip-btn" id="landing-skip-btn" aria-label="Skip intro">Skip &rarr;</button>
       <span class="landing-overlay__eyebrow">
         YOUR TRUSTED TECH PARTNER IN BIHARSHARIF
         <svg class="landing-overlay__eyebrow-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -170,7 +171,7 @@
         </button>
       </div>
       <a href="/" class="header-logo" style="display: flex; align-items: center; gap: var(--space-s); text-decoration: none;">
-        <img src="assets/microsys-logo.svg" alt="Microsys — Computer Store Biharsharif Nalanda Bihar" class="header__logo-img" style="width: auto;">
+        <img src="assets/primary-microsys-png.png" alt="Microsys — Computer Store Biharsharif Nalanda Bihar" class="header__logo-img" style="width: auto;">
         <span class="desktop-only">Computer & Accessories</span>
       </a>
       <div class="search-wrapper desktop-only">
@@ -252,25 +253,25 @@
           <svg class="hero-rating-star" width="14" height="14" viewBox="0 0 24 24" fill="#B45309" stroke="#B45309" stroke-width="1" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
           <span><strong>4.8</strong> Rated | 5000+ Customers in Nalanda</span>
         </div>
-        <span class="eyebrow" style="color: var(--color-blue-primary); letter-spacing: 0.08em; display: block; margin-bottom: var(--space-s);">YOUR COMPLETE TECH DESTINATION</span>
+        <span class="eyebrow hero-eyebrow" style="letter-spacing: 0.08em; display: inline-flex; align-items: center; gap: 6px; margin-bottom: var(--space-s);">YOUR COMPLETE TECH DESTINATION</span>
         <h1 class="hero-heading" style="margin-bottom: var(--space-m);">Buy Laptops, Gaming PCs &amp; Computers in Biharsharif, Nalanda</h1>
         <p class="supporting-text hero-supporting" style="margin-bottom: var(--space-xl); max-width: 520px;">Microsys is Biharsharif’s leading computer showroom, offering the widest range of laptops, desktop PCs, gaming computers, printers, tablets, and PC components in Nalanda, Bihar.</p>
         <div class="hero-trust-badges">
           <div class="hero-trust-badge">
             <span class="hero-trust-badge__icon" aria-hidden="true">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF5722" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
             </span>
             <span class="hero-trust-badge__text">EMI Available</span>
           </div>
           <div class="hero-trust-badge">
             <span class="hero-trust-badge__icon" aria-hidden="true">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF5722" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
             </span>
             <span class="hero-trust-badge__text">Authorized Dealer</span>
           </div>
           <div class="hero-trust-badge">
             <span class="hero-trust-badge__icon" aria-hidden="true">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF5722" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
             </span>
             <span class="hero-trust-badge__text">Since 2015</span>
           </div>
@@ -314,7 +315,7 @@
       <!-- Set 1 (Canonical) -->
       <div class="trust-item">
         <div class="trust-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="1.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FF5722" stroke-width="1.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
         </div>
         <div class="trust-text">
           <strong class="trust-heading">Genuine Products</strong>
@@ -322,7 +323,7 @@
       </div>
       <div class="trust-item">
         <div class="trust-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FF5722" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
         </div>
         <div class="trust-text">
           <strong class="trust-heading">Warranty Information</strong>
@@ -330,7 +331,7 @@
       </div>
       <div class="trust-item">
         <div class="trust-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2m8-10a4 4 0 100-8 4 4 0 000 8z"></path></svg>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FF5722" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2m8-10a4 4 0 100-8 4 4 0 000 8z"></path></svg>
         </div>
         <div class="trust-text">
           <strong class="trust-heading">Expert Guidance</strong>
@@ -338,7 +339,7 @@
       </div>
       <div class="trust-item">
         <div class="trust-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="1.5"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FF5722" stroke-width="1.5"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg>
         </div>
         <div class="trust-text">
           <strong class="trust-heading">Technical Support</strong>
@@ -346,7 +347,7 @@
       </div>
       <div class="trust-item">
         <div class="trust-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="1.5"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FF5722" stroke-width="1.5"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
         </div>
         <div class="trust-text">
           <strong class="trust-heading">Affordable Prices</strong>
@@ -354,7 +355,7 @@
       </div>
       <div class="trust-item">
         <div class="trust-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="1.5"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FF5722" stroke-width="1.5"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
         </div>
         <div class="trust-text">
           <strong class="trust-heading">After-Sales Support</strong>
@@ -364,7 +365,7 @@
       <!-- Set 2 (Duplicate for Seamless Loop) -->
       <div class="trust-item" aria-hidden="true">
         <div class="trust-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="1.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FF5722" stroke-width="1.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
         </div>
         <div class="trust-text">
           <strong class="trust-heading">Genuine Products</strong>
@@ -372,7 +373,7 @@
       </div>
       <div class="trust-item" aria-hidden="true">
         <div class="trust-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FF5722" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
         </div>
         <div class="trust-text">
           <strong class="trust-heading">Warranty Information</strong>
@@ -380,7 +381,7 @@
       </div>
       <div class="trust-item" aria-hidden="true">
         <div class="trust-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2m8-10a4 4 0 100-8 4 4 0 000 8z"></path></svg>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FF5722" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2m8-10a4 4 0 100-8 4 4 0 000 8z"></path></svg>
         </div>
         <div class="trust-text">
           <strong class="trust-heading">Expert Guidance</strong>
@@ -388,7 +389,7 @@
       </div>
       <div class="trust-item" aria-hidden="true">
         <div class="trust-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="1.5"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FF5722" stroke-width="1.5"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg>
         </div>
         <div class="trust-text">
           <strong class="trust-heading">Technical Support</strong>
@@ -396,7 +397,7 @@
       </div>
       <div class="trust-item" aria-hidden="true">
         <div class="trust-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="1.5"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FF5722" stroke-width="1.5"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
         </div>
         <div class="trust-text">
           <strong class="trust-heading">Affordable Prices</strong>
@@ -404,7 +405,7 @@
       </div>
       <div class="trust-item" aria-hidden="true">
         <div class="trust-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-primary)" stroke-width="1.5"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FF5722" stroke-width="1.5"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
         </div>
         <div class="trust-text">
           <strong class="trust-heading">After-Sales Support</strong>
@@ -576,7 +577,8 @@
 
   <!-- 7. Featured Campaign -->
   <!-- New Arrivals Auto-Slider -->
-  <section id="new-arrivals">
+  <section id="new-arrivals" class="featured-campaign-section" style="position: relative;">
+    <div id="featured-campaign" style="position: absolute; top: -80px;"></div>
 
     <!--
       ADMIN CONTROL — sliders table columns per slide:
@@ -1160,7 +1162,7 @@
     <div class="container">
       <div class="footer__grid">
         <div class="footer__col footer__brand">
-          <img src="assets/microsys-logo.svg" alt="Microsys — Computer Store Biharsharif Nalanda Bihar" style="height: 44px; width: auto; filter: brightness(0) invert(1); margin-bottom: var(--space-m);">
+          <img src="assets/secondary-microsys-logo.png" alt="Microsys — Computer Store Biharsharif Nalanda Bihar" class="footer__logo-img" style="height: 56px; width: auto; object-fit: contain; background-color: #ffffff; padding: 8px; border-radius: 8px; margin-bottom: var(--space-m); align-self: flex-start;">
           <div style="font-family: var(--font-display); font-weight: var(--fw-semibold); color: var(--color-white); margin-bottom: var(--space-s);">Microsys | Computer & Accessories</div>
           <div class="footer__supporting">Biharsharif’s Most Complete Computer Store — Laptops, PCs, Gaming & More.</div>
         </div>
@@ -1572,11 +1574,12 @@
         });
       })();
 
-      // Landing Overlay Logic
+      // Landing Overlay Logic (Split-Curtain Gate Animation)
       (function () {
         var overlay = document.getElementById('landing-overlay');
         var cta = document.getElementById('landing-explore-btn');
-        if (!overlay || !cta) return;
+        var skipBtn = document.getElementById('landing-skip-btn');
+        if (!overlay) return;
 
         var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         var alreadySeen = sessionStorage.getItem('microsys-intro-seen') === 'true';
@@ -1589,56 +1592,51 @@
         document.body.style.overflow = 'hidden';
 
         var exiting = false;
+        var autoTimer = null;
 
-        function exitOverlayFade() {
+        function exitOverlaySplit() {
           if (exiting) return;
           exiting = true;
-          overlay.classList.add("is-fading");
+          if (autoTimer) {
+            clearTimeout(autoTimer);
+            autoTimer = null;
+          }
+          overlay.classList.add('is-exiting');
           window.setTimeout(function () {
-            overlay.classList.add("is-hidden");
-            overlay.classList.remove("is-fading");
-            document.body.style.overflow = "";
-            sessionStorage.setItem("microsys-intro-seen", "true");
-          }, 750);
+            overlay.classList.add('is-hidden');
+            overlay.classList.remove('is-exiting');
+            document.body.style.overflow = '';
+            sessionStorage.setItem('microsys-intro-seen', 'true');
+          }, 1000);
         }
 
-        function exitOverlayZoom() {
-          if (exiting) return;
-          exiting = true;
-          overlay.classList.add("is-exiting");
-          window.setTimeout(function () {
-            overlay.classList.add("is-hidden");
-            overlay.classList.remove("is-exiting");
-            document.body.style.overflow = "";
-            sessionStorage.setItem("microsys-intro-seen", "true");
-          }, 950);
-        }
+        // Auto-split after 4 seconds
+        autoTimer = window.setTimeout(exitOverlaySplit, 4000);
 
-        cta.addEventListener("click", exitOverlayZoom);
+        if (cta) cta.addEventListener('click', exitOverlaySplit);
+        if (skipBtn) skipBtn.addEventListener('click', exitOverlaySplit);
 
-        window.addEventListener("wheel", function (e) {
-          if (overlay.classList.contains("is-hidden") || exiting) return;
-          if (e.deltaY > 0) exitOverlayFade();
+        window.addEventListener('wheel', function (e) {
+          if (overlay.classList.contains('is-hidden') || exiting) return;
+          if (Math.abs(e.deltaY) > 0) exitOverlaySplit();
         }, { passive: true });
 
-        window.addEventListener("touchmove", function () {
-          if (overlay.classList.contains("is-hidden") || exiting) return;
-          exitOverlayFade();
+        window.addEventListener('touchmove', function () {
+          if (overlay.classList.contains('is-hidden') || exiting) return;
+          exitOverlaySplit();
         }, { passive: true });
 
-        document.addEventListener("keydown", function (e) {
-          if (overlay.classList.contains("is-hidden") || exiting) return;
-          if (e.key === "Escape") {
-            exitOverlayFade();
-          } else if (e.key === "ArrowDown" || e.key === "PageDown" || e.key === " ") {
-            exitOverlayFade();
-          } else if (e.key === "Tab") {
+        document.addEventListener('keydown', function (e) {
+          if (overlay.classList.contains('is-hidden') || exiting) return;
+          if (e.key === 'Escape' || e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ' || e.key === 'Enter') {
+            exitOverlaySplit();
+          } else if (e.key === 'Tab' && cta) {
             e.preventDefault();
             cta.focus();
           }
         });
 
-        cta.focus();
+        if (cta) cta.focus();
       })();
     });
   </script>
@@ -1661,7 +1659,7 @@
     <div id="promo-popup" data-type="popup_modal">
       <button type="button" id="close-promo-popup" aria-label="Close">&times;</button>
       <img id="promo-popup-image" 
-           src="assets/campaign/poster.webp" 
+           src="assets/campaign/DiwaliOffer.jpg" 
            alt="Special Offer — Microsys Biharsharif"
            data-php-src="<?php echo $promotion['image_url']; ?>">
       <!-- Note for PHP dev: replace src with PHP echo for dynamic image -->

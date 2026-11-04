@@ -64,6 +64,17 @@ body {
   color: var(--color-white, #FFFFFF);
 }
 
+.admin-sidebar-logo-img {
+  height: 32px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  display: block;
+  background: #ffffff;
+  padding: 3px 8px;
+  border-radius: var(--radius-badge, 6px);
+}
+
 .admin-sidebar-logo-text {
   font-family: var(--font-display, 'Space Grotesk', sans-serif);
   font-size: 1.15rem;
