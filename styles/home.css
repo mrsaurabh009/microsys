@@ -846,9 +846,14 @@ span.desktop-only { display: none; }
 .product-card {
   display: flex; flex-direction: column; background: var(--color-white); border: 1px solid var(--color-border);
   border-radius: var(--radius-card); padding: var(--space-l); box-shadow: var(--shadow-card);
-  transition: all var(--motion-card) ease; position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; position: relative;
 }
-.product-card:hover { border-color: var(--color-blue-light); box-shadow: var(--shadow-card-hover); }
+.product-card:hover,
+.product-card:active {
+  border-color: var(--color-blue-light);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 16px 32px -8px rgba(15, 23, 42, 0.16), 0 8px 16px -4px rgba(15, 23, 42, 0.08);
+}
 .product-image-wrapper {
   width: 100%; aspect-ratio: 4/3; background: var(--color-gray-soft); border-radius: var(--radius-card);
   margin-bottom: var(--space-m); overflow: hidden; position: relative;
@@ -857,7 +862,7 @@ span.desktop-only { display: none; }
   color: var(--color-text-secondary); font-size: var(--type-supporting);
 }
 .product-image-inner {
-  transition: transform var(--motion-card) ease;
+  transition: transform 0.3s ease;
   width: 100%; height: 100%;
   display: flex; align-items: center; justify-content: center;
   text-align: center;
@@ -872,7 +877,8 @@ span.desktop-only { display: none; }
   border-radius: 0;
   background: transparent;
 }
-.product-card:hover .product-image-inner { transform: scale(1.02); }
+.product-card:hover .product-image-inner,
+.product-card:active .product-image-inner { transform: scale(1.05); }
 .product-badge {
   position: absolute; top: var(--space-s); right: var(--space-s); background: rgba(16, 185, 129, 0.1);
   color: var(--color-green-success); padding: var(--space-xs) var(--space-s); border-radius: var(--radius-badge);
@@ -1256,16 +1262,78 @@ span.desktop-only { display: none; }
   color: var(--color-footer-supporting);
   font-size: var(--type-supporting);
   display: flex;
-  flex-direction: column;
-  gap: var(--space-s);
-  text-align: center;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 767px) {
+  .footer__bottom {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+    align-items: center;
+  }
 }
 
 @media (min-width: 768px) {
   .footer__bottom {
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     text-align: left;
+  }
+}
+
+.footer-credit {
+  font-size: 13px;
+  color: var(--color-footer-supporting);
+}
+
+.footer-credit a {
+  color: var(--color-footer-link);
+  text-decoration: none;
+  font-weight: 700;
+  transition: color var(--motion-card, 0.2s) ease;
+}
+
+.footer-credit a:hover {
+  color: var(--color-footer-link-hover);
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   Scroll to Top Floating Button
+   ========================================================================== */
+#scroll-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  background: var(--color-blue-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-circular, 50%);
+  width: 44px;
+  height: 44px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(36, 91, 219, 0.35);
+  transition: background var(--motion-card, 0.2s) ease, transform var(--motion-card, 0.2s) ease;
+}
+
+#scroll-to-top:hover {
+  background: var(--color-blue-hover, #1947B8);
+  transform: translateY(-3px);
+}
+
+@media (max-width: 767px) {
+  #scroll-to-top {
+    bottom: 84px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
   }
 }
 
@@ -2957,4 +3025,124 @@ span.desktop-only { display: none; }
     display: none !important;
   }
 }
+
+/* ==========================================================================
+   24. FAQ Accordion Section
+   ========================================================================== */
+.faq-item {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card, 12px);
+  margin-bottom: var(--space-m);
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: border-color var(--motion-card, 0.2s) ease, box-shadow var(--motion-card, 0.2s) ease;
+}
+
+.faq-item:hover {
+  border-color: rgba(36, 91, 219, 0.35);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.faq-item[open] {
+  border-color: var(--color-blue-primary, #245BDB);
+  box-shadow: 0 4px 16px rgba(36, 91, 219, 0.08);
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-l);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: var(--fw-semibold, 600);
+  color: var(--color-navy-dark, #0F172A);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+/* Remove default browser details triangle */
+.faq-question::-webkit-details-marker,
+.faq-question::marker {
+  display: none;
+}
+
+.faq-item[open] .faq-question {
+  color: var(--color-blue-primary, #245BDB);
+  background-color: rgba(36, 91, 219, 0.03);
+}
+
+.faq-question .faq-icon {
+  flex-shrink: 0;
+  margin-left: var(--space-m);
+  color: var(--color-text-secondary, #64748B);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.faq-item[open] .faq-question .faq-icon {
+  transform: rotate(180deg);
+  color: var(--color-blue-primary, #245BDB);
+}
+
+.faq-answer {
+  padding: 0 var(--space-l) var(--space-l);
+  animation: faqFadeSlide 0.3s ease-out;
+}
+
+.faq-answer p {
+  margin: 0;
+  color: var(--color-text-secondary, #475569);
+  line-height: var(--lh-body, 1.6);
+  font-size: var(--type-body, 0.95rem);
+}
+
+@keyframes faqFadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   25. Location & Map Section
+   ========================================================================== */
+.map-section {
+  padding-block: var(--space-4xl);
+  background: var(--color-gray-soft);
+}
+
+.map-section__wrapper {
+  max-width: 1040px;
+  margin: 0 auto;
+  box-shadow: var(--shadow-card);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background: var(--color-white);
+}
+
+.map-section__wrapper iframe {
+  display: block;
+  width: 100%;
+  height: 400px;
+  border: 0;
+}
+
+@media (max-width: 767px) {
+  .map-section {
+    padding-block: var(--space-3xl);
+  }
+  .map-section__wrapper iframe {
+    height: 320px;
+  }
+}
+
+
 

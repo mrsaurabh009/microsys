@@ -81,6 +81,13 @@
       line-height: 1.8;
       color: var(--navy-dark);
     }
+    .view-count-rendered {
+      display: none !important;
+    }
+    /* Suppress duplicate legacy share bar generated inside #post-container */
+    #post-container .share-bar {
+      display: none !important;
+    }
     .share-bar {
       margin-top: 40px;
       padding-top: 24px;
@@ -114,10 +121,23 @@
       cursor: pointer;
       font-size: 0.85rem;
       font-weight: 500;
+      text-decoration: none;
       transition: all var(--transition);
     }
     .share-btn:hover {
       background: var(--gray-light);
+    }
+    .share-btn.share-wa {
+      color: #25D366;
+    }
+    .share-btn.share-fb {
+      color: #1877F2;
+    }
+    .share-btn.share-tg {
+      color: #229ED9;
+    }
+    .share-btn.share-copy {
+      color: var(--color-blue-primary, #0052cc);
     }
     .share-toast {
       position: fixed;
@@ -237,7 +257,7 @@
       <a href="index.html" class="nav-link">Home</a>
       <a href="products.html" class="nav-link">Catalog</a>
       <a href="aboutus.html" class="nav-link">About Us</a>
-      <a href="aboutus.html#repair-services" class="nav-link">Services</a>
+      <a href="aboutus.html#services" class="nav-link">Services</a>
       <a href="index.html#featured-campaign" class="nav-link">Offers</a>
       <a href="blog.html" class="nav-link">Blogs</a>
       <a href="index.html#final-cta" class="nav-link">Contact</a>
@@ -268,7 +288,7 @@
       <a href="index.html" class="nav-link">Home</a>
       <a href="products.html" class="nav-link">Catalog</a>
       <a href="aboutus.html" class="nav-link">About Us</a>
-      <a href="aboutus.html#repair-services" class="nav-link">Services</a>
+      <a href="aboutus.html#services" class="nav-link">Services</a>
       <a href="index.html#featured-campaign" class="nav-link">Offers</a>
       <a href="blog.html" class="nav-link">Blogs</a>
       <a href="index.html#final-cta" class="nav-link">Contact</a>
@@ -279,9 +299,9 @@
     </div>
   </div>
 
-  <!-- ==================== BLOG DETAIL 70:30 LAYOUT ==================== -->
+  <!-- ==================== BLOG DETAIL FULL-WIDTH HORIZONTAL LAYOUT ==================== -->
   <main class="blog-layout-container">
-    <!-- Left Column: Article (70%) -->
+    <!-- Article Column: Full Width (max-width: 900px, centered) -->
     <div class="blog-article-column">
       <a href="blog.html" class="back-link">← Back to Articles</a>
       <!-- PHP: Single Blog Content (Rich Text / WYSIWYG from Database) -->
@@ -295,12 +315,45 @@
         </div>
         <h1 class="post-page-title"><?php echo htmlspecialchars($blog['title']); ?></h1>
         <article id="post-content" class="post-content">
-          <?php echo $blog['content']; // Echoes sanitized HTML: <b>, <i>, <u>, <ol>, <ul>, <a>, <h2>, <h3>, <blockquote> ?>
+          <?php echo $blog['content_html']; // Echoes sanitized HTML: <b>, <i>, <u>, <ol>, <ul>, <a>, <h2>, <h3>, <blockquote> ?>
         </article>
       -->
       <div id="post-container">
         <!-- PHP: Single Blog Content echoed here by backend (Fallback loads Markdown via post-script.js) -->
         <div class="loading-state">Loading article…</div>
+      </div>
+
+      <!-- ==================== SHARE THIS ARTICLE ==================== -->
+      <div class="share-bar" aria-label="Share this article">
+        <span class="share-label">Share this article:</span>
+        <div class="share-buttons">
+          <!-- WhatsApp -->
+          <!-- PHP: href="https://api.whatsapp.com/send?text=<?php echo urlencode($blog['title'] . ' ' . $canonical_url); ?>" -->
+          <a href="https://api.whatsapp.com/send?text=Travel%20Agency%20Website%20Design%20Bihar%20Sharif%20https%3A%2F%2Fmicrosys.in%2Fblog-detail.html%3Fslug%3Dtravel-agency-website-design-bihar-sharif" target="_blank" rel="noopener noreferrer" class="share-btn share-wa" aria-label="Share on WhatsApp" title="WhatsApp">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            <span>WhatsApp</span>
+          </a>
+
+          <!-- Facebook -->
+          <!-- PHP: href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($canonical_url); ?>" -->
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmicrosys.in%2Fblog-detail.html%3Fslug%3Dtravel-agency-website-design-bihar-sharif" target="_blank" rel="noopener noreferrer" class="share-btn share-fb" aria-label="Share on Facebook" title="Facebook">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            <span>Facebook</span>
+          </a>
+
+          <!-- Telegram -->
+          <!-- PHP: href="https://t.me/share/url?url=<?php echo urlencode($canonical_url); ?>&text=<?php echo urlencode($blog['title']); ?>" -->
+          <a href="https://t.me/share/url?url=https%3A%2F%2Fmicrosys.in%2Fblog-detail.html%3Fslug%3Dtravel-agency-website-design-bihar-sharif&text=Travel%20Agency%20Website%20Design%20Bihar%20Sharif" target="_blank" rel="noopener noreferrer" class="share-btn share-tg" aria-label="Share on Telegram" title="Telegram">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.536-.196 1.006.128.832.941z"/></svg>
+            <span>Telegram</span>
+          </a>
+
+          <!-- Copy Link -->
+          <button type="button" class="share-btn share-copy" aria-label="Copy URL" title="Copy URL" onclick="navigator.clipboard.writeText(window.location.href); alert('Link copied to clipboard!');">
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+            <span class="copy-text">Copy Link</span>
+          </button>
+        </div>
       </div>
 
       <!-- ==================== COMMENTS SECTION ==================== -->
@@ -364,70 +417,82 @@
           </div>
         </form>
       </section>
+
+      <!-- ==================== PRODUCT PROMO CARD ==================== -->
+      <section class="blog-promo-section" aria-label="Microsys Product Showcase">
+        <div class="blog-promo-card">
+          <div class="blog-promo-badge">MICROSYS SPECIAL RECOMMENDATION</div>
+          <div class="blog-promo-inner">
+            <div class="blog-promo-img-wrapper">
+              <!-- PHP: echo htmlspecialchars($promo_product['image']); -->
+              <img src="assets/categoryimage/gaming.webp" alt="Gaming PCs and Laptops at Microsys" class="blog-promo-img" loading="lazy">
+            </div>
+            <div class="blog-promo-content">
+              <!-- PHP: echo htmlspecialchars($promo_product['title']); -->
+              <h3 class="blog-promo-title">Looking for High-Performance Gaming PCs or Laptops?</h3>
+              <!-- PHP: echo htmlspecialchars($promo_product['description']); -->
+              <p class="blog-promo-text">Visit Microsys at Ramchandarpur Bus Stand, Bihar Sharif. We build custom RTX gaming rigs, business workstations, and offer the widest range of laptops from HP, Dell, Lenovo, and ASUS with official warranty and EMI support.</p>
+              <div class="blog-promo-actions">
+                <!-- PHP: href="products.php?category=<?php echo urlencode($promo_product['category']); ?>" -->
+                <a href="products.html?category=gaming" class="btn btn-primary blog-promo-btn">Explore Gaming PCs &amp; Laptops</a>
+                <a href="https://wa.me/919431687928?text=Hello%2C%20I%20read%20your%20blog%20and%20would%20like%20to%20enquire%20about%20PCs." class="btn btn-whatsapp" target="_blank" rel="noopener">Enquire on WhatsApp</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
 
-    <!-- Right Column: Sticky Sidebar (30%) -->
-    <aside class="blog-sidebar-column">
-      <!-- Promo Banner -->
-      <div class="sidebar-promo-card">
-        <div class="sidebar-promo-badge">MICROSYS EXCLUSIVE</div>
-        <div class="sidebar-promo-img-wrapper">
-          <!-- PHP: echo $promo['image']; -->
-          <img src="assets/categoryimage/gaming.webp" alt="Custom PC Builds & Laptops at Microsys" class="sidebar-promo-img" loading="lazy">
-        </div>
-        <!-- PHP: echo $promo['text']; -->
-        <h4 class="sidebar-promo-title">Need a PC? Visit Microsys</h4>
-        <!-- PHP: echo $promo['text']; -->
-        <p class="sidebar-promo-text">Bihar Sharif’s premier showroom for customized gaming rigs, office workstations, and certified laptop repairs.</p>
-        <!-- PHP: echo $promo['link']; -->
-        <a href="products.html" class="btn btn-primary sidebar-promo-btn">Explore Products</a>
+    <!-- ==================== RELATED ARTICLES SECTION (FULL-WIDTH 3-COLUMN GRID) ==================== -->
+    <section class="blog-related-section" aria-labelledby="related-heading">
+      <div class="blog-related-header">
+        <h2 id="related-heading" class="blog-related-heading">Related Articles</h2>
+        <a href="blog.html" class="blog-related-all-link">View All Articles &rarr;</a>
       </div>
 
-      <!-- Related Posts Widget -->
-      <div class="sidebar-related-widget">
-        <h3 class="sidebar-heading">Related Articles</h3>
-        <div class="sidebar-related-list">
-          <!-- PHP: foreach($related_posts as $post) { -->
-          <!-- PHP: href="blog-detail.php?slug=<?php echo $post['slug']; ?>" -->
-          <a href="blog-detail.html?slug=travel-agency-website-design-bihar-sharif" class="sidebar-related-card">
-            <div class="sidebar-related-thumb">
-              <!-- PHP: echo $post['thumbnail_url']; -->
-              <img src="blogs/thumbnails/travel-agency-website-design-bihar-sharif.webp" alt="WhatsApp Webhooks for Business" loading="lazy">
-            </div>
-            <div class="sidebar-related-info">
-              <span class="sidebar-related-tag">Case Study</span>
-              <!-- PHP: echo $post['title']; -->
-              <h4 class="sidebar-related-title">WhatsApp Webhooks: Modern Customer Communication</h4>
-            </div>
-          </a>
-          <!-- PHP: href="blog-detail.php?slug=<?php echo $post['slug']; ?>" -->
-          <a href="blog.html" class="sidebar-related-card">
-            <div class="sidebar-related-thumb">
-              <!-- PHP: echo $post['thumbnail_url']; -->
-              <img src="assets/categoryimage/components.webp" alt="PC Hardware Guide" loading="lazy">
-            </div>
-            <div class="sidebar-related-info">
-              <span class="sidebar-related-tag">Hardware Tips</span>
-              <!-- PHP: echo $post['title']; -->
-              <h4 class="sidebar-related-title">Key PC Components to Upgrade for Maximum Performance</h4>
-            </div>
-          </a>
-          <!-- PHP: href="blog-detail.php?slug=<?php echo $post['slug']; ?>" -->
-          <a href="blog.html" class="sidebar-related-card">
-            <div class="sidebar-related-thumb">
-              <!-- PHP: echo $post['thumbnail_url']; -->
-              <img src="assets/categoryimage/laptops.webp" alt="Laptop Buying Guide" loading="lazy">
-            </div>
-            <div class="sidebar-related-info">
-              <span class="sidebar-related-tag">Buying Guides</span>
-              <!-- PHP: echo $post['title']; -->
-              <h4 class="sidebar-related-title">How to Choose the Best Laptop for College &amp; Work</h4>
-            </div>
-          </a>
-          <!-- PHP: } -->
-        </div>
+      <!-- PHP: foreach($related_posts as $post) { -->
+      <div class="related-articles-grid sidebar-related-list">
+        <!-- Article Card 1 -->
+        <!-- PHP: href="blog-detail.php?slug=<?php echo $post['slug']; ?>" -->
+        <article class="post-card">
+          <div class="category-tag post-card-category">Local business</div>
+          <img class="post-card-thumbnail" src="blogs/thumbnails/travel-agency-website-design-bihar-sharif.webp" alt="Travel Agency Website Design Bihar Sharif" loading="lazy">
+          <div class="post-card-body">
+            <span class="post-card-date">Sep 30, 2026</span>
+            <h3 class="post-card-title">Travel Agency Website Design Bihar Sharif: WhatsApp Webhooks Ab Aapka Naya Call Center Hain</h3>
+            <p class="post-card-excerpt">Din me 100 calls, par sab repeat sawal? Janiye kaise WhatsApp Webhooks aur ek booking website Bihar Sharif ki travel agencies ka load 90% tak kam kar rahi hain.</p>
+            <a class="post-card-link" href="blog-detail.html?slug=travel-agency-website-design-bihar-sharif">Read Article &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Article Card 2 -->
+        <!-- PHP: href="blog-detail.php?slug=<?php echo $post['slug']; ?>" -->
+        <article class="post-card">
+          <div class="category-tag post-card-category">Local business</div>
+          <img class="post-card-thumbnail" src="blogs/thumbnails/real-estate-website-developers-bihar-sharif.webp" alt="Real Estate Website Developers Bihar Sharif" loading="lazy">
+          <div class="post-card-body">
+            <span class="post-card-date">Sep 25, 2026</span>
+            <h3 class="post-card-title">Real Estate Website Developers Bihar Sharif: Tier-2 Property Market Me Trust Ki Kami Kaise Theek Hogi</h3>
+            <p class="post-card-excerpt">Ek buyer. Zindagi ki sabse badi kharidari. Rs 25-40 lakh. Par info kitni? Sirf ek broker ki baat aur WhatsApp photo. Janiye kaise transparent digital infrastructure trust badhata hai.</p>
+            <a class="post-card-link" href="blog-detail.html?slug=real-estate-website-developers-bihar-sharif">Read Article &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Article Card 3 -->
+        <!-- PHP: href="blog-detail.php?slug=<?php echo $post['slug']; ?>" -->
+        <article class="post-card">
+          <div class="category-tag post-card-category">Case study</div>
+          <img class="post-card-thumbnail" src="blogs/thumbnails/clinic-website-developer-bihar-sharif-pwa.webp" alt="Tier-2 City Clinics PWA" loading="lazy">
+          <div class="post-card-body">
+            <span class="post-card-date">Oct 07, 2026</span>
+            <h3 class="post-card-title">Tier-2 City Clinics: Why Patients Leave Full Waiting Rooms (And How a PWA Fixes It)</h3>
+            <p class="post-card-excerpt">A clinic in Bihar Sharif loses revenue every time a patient walks out of a crowded waiting room. Learn how a Progressive Web App (PWA) replaces the reception register with a 2-second booking link.</p>
+            <a class="post-card-link" href="blog-detail.html?slug=clinic-website-developer-bihar-sharif-pwa">Read Article &rarr;</a>
+          </div>
+        </article>
       </div>
-    </aside>
+      <!-- PHP: } -->
+    </section>
   </main>
 
   <!-- 18. Footer -->
@@ -444,7 +509,7 @@
         <div class="footer__col">
           <div class="footer__heading">Quick Links</div>
           <a href="aboutus.html" class="footer__link">About</a>
-          <a href="aboutus.html#repair-services" class="footer__link">Services</a>
+          <a href="aboutus.html#services" class="footer__link">Services</a>
           <a href="index.html#featured-campaign" class="footer__link">Offers</a>
           <a href="blog.html" class="footer__link">Blogs</a>
           <a href="index.html#final-cta" class="footer__link">Contact</a>
@@ -490,14 +555,15 @@
           </div>
           <div class="footer__heading" style="margin-top: var(--space-l);">Legal</div>
           <div style="display: flex; flex-direction: column; gap: var(--space-s);">
-            <a href="#" class="footer__link">Privacy Policy</a>
-            <a href="#" class="footer__link">Terms of Service</a>
+            <a href="privacy-policy.html" class="footer__link">Privacy Policy</a>
+            <a href="terms-of-service.html" class="footer__link">Terms of Service</a>
           </div>
         </div>
       </div>
       
       <div class="footer__bottom">
         <div>&copy; <span class="footer__year">2026</span> Microsys | Computer & Accessories. All rights reserved.</div>
+        <div class="footer-credit">Proudly Designed and Developed by <a href="https://vyomarctech.com" target="_blank" rel="noopener">VYOMARC TECHNOLOGIES</a></div>
       </div>
     </div>
   </footer>
@@ -512,7 +578,7 @@
       <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
       <span>WhatsApp</span>
     </a>
-    <a href="https://www.google.com/maps?q=Ramchandrapur,+Bihar+Sharif,+Bihar+803216" class="sticky-bar-btn sticky-bar-btn--directions" target="_blank" rel="noopener">
+    <a href="https://www.google.com/maps/dir/?api=1&destination=MICROSYS+COMPUTER+SHOP+Ramchandarpur+Bihar+Sharif" class="sticky-bar-btn sticky-bar-btn--directions" target="_blank" rel="noopener">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
       <span>Directions</span>
     </a>
@@ -702,7 +768,39 @@
       if (yearEl) {
         yearEl.textContent = new Date().getFullYear();
       }
+
+      // Remove duplicate legacy share bar generated dynamically inside #post-container
+      const postContainerEl = document.getElementById('post-container');
+      if (postContainerEl) {
+        const removeLegacyShare = () => {
+          const legacy = postContainerEl.querySelector('.share-bar');
+          if (legacy) legacy.remove();
+        };
+        removeLegacyShare();
+        const shareObserver = new MutationObserver(removeLegacyShare);
+        shareObserver.observe(postContainerEl, { childList: true, subtree: true });
+      }
+
+      // Scroll to Top
+      const scrollBtn = document.getElementById('scroll-to-top');
+      if (scrollBtn) {
+        window.addEventListener('scroll', function () {
+          if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            scrollBtn.style.display = 'flex';
+          } else {
+            scrollBtn.style.display = 'none';
+          }
+        });
+        scrollBtn.addEventListener('click', function () {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
     });
   </script>
+
+  <!-- Scroll to Top Button -->
+  <button id="scroll-to-top" aria-label="Scroll to top" style="display: none;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+  </button>
 </body>
 </html>

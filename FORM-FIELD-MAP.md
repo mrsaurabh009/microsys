@@ -129,7 +129,7 @@ Administrative panel interfaces are located in `/admin/`. This section locks all
 | CSRF Security Token | `csrf_token` | hidden | Required | N/A | Session validation cryptographic token |
 | Article Title | `title` | text | Required | `title` | VARCHAR(255) NOT NULL |
 | URL Slug | `slug` | text | Required | `slug` | VARCHAR(280) UNIQUE NOT NULL. SEO URL slug |
-| Blog Category | `category` | select | Required | `category` | Permitted options: Buying Guide, Hardware Tips, News, Maintenance |
+| Blog Category | `category` | select | Required | `category` | Permitted options: Buying Guides, Local business, Hardware Tips, Gaming, Services, Case study, General Blogs |
 | Author Name | `author_name` | text | Optional | `author_name` | VARCHAR(100) DEFAULT 'Microsys Team' |
 | Cover Thumbnail Asset | `thumbnail_url` | file | Required | `thumbnail_url` | Accepts `image/*`, stored as relative path (e.g., `blogs/thumbnails/item.webp`) |
 | Publication Status | `status` | select | Required | `status` | Permitted options: `Draft`, `Published` |
@@ -279,7 +279,7 @@ This master table brings together every form field across public storefront page
 | Admin Product Form | Homepage Featured Flag | is_popular | checkbox | Optional | products | is_popular | Toggles Popular Products section display |
 | Admin Blog Form | Blog Article Headline | title | text | Required | blogs | title | Headline title of editorial post |
 | Admin Blog Form | Article URL Slug | slug | text | Required | blogs | slug | Clean SEO URL identifier string |
-| Admin Blog Form | Topic Classification | category | select | Required | blogs | category | Blog taxonomy category |
+| Admin Blog Form | Topic Classification | category | select | Required | blogs | category | Blog taxonomy category: Buying Guides, Local business, Hardware Tips, Gaming, Services, Case study, General Blogs |
 | Admin Blog Form | Author Byline | author_name | text | Optional | blogs | author_name | Author display name (default: Microsys Team) |
 | Admin Blog Form | Featured Cover Photo | thumbnail_url | file | Required | blogs | thumbnail_url | File upload path for 16:9 banner visual |
 | Admin Blog Form | Search Meta Description | meta_description | textarea | Optional | blogs | meta_description | 150-160 char summary for SERP and cards |
@@ -366,8 +366,8 @@ The following existing live form controls must be updated during Phase 0 Step 5 
 
 - Document Status: Permanently locked as the authoritative form field mapping standard. Fully verified across all public storefront forms and all Admin Panel UI forms with 100% database schema parity and CSRF protection tokens.
 - Governance: In accordance with the project governance rules established in PROJECT-REPORT.md, no field names, attributes, or table assignments in this document may be renamed, removed, or modified without formal architectural sign-off.
-- Lock Date: 2026-10-31
-- Phase: Phase 6 Complete (Full Admin & Storefront Form Field Mapping Verified)
+- Lock Date: 2026-11-04
+- Phase: Phase 7.7 Complete (Repair Services Frontend, Admin & SQL Schema 100% Parity)
 
 ---
 

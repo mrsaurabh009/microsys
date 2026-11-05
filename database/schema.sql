@@ -47,11 +47,12 @@ CREATE TABLE IF NOT EXISTS `products` (
   FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- Table 4: blogs (Synchronized with posts.json, blog-detail.html, and admin/manage-blogs.html)
 CREATE TABLE IF NOT EXISTS `blogs` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NOT NULL,
   `slug` VARCHAR(280) NOT NULL UNIQUE,
-  `category` VARCHAR(100) DEFAULT NULL,
+  `category` VARCHAR(100) DEFAULT NULL, -- Permitted categories: 'Buying Guides', 'Local business', 'Hardware Tips', 'Gaming', 'Services', 'Case study', 'General Blogs'
   `thumbnail_url` VARCHAR(255) NOT NULL,
   `author_name` VARCHAR(100) DEFAULT 'Microsys Team',
   `meta_description` TEXT DEFAULT NULL,
@@ -123,6 +124,19 @@ CREATE TABLE IF NOT EXISTS `services` (
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Seed Initial 9 Canonical Technical Support & Repair Services (Synchronized with aboutus.html and admin/manage-services.html)
+INSERT INTO `services` (`id`, `title`, `description`, `price_range`, `is_active`) VALUES
+(1, 'Laptop Diagnosis', 'Comprehensive motherboard, battery, and display diagnostics with chip-level precision.', 'Starting at ₹299', 1),
+(2, 'Desktop Repair', 'Hardware troubleshooting, power supply replacement, and component fixes for all desktop PCs.', 'Starting at ₹399', 1),
+(3, 'RAM / SSD Upgrade', 'High-speed NVMe SSD and DDR4/DDR5 RAM installation with instant speed boost.', 'Starting at ₹499', 1),
+(4, 'Operating System Installation', 'Genuine Windows 11 & Linux setup with drivers, security patches, and optimization.', 'Starting at ₹499', 1),
+(5, 'Data Migration', 'Secure file recovery, high-speed disk cloning, and seamless backup to new storage drives.', 'Starting at ₹699', 1),
+(6, 'Custom PC Assembly', 'Professional gaming and workstation rig build service with clean cable management.', 'Starting at ₹999', 1),
+(7, 'Cooling Maintenance', 'Heatsink dust cleaning, fan servicing, and premium thermal paste re-application.', 'Starting at ₹349', 1),
+(8, 'Printer Troubleshooting', 'Cartridge refill, printhead cleaning, driver configuration, and paper jam repair.', 'Starting at ₹299', 1),
+(9, 'Networking Setup', 'Wi-Fi router setup, structured LAN cabling, and secure small office network configuration.', 'Starting at ₹799', 1)
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`), `price_range` = VALUES(`price_range`), `is_active` = VALUES(`is_active`);
 
 SET FOREIGN_KEY_CHECKS = 1;
 

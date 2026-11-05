@@ -73,6 +73,8 @@
 | `aboutus.html` | `#about-hero` | About hero | Centered title, eyebrow, and subtitle |
 | `aboutus.html` | `#about-description` | Business history | 5 structured narrative paragraphs |
 | `aboutus.html` | `#services` / `#repair-services` | Repair services | 9 technical service cards with placeholders |
+| `aboutus.html` | `#location-map` / `.map-section` | Showroom location map | Verified Google Maps embed iframe with responsive 1040px container, 400px/320px height, and Get Directions CTA button |
+| `aboutus.html` | `#mobile-sticky-bar` | Mobile sticky bottom bar | Fixed bottom bar (<768px) with Call, WhatsApp (919431687928), and Directions links; safe-area support |
 | `products.html` | `.catalog-sidebar` (`#catalog-filter-form`), `.catalog-main` (`.catalog-topbar`, `#catalog-topbar-form`, `.products-grid`, `.pagination`), `#footer` | Fully built Catalog Page with GET forms | Fully built catalog page with accessible GET filter form (`category[]`, `brand[]`, `min_price`, `max_price`), mobile native `<details>` accordion, sticky desktop sidebar, top bar GET search & sort form (`q`, `sort`), dynamic result count, responsive 4-3-2-1 .products-grid with 4 canonical master cards, accessible pagination, and clear PHP developer handover comments inside forms and loops |
 | `product-detail.html` | `.utility-bar`, `#main-header`, `.category-nav`, `#drawer`, `#main-content` (`.breadcrumb`, `.product-detail-layout` [`.product-detail-gallery`, `.product-detail-info`], `.product-specs-section` [`.product-specs-table`], `.related-products-section` [`.products-grid`]), `#footer`, `#mobile-sticky-bar`, `.product-sticky-bar` | Fully built Product Detail Page with Gallery, Info, Specs, Related Products, and Mobile Sticky Bar | Clean semantic HTML5 document with header/footer/drawer parity, breadcrumbs, responsive 2-column layout, 4:3 image gallery with 3 thumbnails, complete product info column, 9-row zebra specs table, 4-card canonical Related Products grid with PHP loop markers, dedicated mobile product sticky bar (`.product-sticky-bar`), and standardized PHP echo markers across all 17 fields |
 | `blog.html` | `.utility-bar`, `#main-header`, `.category-nav`, `#drawer`, `.blog-hero`, `#posts-grid` (`.blog-toolbar`, `#posts-grid-container`, `#pagination-controls`), `#footer`, `#mobile-sticky-bar` | Redesigned Blog Landing Page | Clean HTML5 document matching Microsys design system: added Blog Hero section, Toolbar (`#blog-search` and `#blog-categories`), responsive 3-column desktop grid (2-col tablet, 1-col mobile), cards styled matching Microsys product cards with 16:9 thumbnails and hover states, and brand blue pagination; preserved posts-grid-container and script.js compatibility; zero ID clashes |
@@ -249,7 +251,7 @@
 | **Content** | `#why-choose-us` | 6 value proposition description paragraphs | `[intentional]` |
 | **Technical** | `#contact` | Form `action="#"` backend endpoint (expected `contact-submit.php` `[PHP TO CONFIRM]`; dual-action WhatsApp fallback active) | `[blocker]` |
 | **Content** | `#contact` | Form submission success confirmation copy | `[intentional]` |
-| **Technical** | `#footer` | Social profile links and policy page URLs (`#`) | `[intentional]` |
+| **Technical** | `#footer` | Legal policy links RESOLVED (pointing to `privacy-policy.html` and `terms-of-service.html` in Phase 7.9); social profile links (`#`) | `[intentional]` |
 
 ### `aboutus.html` Placeholders
 | Type | Location / Section | Description / Key | Status |
@@ -257,7 +259,7 @@
 | **Technical** | `<head>` | `og:image` and `twitter:image` asset URLs | `[intentional]` |
 | **Technical** | `<head>` | JSON-LD schema `image`, `priceRange`, `sameAs` | `[intentional]` |
 | **Content** | `#services` | Repair services subtitle text | `[intentional]` |
-| **Content / Price** | `#services` | 9 repair service description paragraphs & starting prices | `[intentional]` |
+| **Content / Price** | `#services` | 9 repair service description paragraphs & starting prices | RESOLVED (Populated with realistic descriptions, dummy pricing, PHP echo markers, and foreach loop in Phase 7.7) |
 
 ### Catalog & Reference Placeholders (`products.html`, `COMPONENT-product-card.html`)
 | Type | Location / Section | Description / Key | Status |
@@ -335,7 +337,7 @@
 
 1. **Step 1: Header Parity Alignment**: Apply the floating utility bar and rounded pill category navigation styles from `index.html` to `aboutus.html`.
 2. **Step 2: Catalog Data Fulfillment**: Collect specifications and pricing for Desktop PCs, Gaming Rigs, and Components tabs in `#popular-products`.
-3. **Step 3: Service Copy**: Populate detailed descriptions and starting prices for the 9 Repair Services on `aboutus.html`.
+3. **Step 3: Service Copy**: COMPLETED (Populated 9 descriptions, pricing, dynamic PHP markers, and WhatsApp CTA on `aboutus.html` in Phase 7.7).
 4. **Step 4: Contact Form Hookup**: Configure production action URL or serverless handler for `#mainContactForm`.
 5. **Step 5: Enriched Social Previews**: Finalize a 1200x630px social banner asset for Open Graph and Twitter Card tags.
 
@@ -363,7 +365,9 @@ This section provides a unified status assessment of dynamic-readiness across al
 | Product field naming | Ready | `FIELD-NAMING-CONVENTION.md` | Phase 0 Step 2 | Locked 17 fields, data types, constraints, and PHP associative array bindings |
 | Form field naming | Ready | `FORM-FIELD-MAP.md` | Phase 0 Step 4 | All public and admin form field names, methods, and target SQL columns locked |
 | Dynamic placeholder markers | Ready | `AUDIT-FIELDS.md` | Phase 0 Step 1 | Standardized `DATA-BIND:`, `PLACEHOLDER:`, and comment markers present in markup |
-| Database schema | ✅ COMPLETED | `database/schema.sql` | Phase 1 & Phase 6 | schema.sql generated and updated — 8 tables finalized (`blogs` updated with `thumbnail_url`, `content_html`, `status`; `sliders` updated with `label`, `eyebrow`, `subtitle`; `inquiries` updated with `phone_number`, `enquiry_type`, `status`). |
+| Database schema | ✅ COMPLETED | `database/schema.sql` | Phase 1 & Phase 6 | schema.sql generated and updated — 8 tables finalized (`blogs` updated with `thumbnail_url`, `content_html`, `status`; `sliders` updated with `label`, `eyebrow`, `subtitle`; `inquiries` updated with `phone_number`, `enquiry_type`, `status`; `services` seeded with 9 canonical offerings in Phase 7.7). |
+| Repair Services | Ready (Frontend & Admin UI complete — 9 services seeded in schema.sql) | `aboutus.html`, `admin/manage-services.html` | Phase 7.7 | 9 cards populated with realistic descriptions, dummy pricing, PHP foreach loop & echo markers, and centered WhatsApp CTA; synced with 9 Admin rows and SQL seed |
+| Showroom Location Map | Ready | `aboutus.html`, `styles/home.css` | Phase 7.10 | Verified Google Maps embed iframe below Repair Services CTA on `aboutus.html` inside `.map-section` with responsive 1040px max-width container, 400px desktop height, 320px mobile height, and Get Directions CTA button |
 | SEO Meta Tags & Schemas | Ready | `PHP-DEV-GUIDE.md` Section 17 | Phase 6.10 | Static LocalBusiness & FAQPage schemas on homepage; dynamic PHP markers for title, description, canonical, OG metadata, Product schema (product-detail.php), and BlogPosting schema (blog-detail.php) complete; robots.txt & noindex active |
 
 ### Summary
@@ -371,10 +375,67 @@ Phase 4 (Product Detail Page), Phase 5 (Blog Module), and Phase 6 (Admin Panel U
 
 ---
 
-## 14. Audit Sign-off
+---
+
+## 14. Phase 7.1 - 7.3 Integrity Audit (PHP Markers & Form Parity)
+
+A comprehensive integrity audit was conducted across all recent UI and interactive enhancements (Phase 7.1 to 7.3: Announcement Bar gradient, brand logo swaps, mobile landing overlay, mobile navbar logo sizing, footer logo badge styling, mobile hero background/badges, FAQ accordion conversion, and product card hover scaling).
+
+### Audit Findings Matrix
+
+| Component / Template | Inspected Attributes / Markers | Status | Details / Parity Verification |
+| :--- | :--- | :--- | :--- |
+| **Announcement Bar** (`index.html`) | `<!-- PHP: echo $promotion['text_content']; -->`, `data-type="announcement_bar"`, `#close-announcement` | ✅ INTACT | Promotion echo marker preserved exactly; session storage dismiss active |
+| **FAQ Accordion** (`index.html`) | `<details class="faq-item">`, `<summary class="faq-question">`, `<div class="faq-answer">` | ✅ INTACT | Static 8-question FAQ content exactly matches JSON-LD `FAQPage` schema; zero markers lost |
+| **Homepage Popular Products** (`index.html`) | `<!-- PHP LOOP START: foreach($popular_laptops as $product) { -->`, Link format comments, `data-product-name` | ✅ INTACT | Foreach loop markers intact; all 4 cards link to `product-detail.html?slug=...` |
+| **Catalog Master Grid** (`products.html`) | `<!-- PHP LOOP START: foreach($filtered_products as $product) { -->`, `data-product-id`, `data-category`, etc. | ✅ INTACT | All 10 data attributes (`data-product-id="PROD-001"`, `data-category`, `data-is-popular`, etc.) and dynamic link markers intact |
+| **Related Products Grid** (`product-detail.html`) | `<!-- PHP LOOP START: foreach($related_products as $product) { -->`, slug links | ✅ INTACT | Dynamic query marker (`$slug = $_GET['slug'] ?? null`), canonical, OG, schema, and related links intact |
+| **Contact Form** (`index.html` `#mainContactForm`) | `form_source`, `full_name`, `phone_number`, `email`, `enquiry_type`, `product_or_service`, `message` | ✅ INTACT | Hidden source tracker, exact `name=""` attributes, and dual WhatsApp submission JS fully preserved |
+| **Search Forms** (Site-wide) | `name="q"`, `method="GET"`, `action="products.html"` | ✅ INTACT | Verified across desktop header, mobile off-canvas drawer, and catalog filter bar |
+| **Blog Listing & Articles** (`blog.html`, `blog-detail.html`) | `foreach($blogs as $blog)`, comment form inputs (`user_name`, `user_email`, `comment_text`, `blog_id`) | ✅ INTACT | All schema fields, comment form fields, and dynamic routing parameters preserved |
+
+### Broken Items & Fixes
+- **Broken PHP Markers Found**: None (0 broken markers).
+- **Broken Form Fields Found**: None (0 missing name attributes).
+- **Broken Routing / Slugs Found**: None (All product cards route to canonical slugs).
+- **Fixes Applied**: None required; all template bindings, loop placeholders, and data attributes remain in 100% parity with `PHP-DEV-GUIDE.md` and `FORM-FIELD-MAP.md`.
+
+---
+
+## 15. Phase 7.11 Global Broken Link Audit & Navigation Integrity
+
+A site-wide link and navigation path audit was executed across all 18 HTML files (8 public storefront templates and 10 Admin Panel templates) to verify that all hrefs point to valid files, working routes, or existing DOM fragments.
+
+### Audit Findings Matrix
+
+| Navigation Scope | Target Files / Areas | Status | Details / Parity Verification |
+| :--- | :--- | :--- | :--- |
+| **Public Desktop Navbar** | `index.html`, `aboutus.html`, `products.html`, `product-detail.html`, `blog.html`, `blog-detail.html`, `privacy-policy.html`, `terms-of-service.html` | ✅ PASS | 7-link navbar verified across all 8 pages: Home (`index.html`), Catalog (`products.html`), About Us (`aboutus.html`), Services (`aboutus.html#services`), Offers (`index.html#featured-campaign`), Blogs (`blog.html`), Contact (`index.html#final-cta`). All targets and hash anchors exist. |
+| **Public Mobile Drawer** | All 8 public pages (`#drawer`) | ✅ PASS | Drawer links exactly match the 7-link architecture; `#repair-services` updated to `aboutus.html#services` on all pages. Phone and WhatsApp links verified. |
+| **Public Footer Quick Links** | All 8 public pages (`.footer__col`) | ✅ PASS | About (`aboutus.html`), Services (`aboutus.html#services`), Offers (`index.html#featured-campaign`), Blogs (`blog.html`), Contact (`index.html#final-cta`) verified. |
+| **Public Footer Category Links** | All 8 public pages (`.footer__col`) | ✅ PASS | Laptops (`products.html?category=laptops`), Desktops (`products.html?category=desktops`), Accessories (`products.html?category=accessories`), Printers (`products.html?category=printers`), Security (`products.html?category=security`) verified across all pages. |
+| **Legal Pages Links** | Footer of all 8 public pages | ✅ PASS | Privacy Policy (`privacy-policy.html`) and Terms of Service (`terms-of-service.html`) verified. |
+| **Agency Credit Link** | Footer bottom across all 8 public pages | ✅ PASS | `https://vyomarctech.com` with `target="_blank"` and `rel="noopener"` verified. |
+| **Mobile Sticky Bar & Utility Bar** | All public pages | ✅ PASS | Call (`tel:+919431687928`), WhatsApp (`https://wa.me/919431687928`), and Directions (`https://www.google.com/maps/dir/?api=1&destination=MICROSYS+COMPUTER+SHOP+Ramchandarpur+Bihar+Sharif`) verified. |
+| **Admin Sidebar Navigation** | `admin/index.html` and all 8 `admin/manage-*.html` pages | ✅ PASS | 100% uniform across all 9 pages: Dashboard (`index.html`), Products (`manage-products.html`), Blogs (`manage-blogs.html`), Comments (`manage-comments.html`), Inquiries (`manage-inquiries.html`), Banners (`manage-banners.html`), Sliders (`manage-sliders.html`), Categories (`manage-categories.html`), Services (`manage-services.html`), and View Website (`../index.html`). |
+| **Admin Action Links & Tables** | `admin/index.html`, `admin/manage-blogs.html`, `admin/manage-products.html` | ✅ PASS | Fixed `admin/index.html` link `inquiries.html` &rarr; `manage-inquiries.html`. Fixed table action Edit links to `#add-edit-form` and Delete action triggers to `#`. Added `<span id="blog-form-container">` and `<span id="product-form-container">` DOM anchors. |
+
+### Broken Items & Fixes Applied
+
+1. **`admin/index.html` Line 211**: Fixed `<a href="inquiries.html">` to `<a href="manage-inquiries.html">`.
+2. **`admin/manage-blogs.html`**: Fixed 4 edit links from `href="#blog-form-container"` to `href="#add-edit-form"`; fixed 4 delete actions from `href="#delete"` to `href="#"`; added fallback anchor `<span id="blog-form-container"></span>`.
+3. **`admin/manage-products.html`**: Fixed 3 edit links from `href="#product-form-container"` to `href="#add-edit-form"`; fixed 3 delete actions from `href="#delete"` to `href="#"`; added fallback anchor `<span id="product-form-container"></span>`.
+4. **Public Services Links**: Fixed all occurrences of `href="#repair-services"` or `href="aboutus.html#repair-services"` to `href="aboutus.html#services"` across navbar, mobile drawer, and footer of all 8 public pages.
+5. **DOM Anchor Parity**: Added `<span id="services"></span>` inside `<section id="repair-services">` on `aboutus.html`, `<span id="laptops"></span>` on `index.html`, and verified `#featured-campaign` and `#final-cta` anchors on `index.html`.
+6. **Footer Category Parity**: Fixed `product-detail.html` footer link from `category=desktop-pcs` to `category=desktops`.
+7. **Directions Consistency**: Standardized mobile sticky bar and utility bar directions URLs to Google Maps Directions across all public pages.
+
+---
+
+## 16. Audit Sign-off
 
 - **Audited By**: Antigravity Pair Programming Agent
-- **Status**: PASSED (Mobile Hero Local Vibe Background & Vibrant Badges Verified)
-- **Last Updated**: November 4, 2026 (Enhanced mobile Hero section on index.html at <=767px: implemented subtle warm linear-gradient from top white to bottom light orange tint combined with a faint 5% opacity circuit/geometric SVG pattern for local tech texture; converted .hero-rating-badge to a vibrant red-to-orange gradient matching the top announcement bar with high-contrast white text and star; refreshed .hero-eyebrow into a radiant local accent tag; and restyled the 3 trust items as mini colored chips: EMI Available in Light Blue, Authorized Dealer in Light Green, and Since 2015 in Light Amber with color-coordinated icon strokes. Desktop Hero remains 100% untouched and all PHP markers intact.)
-- **Phase Roadmap**: Phase 0 (Audit & Specification Standardization) is ✅ COMPLETED. Phase 1 (SQL Schema & Database Definition) is ✅ COMPLETED. Phase 2 (Frontend Interactive Enhancements) is ✅ COMPLETED. Phase 3 (Dedicated Products Catalog & Filter System) is ✅ COMPLETED. Phase 4 (Product Detail Page) is ✅ COMPLETED. Global JS Audit is ✅ COMPLETED. Phase 5 (Blog Module — Listing, Article, 70:30 Layout, Comments UI, Markdown Fallback & PHP/Admin Markers) is ✅ COMPLETED & FULLY AUDITED. Phase 6 (Admin Panel UI Suite) is ✅ COMPLETED. SEO Phase 1 (Foundation Crawl Files & Homepage Optimization) is ✅ COMPLETED. SEO Phase 2 (Catalog & Dynamic Detail Pages Optimization & PHP Markers) is ✅ COMPLETED. Dynamic Routing Handover is ✅ COMPLETED. Global Navbar & Heading Refinement is ✅ COMPLETED. Mobile Drawer Streamlining is ✅ COMPLETED. Navigation & Catalog Documentation Synchronization is ✅ COMPLETED. Phase 6.10 (Full SEO Implementation & Backend Handoff) is ✅ COMPLETED & OFFICIALLY SIGNED OFF. Homepage UI Local Accents, Brand Logos, Split-Curtain Gate Animation, Logo Sizing, and Mobile Hero Section are ✅ VERIFIED.
+- **Status**: PASSED (Global Broken Link Audit and Navigation Integrity Verified Across All 18 Pages)
+- **Last Updated**: November 4, 2026 (Completed comprehensive link and navigation audit across all 18 HTML files; resolved inquiries.html 404 in admin dashboard; updated blog and product admin edit/delete anchors; unified public Services, Offers, and Contact navigation and drawer targets; standardized category query filters and directions URLs; zero 404 links and zero broken DOM fragments remain site-wide.)
+- **Phase Roadmap**: Phase 0 (Audit & Specification Standardization) is ✅ COMPLETED. Phase 1 (SQL Schema & Database Definition) is ✅ COMPLETED. Phase 2 (Frontend Interactive Enhancements) is ✅ COMPLETED. Phase 3 (Dedicated Products Catalog & Filter System) is ✅ COMPLETED. Phase 4 (Product Detail Page) is ✅ COMPLETED. Global JS Audit is ✅ COMPLETED. Phase 5 (Blog Module — Listing, Article, 70:30 Layout, Comments UI, Markdown Fallback & PHP/Admin Markers) is ✅ COMPLETED & FULLY AUDITED. Phase 6 (Admin Panel UI Suite) is ✅ COMPLETED. SEO Phase 1 (Foundation Crawl Files & Homepage Optimization) is ✅ COMPLETED. SEO Phase 2 (Catalog & Dynamic Detail Pages Optimization & PHP Markers) is ✅ COMPLETED. Dynamic Routing Handover is ✅ COMPLETED. Global Navbar & Heading Refinement is ✅ COMPLETED. Mobile Drawer Streamlining is ✅ COMPLETED. Navigation & Catalog Documentation Synchronization is ✅ COMPLETED. Phase 6.10 (Full SEO Implementation & Backend Handoff) is ✅ COMPLETED & OFFICIALLY SIGNED OFF. Phase 7.1 - 7.3 (UI Refinements, Local Accents, FAQ Accordion, Hover Effects, and PHP Integrity Audit) is ✅ VERIFIED & SIGNED OFF. Phase 7.4 (Blog Detail Horizontal Layout & Admin Post Synchronization) is ✅ VERIFIED & SIGNED OFF. Phase 7.5 (Blog Detail UI Fixes, Share/Views Update & SQL/Admin Parity) is ✅ VERIFIED & SIGNED OFF. Phase 7.6 (SEO Gaming Laptop Guide, Category Unification & Share UI Deduplication) is ✅ VERIFIED & SIGNED OFF. Phase 7.7 (Repair Services UI, Dummy Pricing, WhatsApp CTA, and 9-Service Admin/SQL Parity) is ✅ VERIFIED & SIGNED OFF. Phase 7.8 (Footer Developer Agency Credit & Responsive Layout) is ✅ VERIFIED & SIGNED OFF. Phase 7.9 (Legal Pages, Footer Links & Scroll-to-Top Button) is ✅ VERIFIED & SIGNED OFF. Phase 7.10 (Google Maps Embed & Location/Direction Links Update) is ✅ VERIFIED & SIGNED OFF. Phase 7.11 (Global Broken Link Audit and Navigation Fixes) is ✅ VERIFIED & SIGNED OFF.
 - **Mandatory Requirement**: Per `PROJECT-REPORT.md` Section 16, any future prompt that modifies code or content must update this audit document and the project report in the same commit.
