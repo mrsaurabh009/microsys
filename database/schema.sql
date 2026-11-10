@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
 CREATE TABLE IF NOT EXISTS `products` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `category_id` INT UNSIGNED NOT NULL,
+  `sub_category` VARCHAR(64) DEFAULT NULL,
   `brand` VARCHAR(100) NOT NULL,
   `name` VARCHAR(255) NOT NULL,
   `slug` VARCHAR(280) NOT NULL UNIQUE,
@@ -32,16 +33,17 @@ CREATE TABLE IF NOT EXISTS `products` (
   `image_primary` VARCHAR(255) DEFAULT NULL,
   `image_secondary` VARCHAR(255) DEFAULT NULL,
   `image_tertiary` VARCHAR(255) DEFAULT NULL,
-  `availability` ENUM('in_stock','out_of_stock','pre_order') DEFAULT 'in_stock',
   `badge` VARCHAR(50) DEFAULT NULL,
   `sku` VARCHAR(100) DEFAULT NULL UNIQUE,
   `warranty` VARCHAR(100) DEFAULT NULL,
+  `is_popular` TINYINT(1) DEFAULT 0,
   `is_featured` TINYINT(1) DEFAULT 0,
   `is_active` TINYINT(1) DEFAULT 1,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   INDEX `idx_products_brand` (`brand`),
-  INDEX `idx_products_availability` (`availability`),
+  INDEX `idx_products_sub_category` (`sub_category`),
+  INDEX `idx_products_is_popular` (`is_popular`),
   INDEX `idx_products_is_featured` (`is_featured`),
   INDEX `idx_products_is_active` (`is_active`),
   FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE RESTRICT
@@ -52,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `blogs` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NOT NULL,
   `slug` VARCHAR(280) NOT NULL UNIQUE,
-  `category` VARCHAR(100) DEFAULT NULL, -- Permitted categories: 'Buying Guides', 'Local business', 'Hardware Tips', 'Gaming', 'Services', 'Case study', 'General Blogs'
+  `category` ENUM('Buying Guides', 'News', 'Insights', 'Articles', 'Hardware Tips', 'Gaming', 'Services', 'Case study') DEFAULT NULL,
   `thumbnail_url` VARCHAR(255) NOT NULL,
   `author_name` VARCHAR(100) DEFAULT 'Microsys Team',
   `meta_description` TEXT DEFAULT NULL,
@@ -83,10 +85,13 @@ CREATE TABLE IF NOT EXISTS `promotions` (
   `type` ENUM('announcement_bar','popup_modal') NOT NULL,
   `text_content` VARCHAR(500) DEFAULT NULL,
   `image_url` VARCHAR(255) DEFAULT NULL,
+  `popup_cta_link` VARCHAR(255) DEFAULT '#featured-campaign',
+  `display_order` TINYINT UNSIGNED DEFAULT 0,
   `is_active` TINYINT(1) DEFAULT 1,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- Note for PHP Developer: For popup modals with an auto-sliding image carousel, multiple rows with type='popup_modal' act as slider images (each with its own image_url and display_order, sharing popup_cta_link and text_content).
 
 CREATE TABLE IF NOT EXISTS `sliders` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,

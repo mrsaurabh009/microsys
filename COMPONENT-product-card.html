@@ -1,6 +1,6 @@
 <!-- ==========================================================================
      MASTER PRODUCT CARD TEMPLATE (CANONICAL REFERENCE SNIPPET)
-     Standardized against 17-Field Product Schema & FIELD-NAMING-CONVENTION.md
+     Standardized against 16-Field Product Schema & FIELD-NAMING-CONVENTION.md
      Notice: Reference template only. Do not paste directly into live pages
      until scheduled migration in Phase 0 Step 4.
      ========================================================================== -->
@@ -14,19 +14,17 @@
      data-product-id   <- htmlspecialchars($row['product_id_sku'])
      data-category     <- htmlspecialchars($row['category'])
      data-sub-category <- htmlspecialchars($row['sub_category'])
-     data-is-popular   <- (int)$row['is_popular']
-     data-stock-status <- htmlspecialchars($row['availability']) -->
+     data-is-popular   <- (int)$row['is_popular'] -->
 <article class="product-card"
          data-product-id="[Product ID / SKU]"
          data-category="[Category Slug]"
          data-sub-category="[Sub-Category Slug]"
-         data-is-popular="[0 or 1]"
-         data-stock-status="[Availability Slug]">
+         data-is-popular="[0 or 1]">
 
   <!-- 1. Product Image & Promotional Badge Overlay -->
   <div class="product-image-wrapper">
     <!-- PHP: if (!empty($row['badge'])) { echo '<div class="product-badge">' . htmlspecialchars($row['badge']) . '</div>'; } -->
-    <!-- Promotional tag only (e.g., 'Bestseller', 'New Arrival', 'Special Offer') — decoupled from stock availability -->
+    <!-- Promotional tag only (e.g., 'Bestseller', 'New Arrival', 'Special Offer') -->
     <div class="product-badge">[Badge — e.g., Bestseller]</div>
 
     <!-- PHP: Primary image path from $row['image_primary']
@@ -76,24 +74,18 @@
     <span class="product-mrp" data-raw-mrp="[Raw MRP]">[MRP — optional]</span>
   </div>
 
-  <!-- 7. Inventory Stock Status -->
-  <!-- PHP: echo htmlspecialchars(ucwords(str_replace('_', ' ', $row['availability'])))
-       data-stock-status attribute reflects raw enum value ('in_stock', 'out_of_stock', 'on_order')
-       Note: .product-availability is [NEW / REFACTORED — separated from badge; CSS NOT YET DEFINED — to be added] -->
-  <div class="product-availability" data-stock-status="[Availability Slug]">[Availability — In Stock / Out of Stock / On Order]</div>
-
-  <!-- 8. Manufacturer Warranty -->
+  <!-- 7. Manufacturer Warranty -->
   <!-- PHP: if (!empty($row['warranty'])) { echo '<div class="product-warranty">' . htmlspecialchars($row['warranty']) . '</div>'; } -->
   <!-- Note: .product-warranty is [NEW — CSS NOT YET DEFINED — to be added] -->
   <div class="product-warranty">[Warranty — e.g., 1 Year Onsite]</div>
 
-  <!-- 9. User Action Buttons -->
+  <!-- 8. User Action Buttons -->
   <div class="product-actions">
     <!-- View Details: Opens product modal or routes to product view -->
     <a href="#" class="btn btn-secondary">View Details</a>
 
     <!-- WhatsApp Enquiry: URL composition pattern for PHP backend rendering:
-         $wa_msg = urlencode("Hello, I would like to enquire about " . $row['product_name'] . " (SKU: " . $row['product_id_sku'] . "). Please share current price and availability.");
+         $wa_msg = urlencode("Hello, I would like to enquire about " . $row['product_name'] . " (SKU: " . $row['product_id_sku'] . "). Please share current price.");
          $wa_url = "https://wa.me/919431687928?text=" . $wa_msg; -->
     <a href="https://wa.me/919431687928?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20a%20product."
        class="btn btn-whatsapp whatsapp-btn">
@@ -130,25 +122,23 @@
      1. New Elements Added in this Standard:
         - .product-model: Isolated model number container [NEW]
         - .product-mrp: Strikethrough list price container [NEW]
-        - .product-availability: Dedicated inventory stock status pill [NEW / REFACTORED]
         - .product-warranty: Direct manufacturer warranty duration label [NEW]
 
-     2. Decoupled Fields:
-        - .product-badge is now restricted strictly to promotional/marketing badges (e.g., 'Bestseller').
-          Stock status has been completely moved out of .product-badge into .product-availability.
+     2. Promotional Badge:
+        - .product-badge is restricted strictly to promotional/marketing badges (e.g., 'Bestseller').
+          Product availability and stock status have been globally deprecated and removed.
 
      3. New Data Attributes Added:
         - data-product-id (maps to product_id_sku)
         - data-category (maps to category)
         - data-sub-category (maps to sub_category)
         - data-is-popular (maps to is_popular)
-        - data-stock-status (maps to availability)
         - data-raw-price (unformatted numeric decimal for price)
         - data-raw-mrp (unformatted numeric decimal for mrp)
         - data-image-secondary (image asset path for secondary photo)
         - data-image-tertiary (image asset path for tertiary photo)
 
-     4. Un-rendered 17-Standard Fields Accounted For:
+     4. Un-rendered 16-Standard Fields Accounted For:
         - full_specs: Documented with comment; reserved for product detail modal / expanded drawer
         - image_secondary: Preserved in data-image-secondary attribute
         - image_tertiary: Preserved in data-image-tertiary attribute

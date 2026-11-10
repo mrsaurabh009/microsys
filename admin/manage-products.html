@@ -111,7 +111,7 @@
         <div class="section-header-row">
           <div>
             <h2 id="products-table-heading" class="section-title">Products Inventory</h2>
-            <p class="section-subtitle">Manage catalog items, pricing, stock availability, and specifications</p>
+            <p class="section-subtitle">Manage catalog items, pricing, and specifications</p>
           </div>
           <a href="#add-edit-form" id="toggle-form-btn" class="btn-primary">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
@@ -128,7 +128,6 @@
                 <th scope="col">Name</th>
                 <th scope="col">Category</th>
                 <th scope="col">Price</th>
-                <th scope="col">Stock</th>
                 <th scope="col">Actions</th>
               </tr>
             </thead>
@@ -137,7 +136,7 @@
               <tr>
                 <td>
                   <!-- PHP: echo '<img src="' . htmlspecialchars($product['image_primary']) . '" alt="' . htmlspecialchars($product['product_name']) . '" class="table-thumb">'; -->
-                  <img src="../assets/productimage/placeholder.webp" alt="HP 15s" class="table-thumb" width="44" height="44">
+                  <img src="../assets/productimage/hp-15s-core-i3.webp" alt="HP 15s" class="table-thumb" width="44" height="44">
                 </td>
                 <td>
                   <!-- PHP: echo htmlspecialchars($product['product_id_sku']); -->
@@ -157,10 +156,6 @@
                   <span class="table-price">₹38,990.00</span>
                 </td>
                 <td>
-                  <!-- PHP: echo '<span class="status-badge status-' . htmlspecialchars($product['availability']) . '">' . htmlspecialchars($product['availability']) . '</span>'; -->
-                  <span class="status-badge status-in-stock">In Stock</span>
-                </td>
-                <td>
                   <div class="table-actions">
                     <!-- PHP: href="manage-products.html?edit=<?php echo $product['id']; ?>#add-edit-form" -->
                     <a href="#add-edit-form" class="btn-table-action btn-edit" title="Edit Product">Edit</a>
@@ -172,7 +167,7 @@
               <tr>
                 <td>
                   <!-- PHP: echo '<img src="' . htmlspecialchars($product['image_primary']) . '" alt="' . htmlspecialchars($product['product_name']) . '" class="table-thumb">'; -->
-                  <img src="../assets/productimage/placeholder.webp" alt="ASUS TUF Gaming" class="table-thumb" width="44" height="44">
+                  <img src="../assets/productimage/tuf-gaming-a15-rtx-4050.webp" alt="ASUS TUF Gaming" class="table-thumb" width="44" height="44">
                 </td>
                 <td>
                   <!-- PHP: echo htmlspecialchars($product['product_id_sku']); -->
@@ -192,10 +187,6 @@
                   <span class="table-price">₹54,990.00</span>
                 </td>
                 <td>
-                  <!-- PHP: echo '<span class="status-badge status-' . htmlspecialchars($product['availability']) . '">' . htmlspecialchars($product['availability']) . '</span>'; -->
-                  <span class="status-badge status-in-stock">In Stock</span>
-                </td>
-                <td>
                   <div class="table-actions">
                     <!-- PHP: href="manage-products.html?edit=<?php echo $product['id']; ?>#add-edit-form" -->
                     <a href="#add-edit-form" class="btn-table-action btn-edit" title="Edit Product">Edit</a>
@@ -207,7 +198,7 @@
               <tr>
                 <td>
                   <!-- PHP: echo '<img src="' . htmlspecialchars($product['image_primary']) . '" alt="' . htmlspecialchars($product['product_name']) . '" class="table-thumb">'; -->
-                  <img src="../assets/productimage/placeholder.webp" alt="Dell Vostro" class="table-thumb" width="44" height="44">
+                  <img src="../assets/productimage/inspiron-3520-core-i5.webp" alt="Dell Vostro" class="table-thumb" width="44" height="44">
                 </td>
                 <td>
                   <!-- PHP: echo htmlspecialchars($product['product_id_sku']); -->
@@ -225,10 +216,6 @@
                 <td>
                   <!-- PHP: echo '₹' . number_format($product['price'], 2); -->
                   <span class="table-price">₹41,500.00</span>
-                </td>
-                <td>
-                  <!-- PHP: echo '<span class="status-badge status-' . htmlspecialchars($product['availability']) . '">' . htmlspecialchars($product['availability']) . '</span>'; -->
-                  <span class="status-badge status-out-of-stock">Out of Stock</span>
                 </td>
                 <td>
                   <div class="table-actions">
@@ -250,7 +237,7 @@
         <span id="product-form-container"></span>
         <div class="form-header">
           <h2 id="form-heading" class="section-title">Add / Edit Product</h2>
-          <p class="section-subtitle">Ensure frontend parity by filling out all canonical 17 fields matching FIELD-NAMING-CONVENTION.md</p>
+          <p class="section-subtitle">Ensure frontend parity by filling out all canonical 16 fields matching FIELD-NAMING-CONVENTION.md</p>
         </div>
 
         <!-- PHP: action="save-product.php" -->
@@ -413,19 +400,7 @@
               >
             </div>
 
-            <!-- 11. availability -->
-            <div class="form-group">
-              <label for="availability">Availability State (availability) *</label>
-              <!-- PHP: selected options based on $product['availability'] -->
-              <select id="availability" name="availability" required>
-                <!-- PHP: <option value="in_stock" <?php echo ($product['availability'] ?? '') === 'in_stock' ? 'selected' : ''; ?>>In Stock</option> -->
-                <option value="in_stock">in_stock (In Stock)</option>
-                <option value="out_of_stock">out_of_stock (Out of Stock)</option>
-                <option value="on_order">on_order (On Order)</option>
-              </select>
-            </div>
-
-            <!-- 12. warranty -->
+            <!-- 11. warranty -->
             <div class="form-group">
               <label for="warranty">Warranty Coverage (warranty)</label>
               <!-- PHP: value="<?php echo htmlspecialchars($product['warranty'] ?? ''); ?>" -->
@@ -438,7 +413,7 @@
               >
             </div>
 
-            <!-- 13. badge -->
+            <!-- 12. badge -->
             <div class="form-group">
               <label for="badge">Marketing Badge (badge)</label>
               <!-- PHP: value="<?php echo htmlspecialchars($product['badge'] ?? ''); ?>" -->
@@ -451,7 +426,7 @@
               >
             </div>
 
-            <!-- 14. is_popular -->
+            <!-- 13. is_popular -->
             <div class="form-group form-group-checkbox form-group-full">
               <!-- PHP: checked="<?php echo (!empty($product['is_popular'])) ? 'checked' : ''; ?>" -->
               <label class="checkbox-container">
@@ -466,7 +441,7 @@
               </label>
             </div>
 
-            <!-- 15. image_primary -->
+            <!-- 14. image_primary -->
             <div class="form-group">
               <label for="image_primary">Primary Image (image_primary) *</label>
               <!-- PHP: echo !empty($product['image_primary']) ? '<div class="current-asset">Current: ' . htmlspecialchars($product['image_primary']) . '</div>' : ''; -->
@@ -479,7 +454,7 @@
               <span class="form-help">Main catalog card thumbnail. Recommended 800x600px WebP/PNG</span>
             </div>
 
-            <!-- 16. image_secondary -->
+            <!-- 15. image_secondary -->
             <div class="form-group">
               <label for="image_secondary">Secondary Image (image_secondary)</label>
               <!-- PHP: echo !empty($product['image_secondary']) ? '<div class="current-asset">Current: ' . htmlspecialchars($product['image_secondary']) . '</div>' : ''; -->
@@ -492,7 +467,7 @@
               <span class="form-help">Detail page gallery angle 2</span>
             </div>
 
-            <!-- 17. image_tertiary -->
+            <!-- 16. image_tertiary -->
             <div class="form-group">
               <label for="image_tertiary">Tertiary Image (image_tertiary)</label>
               <!-- PHP: echo !empty($product['image_tertiary']) ? '<div class="current-asset">Current: ' . htmlspecialchars($product['image_tertiary']) . '</div>' : ''; -->

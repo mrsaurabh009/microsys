@@ -99,18 +99,6 @@
             }
         });
 
-        if (post.is_featured) {
-            const badge = document.createElement('div');
-            badge.className = 'latest-badge';
-            badge.textContent = 'Featured';
-            card.appendChild(badge);
-        } else if (post.isNewestBadge) {
-            const badge = document.createElement('div');
-            badge.className = 'latest-badge';
-            badge.textContent = 'Latest';
-            card.appendChild(badge);
-        }
-
         // Category: <!-- PHP: echo $blog['category']; -->
         if (post.category) {
             const catTag = document.createElement('div');
@@ -199,7 +187,6 @@
     }
 
     let allPostsData = [];
-    const sortSelect = document.getElementById('sort-posts');
     const paginationControls = document.getElementById('pagination-controls');
     let currentPage = 1;
     const POSTS_PER_PAGE = 9;
@@ -220,8 +207,7 @@
                     searchClear.style.display = (searchQuery.length > 0 || (categorySelect && categorySelect.value !== 'all')) ? 'flex' : 'none';
                 }
                 setUrlPage(1, false);
-                const currentSort = sortSelect ? sortSelect.value : 'latest';
-                sortAndRenderPosts(currentSort, true);
+                sortAndRenderPosts(true);
             }, 300);
         });
 
@@ -249,8 +235,7 @@
                 }
 
                 setUrlPage(1, false);
-                const currentSort = sortSelect ? sortSelect.value : 'latest';
-                sortAndRenderPosts(currentSort, true);
+                sortAndRenderPosts(true);
             });
         }
     }
@@ -285,8 +270,7 @@
             window.history.replaceState({}, '', url);
 
             setUrlPage(1, false);
-            const currentSort = sortSelect ? sortSelect.value : 'latest';
-            sortAndRenderPosts(currentSort, true);
+            sortAndRenderPosts(true);
         });
     }
 
@@ -296,8 +280,7 @@
                 searchClear.style.display = (searchQuery.length > 0 || categorySelect.value !== 'all') ? 'flex' : 'none';
             }
             setUrlPage(1, false);
-            const currentSort = sortSelect ? sortSelect.value : 'latest';
-            sortAndRenderPosts(currentSort, true);
+            sortAndRenderPosts(true);
         });
     }
 
@@ -324,17 +307,8 @@
 
     window.addEventListener('popstate', function(e) {
         currentPage = getPageFromUrl();
-        const currentSort = sortSelect ? sortSelect.value : 'latest';
-        sortAndRenderPosts(currentSort, false);
+        sortAndRenderPosts(false);
     });
-
-    if (sortSelect) {
-        sortSelect.addEventListener('change', function(e) {
-            currentPage = 1;
-            setUrlPage(1);
-            sortAndRenderPosts(e.target.value, false);
-        });
-    }
 
     function renderPagination(totalPages) {
         if (!paginationControls) return;
@@ -384,8 +358,7 @@
         if (newPage < 1 || newPage > totalPages) return;
         currentPage = newPage;
         setUrlPage(currentPage);
-        const currentSort = sortSelect ? sortSelect.value : 'latest';
-        sortAndRenderPosts(currentSort, false);
+        sortAndRenderPosts(false);
         
         const gridEl = document.getElementById('posts-grid');
         if (gridEl) {
@@ -395,7 +368,7 @@
         }
     }
 
-    function sortAndRenderPosts(sortOrder, resetPage = true) {
+    function sortAndRenderPosts(resetPage = true) {
         if (resetPage) currentPage = 1;
         
         let sorted = allPostsData.slice();
@@ -433,7 +406,7 @@
             const dateB = b.published_date || b.date || '';
             const timeA = new Date(String(dateA).replace(/-/g, '/')).getTime() || 0;
             const timeB = new Date(String(dateB).replace(/-/g, '/')).getTime() || 0;
-            return sortOrder === 'oldest' ? timeA - timeB : timeB - timeA;
+            return timeB - timeA;
         });
 
         const totalPages = Math.ceil(sorted.length / POSTS_PER_PAGE) || 1;
@@ -460,17 +433,6 @@
                 const publishedPosts = posts.filter(function (post) {
                     return post.status === 'published';
                 });
-
-                let tempSorted = publishedPosts.slice().reverse().sort(function (a, b) {
-                    const dateA = a.published_date || a.date || '';
-                    const dateB = b.published_date || b.date || '';
-                    const timeA = new Date(String(dateA).replace(/-/g, '/')).getTime() || 0;
-                    const timeB = new Date(String(dateB).replace(/-/g, '/')).getTime() || 0;
-                    return timeB - timeA;
-                });
-                for (let i = 0; i < Math.min(3, tempSorted.length); i++) {
-                    tempSorted[i].isNewestBadge = true;
-                }
 
                 allPostsData = publishedPosts;
                 
@@ -500,8 +462,7 @@
                 currentPage = getPageFromUrl();
                 setUrlPage(currentPage, true);
 
-                const currentSort = sortSelect ? sortSelect.value : 'latest';
-                sortAndRenderPosts(currentSort, false);
+                sortAndRenderPosts(false);
             })
             .catch(function (error) {
                 console.error('Error loading posts:', error);

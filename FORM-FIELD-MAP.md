@@ -1,5 +1,7 @@
 # Master Form Field to SQL Column Mapping Specification
 
+> **Prepared by:** Team VYOMARC Technologies  
+
 ## 1. Purpose & Scope
 
 ### Summary
@@ -13,7 +15,7 @@ This document is designed for backend PHP developers, database administrators, a
 2. Target MySQL table and column destinations for all submitted form data.
 3. Form transmission methods (GET versus POST) and content encoding standards.
 4. Input constraints, requirement states, and validation rules.
-5. Migration roadmap for upgrading live markup during Phase 0 Step 5.
+5. Migration roadmap for upgrading live form controls to production standards.
 
 This document supersedes all prior preliminary form field notes and works in tandem with FIELD-NAMING-CONVENTION.md.
 
@@ -102,9 +104,8 @@ Administrative panel interfaces are located in `/admin/`. This section locks all
 | Manufacturer Model Code | `model_number` | text | Optional | `model_number` | Model designation (e.g., 15s-fq5000, 3520, FA506) |
 | Concise Specs Summary | `key_specs` | text | Required | `key_specs` | Summary line (e.g., Core i5 / 16GB RAM / 512GB SSD) |
 | Detailed Specifications | `full_specs` | textarea | Optional | `full_specs` | Detailed technical specs block |
-| Active Selling Price | `price` | number | Required | `price` | DECIMAL(10,2) NOT NULL. Step 0.01, Minimum 0 |
-| Maximum Retail Price | `mrp` | number | Optional | `mrp` | DECIMAL(10,2) DEFAULT NULL. Step 0.01, Minimum 0 |
-| Stock Availability State | `availability` | select | Required | `availability` | Permitted options: `in_stock`, `out_of_stock`, `pre_order` |
+| Active Selling Price | `price` | number | Required | `price` | DECIMAL(10,2) NOT NULL. Two decimal places (0.01 increments), Minimum 0 |
+| Maximum Retail Price | `mrp` | number | Optional | `mrp` | DECIMAL(10,2) DEFAULT NULL. Two decimal places (0.01 increments), Minimum 0 |
 | Primary Card Image | `image_primary` | file | Required | `image_primary` | Accepts `image/*`, stored as relative asset path |
 | Secondary Gallery Image | `image_secondary` | file | Optional | `image_secondary` | Accepts `image/*`, stored as relative asset path |
 | Tertiary Gallery Image | `image_tertiary` | file | Optional | `image_tertiary` | Accepts `image/*`, stored as relative asset path |
@@ -129,7 +130,7 @@ Administrative panel interfaces are located in `/admin/`. This section locks all
 | CSRF Security Token | `csrf_token` | hidden | Required | N/A | Session validation cryptographic token |
 | Article Title | `title` | text | Required | `title` | VARCHAR(255) NOT NULL |
 | URL Slug | `slug` | text | Required | `slug` | VARCHAR(280) UNIQUE NOT NULL. SEO URL slug |
-| Blog Category | `category` | select | Required | `category` | Permitted options: Buying Guides, Local business, Hardware Tips, Gaming, Services, Case study, General Blogs |
+| Blog Category | `category` | select | Required | `category` | Permitted options: Buying Guides, News, Insights, Articles, Hardware Tips, Gaming, Services, Case study |
 | Author Name | `author_name` | text | Optional | `author_name` | VARCHAR(100) DEFAULT 'Microsys Team' |
 | Cover Thumbnail Asset | `thumbnail_url` | file | Required | `thumbnail_url` | Accepts `image/*`, stored as relative path (e.g., `blogs/thumbnails/item.webp`) |
 | Publication Status | `status` | select | Required | `status` | Permitted options: `Draft`, `Published` |
@@ -173,6 +174,8 @@ Administrative panel interfaces are located in `/admin/`. This section locks all
 | Promotion Placement Type | `promo_type` | hidden | Required | `type` | Permitted ENUM options: `announcement_bar`, `popup_modal` |
 | Announcement Message / Headline | `text_content` | text | Required | `text_content` | VARCHAR(500) DEFAULT NULL. Announcement or popup copy |
 | Promotional Artwork | `image_url` | file | Optional (Popup: Rec) | `image_url` | VARCHAR(255) DEFAULT NULL. Relative path to banner asset |
+| CTA Destination Link | `popup_cta_link` | text | Optional | `popup_cta_link` | VARCHAR(255) DEFAULT '#featured-campaign'. Anchor or redirect URL |
+| Popup Slider Images (Multiple) | `popup_images[]` | file (multiple) | Optional | `image_url`, `display_order` | Multiple image uploads for auto-sliding popup carousel; stored as separate rows with incrementing display_order |
 | Active Display Toggle | `is_active` | checkbox (toggle) | Required | `is_active` | TINYINT(1) DEFAULT 1. Value="1". Live storefront display |
 
 ### 3.5 Admin — Category Taxonomy Form (admin/manage-categories.html)
@@ -270,7 +273,6 @@ This master table brings together every form field across public storefront page
 | Admin Product Form | Full Technical Specs | full_specs | textarea | Optional | products | full_specs | Complete hardware specifications block |
 | Admin Product Form | Active Selling Price | price | number | Required | products | price | Numeric decimal in INR |
 | Admin Product Form | Maximum Retail Price | mrp | number | Optional | products | mrp | Strikethrough list price in INR |
-| Admin Product Form | Stock Availability Status | availability | select | Required | products | availability | Physical stock condition (`in_stock`, `out_of_stock`, `pre_order`) |
 | Admin Product Form | Primary Catalog Image | image_primary | file | Required | products | image_primary | File upload path for main catalog thumbnail |
 | Admin Product Form | Secondary Image Asset | image_secondary | file | Optional | products | image_secondary | Optional gallery angle photo |
 | Admin Product Form | Tertiary Image Asset | image_tertiary | file | Optional | products | image_tertiary | Optional gallery angle photo |
@@ -279,7 +281,7 @@ This master table brings together every form field across public storefront page
 | Admin Product Form | Homepage Featured Flag | is_popular | checkbox | Optional | products | is_popular | Toggles Popular Products section display |
 | Admin Blog Form | Blog Article Headline | title | text | Required | blogs | title | Headline title of editorial post |
 | Admin Blog Form | Article URL Slug | slug | text | Required | blogs | slug | Clean SEO URL identifier string |
-| Admin Blog Form | Topic Classification | category | select | Required | blogs | category | Blog taxonomy category: Buying Guides, Local business, Hardware Tips, Gaming, Services, Case study, General Blogs |
+| Admin Blog Form | Topic Classification | category | select | Required | blogs | category | Blog taxonomy category: Buying Guides, News, Insights, Articles, Hardware Tips, Gaming, Services, Case study |
 | Admin Blog Form | Author Byline | author_name | text | Optional | blogs | author_name | Author display name (default: Microsys Team) |
 | Admin Blog Form | Featured Cover Photo | thumbnail_url | file | Required | blogs | thumbnail_url | File upload path for 16:9 banner visual |
 | Admin Blog Form | Search Meta Description | meta_description | textarea | Optional | blogs | meta_description | 150-160 char summary for SERP and cards |
@@ -297,6 +299,8 @@ This master table brings together every form field across public storefront page
 | Admin Banner Form | Promotion Placement Type | promo_type | select | Required | promotions | type | Placement: announcement_bar or popup_modal |
 | Admin Banner Form | Banner Headline / Text | text_content | text | Required | promotions | text_content | Main promotional announcement title |
 | Admin Banner Form | Promotional Artwork | image_url | file | Optional | promotions | image_url | File upload path for promo banner |
+| Admin Banner Form | Popup CTA Button Link | popup_cta_link | text | Optional | promotions | popup_cta_link | Destination URL/anchor for Click Here CTA |
+| Admin Banner Form | Popup Multiple Slider Images | popup_images[] | file (multiple) | Optional | promotions | image_url, display_order | Multiple image files for popup carousel; stored with display_order |
 | Admin Banner Form | Campaign Active Toggle | is_active | checkbox | Required | promotions | is_active | Toggles active display of campaign |
 | Admin Category Form | Category Record Reference | category_id | hidden | Optional | categories | id | Primary key present during Edit mode |
 | Admin Category Form | CSRF Security Token | csrf_token | hidden | Required | session | csrf_token | Cryptographic session token |
@@ -318,27 +322,27 @@ This master table brings together every form field across public storefront page
 
 ---
 
-## 5. Migration Checklist
+## 5. Form Control Verification Checklist
 
-The following existing live form controls must be updated during Phase 0 Step 5 to align with this locked specification.
+The following storefront form controls have been aligned and verified against this locked specification:
 
-| Page Location | Component Element | Current State | Target Markup Standard | Priority | Scheduled Phase |
+| Page Location | Component Element | Control State | Target Markup Standard | Priority | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| index.html (#contact) | Full Name input | Lacks name attribute | Add name="full_name" | High | Phase 0 Step 5 |
-| index.html (#contact) | Phone Number input | Lacks name attribute | Add name="phone_number" | High | Phase 0 Step 5 |
-| index.html (#contact) | Email input | Lacks name attribute | Add name="email" | High | Phase 0 Step 5 |
-| index.html (#contact) | Enquiry Type input | Text input lacking name | Convert to select element with name="enquiry_type" and 4 standard options | High | Phase 0 Step 5 |
-| index.html (#contact) | Product/Service input | Lacks name attribute | Add name="product_or_service" | High | Phase 0 Step 5 |
-| index.html (#contact) | Message textarea | Lacks name attribute | Add name="message" | High | Phase 0 Step 5 |
-| index.html (Header) | Desktop Search | Loose input lacking form | Wrap in form element with method="GET" action="search.php" and add name="q" | High | Phase 0 Step 5 |
-| index.html (Drawer) | Mobile Search | Loose input lacking form | Wrap in form element with method="GET" action="search.php" and add name="q" | High | Phase 0 Step 5 |
-| aboutus.html (Header) | Desktop Search | Loose input lacking form | Wrap in form element with method="GET" action="search.php" and add name="q" | High | Phase 0 Step 5 |
-| aboutus.html (Drawer) | Mobile Search | Loose input lacking form | Wrap in form element with method="GET" action="search.php" and add name="q" | High | Phase 0 Step 5 |
-| products.html (Header & Top Bar) | Desktop / Catalog Search | Form control | Form element with method="GET" action="products.html" and name="q" | High | Completed |
-| products.html (Drawer) | Mobile Search | Form control | Form element with method="GET" action="products.html" and name="q" | High | Completed |
-| product-detail.html (Header & Drawer) | Desktop & Mobile Search | Form control | Form element with method="GET" action="products.html" and name="q" | High | Completed |
-| blog.html (Header & Drawer) | Desktop & Mobile Search | Form control | Form element with method="GET" action="products.html" and name="q" | High | Completed |
-| blog-detail.html (Header & Drawer) | Desktop & Mobile Search | Form control | Form element with method="GET" action="products.html" and name="q" | High | Completed |
+| index.html (#contact) | Full Name input | Verified | Form input with name="full_name" | High | Completed |
+| index.html (#contact) | Phone Number input | Verified | Form input with name="phone_number" | High | Completed |
+| index.html (#contact) | Email input | Verified | Form input with name="email" | High | Completed |
+| index.html (#contact) | Enquiry Type input | Verified | Select element with name="enquiry_type" and 4 standard options | High | Completed |
+| index.html (#contact) | Product/Service input | Verified | Form input with name="product_or_service" | High | Completed |
+| index.html (#contact) | Message textarea | Verified | Textarea with name="message" | High | Completed |
+| index.html (Header) | Desktop Search | Verified | Form element with method="GET" action="products.html" and name="q" | High | Completed |
+| index.html (Drawer) | Mobile Search | Verified | Form element with method="GET" action="products.html" and name="q" | High | Completed |
+| aboutus.html (Header) | Desktop Search | Verified | Form element with method="GET" action="products.html" and name="q" | High | Completed |
+| aboutus.html (Drawer) | Mobile Search | Verified | Form element with method="GET" action="products.html" and name="q" | High | Completed |
+| products.html (Header & Top Bar) | Desktop / Catalog Search | Verified | Form element with method="GET" action="products.html" and name="q" | High | Completed |
+| products.html (Drawer) | Mobile Search | Verified | Form element with method="GET" action="products.html" and name="q" | High | Completed |
+| product-detail.html (Header & Drawer) | Desktop & Mobile Search | Verified | Form element with method="GET" action="products.html" and name="q" | High | Completed |
+| blog.html (Header & Drawer) | Desktop & Mobile Search | Verified | Form element with method="GET" action="products.html" and name="q" | High | Completed |
+| blog-detail.html (Header & Drawer) | Desktop & Mobile Search | Verified | Form element with method="GET" action="products.html" and name="q" | High | Completed |
 
 ---
 
@@ -351,30 +355,34 @@ The following existing live form controls must be updated during Phase 0 Step 5 
 3. Search Form Processing: Configure your search results page handler to read $_GET['q']. Sanitize this value and execute a parameter-bound multi-column search query across the products table.
 4. File Upload Form Encodings: When constructing future administrative forms (Product, Blog, Slider, Banner, Category), always ensure the form element specifies method="POST" and enctype="multipart/form-data".
 5. Status Flags and Booleans: Checkbox inputs (such as is_popular in products and is_active in sliders or promotions) transmit value="1" when checked and are absent from $_POST when unchecked. Initialize defaults to 0 prior to database insertion.
-6. Separation of Concerns: Storefront markup migration is scheduled for Phase 0 Step 5. No live HTML forms have been edited prior to client approval of this specification.
+6. Separation of Concerns: Storefront markup and form structures are fully verified and standardized. All live forms conform to backend parameter contracts.
 
 ### Common Pitfalls to Avoid
 
 - Do not use $_REQUEST; use explicit $_POST for form submissions and $_GET for search queries.
 - Do not abbreviate field names (e.g., do not use sku for product_id_sku, desc for description, or img for image_primary).
 - Do not create separate search input names for mobile and desktop views; both must use name="q".
-- Do not treat availability and badge as the same field; availability is a required inventory condition, while badge is an optional marketing highlight.
+- Do not include product stock or availability fields; product availability system has been globally removed per client requirements.
 
 ---
 
 ## 7. Lock & Sign-off
 
 - Document Status: Permanently locked as the authoritative form field mapping standard. Fully verified across all public storefront forms and all Admin Panel UI forms with 100% database schema parity and CSRF protection tokens.
-- Governance: In accordance with the project governance rules established in PROJECT-REPORT.md, no field names, attributes, or table assignments in this document may be renamed, removed, or modified without formal architectural sign-off.
+- Governance: In accordance with project governance rules, no field names, attributes, or table assignments in this document may be renamed, removed, or modified without formal architectural sign-off.
 - Lock Date: 2026-11-04
-- Phase: Phase 7.7 Complete (Repair Services Frontend, Admin & SQL Schema 100% Parity)
+- Status: Complete (Frontend, Admin & SQL Schema 100% Parity)
 
 ---
 
 ## 8. References
 
-- Product Field Specifications: [FIELD-NAMING-CONVENTION.md](file:///d:/Frontend%20Projects/microsys/FIELD-NAMING-CONVENTION.md)
-- Frontend Audit Report: [AUDIT-FIELDS.md](file:///d:/Frontend%20Projects/microsys/AUDIT-FIELDS.md)
-- Product Card Master Reference: [COMPONENT-product-card.html](file:///d:/Frontend%20Projects/microsys/COMPONENT-product-card.html)
-- Overall Codebase Audit: [AUDIT.md](file:///d:/Frontend%20Projects/microsys/AUDIT.md)
-- Project Governance & Tracking: [PROJECT-REPORT.md](file:///d:/Frontend%20Projects/microsys/PROJECT-REPORT.md)
+- Product Field Specifications: [`FIELD-NAMING-CONVENTION.md`](FIELD-NAMING-CONVENTION.md)
+- Product Card Master Reference: [`COMPONENT-product-card.html`](COMPONENT-product-card.html)
+- Backend Integration Manual: [`PHP-DEV-GUIDE.md`](PHP-DEV-GUIDE.md)
+- Post-Handover Support Policy: [`SUPPORT-POLICY.md`](SUPPORT-POLICY.md)
+
+---
+
+Prepared by: Team VYOMARC Technologies  
+© 2026 VYOMARC Technologies. All rights reserved.

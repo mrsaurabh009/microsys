@@ -3,7 +3,8 @@
 > **Project:** Microsys Computer & Accessories  
 > **Target Environment:** PHP 7.4+ / MySQL 5.7+ (Shared Hosting Environment)  
 > **Architecture:** Static Semantic HTML5 Frontend + Dynamic PHP/MySQL Hydration  
-> **Status:** Phase 6 in Progress (Admin Panel UI Suite & Schema Parity Complete)
+> **Status:** Production Ready — Frontend Delivered & Dynamic Integration Ready  
+> **Prepared by:** Team VYOMARC Technologies
 
 ---
 
@@ -15,23 +16,42 @@ The frontend team provides fully responsive HTML5 markup, CSS component styleshe
 
 ---
 
-## 2. Quick Start — Read These In Order
+## 2. Quick Start — Integration Steps for Backend Developer
 
-To ensure full architectural alignment, please read the documentation files in the following sequential order before modifying templates or writing SQL procedures:
+Follow these 5 core execution steps to take the project live:
 
-- **Step 1:** Read this guide (`PHP-DEV-GUIDE.md`) for an end-to-end operational roadmap.
-- **Step 2:** Read `FIELD-NAMING-CONVENTION.md` for the locked 17-field product standard, data types, and PHP variable bindings.
-- **Step 3:** Read `FORM-FIELD-MAP.md` for form control name attributes, target columns, validation criteria, and submission endpoints.
-- **Step 4:** Read `COMPONENT-product-card.html` for the canonical product card reference markup.
-- **Step 5:** Read `database/schema.sql` for the formal MySQL table definitions, constraints, and column structures.
-- **Step 6:** Read `AUDIT-FIELDS.md` for the frontend field inventory and placeholder catalog.
-- **Step 7:** Read `PROJECT-REPORT.md` for complete business background, design system tokens, and locked update rules.
+1. **Import Database Schema**:
+   - Open phpMyAdmin or your MySQL CLI.
+   - Import `database/schema.sql` into your provisioned database. This creates all 9 tables (`categories`, `subcategories`, `products`, `blogs`, `comments`, `promotions`, `sliders`, `inquiries`, `services`) with indexes and seeds the 9 initial repair services.
+2. **Setup Database Connection (`db.php`)**:
+   - Create a connection script (e.g. `db.php`) establishing a PDO connection with `utf8mb4` charset and `PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION`.
+3. **Connect Storefront Dynamic Loops**:
+   - In `index.html`: Hydrate the `$categories`, `$sliders`, `$popup_images`, and `$popular_laptops` loops.
+   - In `products.html`: Hydrate the `$filtered_products` catalog loop based on `$_GET` search and filter parameters.
+   - In `product-detail.html`: Query product by `$_GET['slug']` and render `$product` fields into the marked positions.
+   - In `blog.html` & `blog-detail.html`: Query `$blogs` and article by slug with Markdown or rich-text HTML rendering.
+   - In `aboutus.html`: Hydrate the `$services` repair offerings loop.
+4. **Connect Forms & Handlers**:
+   - Connect `#mainContactForm` in `index.html` to insert records into the `inquiries` table.
+   - Connect catalog GET search (`?q=`) and filters (`?category[]=&brand[]=&min_price=&max_price=`) to SQL prepared queries.
+5. **Connect Admin Panel Management Actions**:
+   - In `admin/manage-*.html`: Wire up the Add/Edit form POST actions (`actions/save-product.php`, `actions/save-blog.php`, etc.) and Delete buttons with CSRF token validation and session authentication guards.
+
+### 2.1 Documentation Reading Order
+
+Before writing code or executing migrations, review the documentation files in this sequence:
+- **1.** Read this guide (`PHP-DEV-GUIDE.md`) for the architectural roadmap.
+- **2.** Read `FIELD-NAMING-CONVENTION.md` for the locked 16-field product standard, data types, and PHP variable bindings.
+- **3.** Read `FORM-FIELD-MAP.md` for form control name attributes, target columns, validation criteria, and submission endpoints.
+- **4.** Read `COMPONENT-product-card.html` for the canonical product card reference markup.
+- **5.** Read `database/schema.sql` for the formal MySQL table definitions, constraints, and column structures.
+- **6.** Read `SUPPORT-POLICY.md` for post-handover warranty boundaries, developer guidance scope, and communication channels.
 
 ---
 
-## 3. The 17 Locked Product Fields
+## 3. The 16 Locked Product Fields
 
-Every product entity displayed across the website conforms to a standardized 17-field contract. These field names are permanently locked in snake_case and must match between MySQL columns, PHP associative array keys, and HTML data attributes.
+Every product entity displayed across the website conforms to a standardized 16-field contract. These field names are permanently locked in snake_case and must match between MySQL columns, PHP associative array keys, and HTML data attributes.
 
 | Index | Field Identifier | Data Type & Constraint | Usage & Frontend Mapping |
 | :--- | :--- | :--- | :--- |
@@ -45,13 +65,12 @@ Every product entity displayed across the website conforms to a standardized 17-
 | 8 | `full_specs` | TEXT DEFAULT NULL | Comprehensive hardware specifications |
 | 9 | `price` | DECIMAL(10,2) NOT NULL | Active selling price; ₹ currency glyph prefixed in template |
 | 10 | `mrp` | DECIMAL(10,2) DEFAULT NULL | Maximum Retail Price; triggers discount calculation if > price |
-| 11 | `availability` | ENUM('in_stock','out_of_stock','pre_order') | Inventory state; controls availability label and CTA |
-| 12 | `image_primary` | VARCHAR(255) NOT NULL | Relative asset path to primary catalog image WebP |
-| 13 | `image_secondary` | VARCHAR(255) DEFAULT NULL | Secondary gallery angle asset path |
-| 14 | `image_tertiary` | VARCHAR(255) DEFAULT NULL | Tertiary gallery angle asset path |
-| 15 | `warranty` | VARCHAR(100) DEFAULT NULL | Manufacturer warranty terms (e.g. 1 Year Onsite Warranty) |
-| 16 | `badge` | VARCHAR(50) DEFAULT NULL | Promotional pill text (e.g. In Stock, New, Hot Deal) |
-| 17 | `is_popular` | TINYINT(1) DEFAULT 0 | Flag governing display on homepage Popular Products tabs |
+| 11 | `image_primary` | VARCHAR(255) NOT NULL | Relative asset path to primary catalog image WebP |
+| 12 | `image_secondary` | VARCHAR(255) DEFAULT NULL | Secondary gallery angle asset path |
+| 13 | `image_tertiary` | VARCHAR(255) DEFAULT NULL | Tertiary gallery angle asset path |
+| 14 | `warranty` | VARCHAR(100) DEFAULT NULL | Manufacturer warranty terms (e.g. 1 Year Onsite Warranty) |
+| 15 | `badge` | VARCHAR(50) DEFAULT NULL | Promotional pill text (e.g. Bestseller, New Arrival, Hot Deal) |
+| 16 | `is_popular` | TINYINT(1) DEFAULT 0 | Flag governing display on homepage Popular Products tabs |
 
 *Note: For complete constraint rules and admin form mappings, cross-reference `FIELD-NAMING-CONVENTION.md`.*
 
@@ -62,10 +81,10 @@ Every product entity displayed across the website conforms to a standardized 17-
 The database definition is located in `database/schema.sql`. It is written with MySQL 5.7+ compatibility (using InnoDB engine and utf8mb4 encoding) and contains 8 tables:
 
 - **`categories`**: Product classifications (`id`, `name`, `slug`, `image_url`, `display_order`, `is_active`, `created_at`).
-- **`products`**: Catalog hardware records adhering to the locked field standard (`id`, `category_id`, `brand`, `name`, `slug`, `model_number`, `key_specs`, `full_specs`, `price`, `mrp`, `image_primary`, `image_secondary`, `image_tertiary`, `availability`, `badge`, `sku`, `warranty`, `is_popular`, `is_featured`, `created_at`).
+- **`products`**: Catalog hardware records adhering to the locked field standard (`id`, `category_id`, `brand`, `name`, `slug`, `model_number`, `key_specs`, `full_specs`, `price`, `mrp`, `image_primary`, `image_secondary`, `image_tertiary`, `badge`, `sku`, `warranty`, `is_popular`, `is_featured`, `created_at`).
 - **`blogs`**: Article management with rich text HTML and admin parity (`id`, `title`, `slug`, `category`, `thumbnail_url`, `author_name`, `meta_description`, `content_html`, `status`, `is_featured`, `published_date`, `created_at`).
 - **`comments`**: Moderated reader discussions (`id`, `blog_id`, `commenter_name`, `commenter_email`, `body`, `is_approved`, `created_at`).
-- **`promotions`**: Announcement bar and promo modal content (`id`, `type`, `text_content`, `image_url`, `is_active`, `created_at`).
+- **`promotions`**: Announcement bar and promo modal content (`id`, `type`, `text_content`, `image_url`, `popup_cta_link`, `display_order`, `is_active`, `created_at`).
 - **`sliders`**: Hero and New Arrivals slide banners with rich copy (`id`, `label`, `eyebrow`, `title`, `subtitle`, `image_url`, `link_url`, `display_order`, `is_active`, `created_at`).
 - **`inquiries`**: Storefront inquiries and admin tracking (`id`, `full_name`, `phone_number`, `email`, `enquiry_type`, `message`, `product_interest`, `status`, `submitted_at`).
 - **`services`**: Repair and hardware consultation service catalog (`id`, `title`, `description`, `price_range`, `is_active`, `created_at`).
@@ -106,12 +125,11 @@ The master product card reference is stored in `COMPONENT-product-card.html`. Al
 
 - Container: `.product-card` with optional animation class `.reveal`.
 - Visual Block: `.product-image-wrapper` > `.product-image-inner` > `img` with `width="400"`, `height="300"`, and `loading="lazy"`.
-- Badge Pill: `.product-badge` (rendered only if `badge` or availability is defined).
+- Badge Pill: `.product-badge` (rendered only if `badge` is defined).
 - Brand Label: `.product-brand` displaying the manufacturer name.
 - Title Heading: `.product-name` carrying the `data-product-name` attribute.
 - Spec Summary: `.product-specs` displaying slash-delimited specifications.
 - Price Row: `.product-price` rendering formatted price with the rupee symbol.
-- Availability Note: `.product-avail` showing showroom availability.
 - Action Buttons: `.product-actions` wrapping View Details button (`.btn.btn-secondary`) and WhatsApp Enquiry trigger (`.btn.btn-whatsapp.whatsapp-btn`).
 
 *Important: Never modify these CSS classes or omit `data-*` attributes during backend templating. Styling and client-side interactions depend directly on these selectors.*
@@ -130,9 +148,9 @@ The frontend templates utilize standardized comment markers to guide backend var
 
 ---
 
-## 8. Phase 2 Features — Backend Requirements
+## 8. Storefront Interactive Enhancements — Backend Requirements
 
-Phase 2 introduced 5 high-impact interactive enhancements to the homepage. The backend developer should integrate them as follows:
+The homepage features 5 high-impact interactive components. The backend developer should integrate them as follows:
 
 ### 1. Top Announcement Bar (`#announcement-bar`)
 - **Database Table:** `promotions`.
@@ -163,20 +181,21 @@ Phase 2 introduced 5 high-impact interactive enhancements to the homepage. The b
 
 ---
 
-## 9. Catalog Page Backend Logic & Navigation Routing (Phase 3)
+## 9. Catalog Page Backend Logic & Navigation Routing
 
 The dedicated catalog page (`products.html` / `products.php`) delivers a complete storefront interface featuring sidebar filters, search and sorting top bar, responsive 4-3-2-1 product grid, and accessible pagination.
 
 ### 9.1 Storefront Navigation & Catalog Routing Architecture
-- **Unified 7-Link Global Navigation**:
-  Both the desktop `.category-nav` and the mobile `#drawer` navigation across all 6 public templates use the exact same 7 clean routes:
+- **Unified 8-Link Global Navigation**:
+  Both the desktop `.category-nav` and the mobile `#drawer` navigation across all public storefront and tool templates use the exact same 8 clean routes:
   1. `Home` -> `index.php` (or `index.html`)
   2. `Catalog` -> `products.php` (or `products.html`)
   3. `About Us` -> `aboutus.php` (or `aboutus.html`)
   4. `Services` -> `aboutus.php#repair-services`
   5. `Offers` -> `index.php#featured-campaign`
   6. `Blogs` -> `blog.php` (or `blog.html`)
-  7. `Contact` -> `index.php#final-cta`
+  7. `Tools` -> `tools/index.php` (or `tools/index.html`)
+  8. `Contact` -> `index.php#final-cta`
 - **No Dedicated Category Pages Required**:
   The Navbar **no longer links to dedicated category pages** (`laptops.html`, `desktop-pcs.html`, `components.html`, `gaming.html` were completely purged). The backend developer does NOT need to create separate category views or template files.
 - **Single Catalog Parameter Routing (`products.php?category=...`)**:
@@ -221,7 +240,7 @@ The dedicated catalog page (`products.html` / `products.php`) delivers a complet
 
 ---
 
-## 10. Product Detail Page Backend Logic (Phase 4)
+## 10. Product Detail Page Backend Logic
 
 The dedicated product detail page (`product-detail.html` / `product-detail.php`) delivers a comprehensive single-product presentation featuring breadcrumb navigation, a 4:3 image gallery with thumbnail previews, full technical specifications, direct WhatsApp and phone action triggers, and a related products recommendation grid. The backend developer should implement the single-product view using the following architectural requirements:
 
@@ -230,8 +249,8 @@ The dedicated product detail page (`product-detail.html` / `product-detail.php`)
 - Sanitize the incoming parameter and execute a prepared statement lookup against the `products` table matching the identifier.
 - If the parameter is missing, invalid, or yields zero matching rows, respond with an HTTP 404 header and render a friendly not-found template or redirect back to the catalog page.
 
-### 2. 17-Standard Field Output Mapping
-- All 17 locked product fields from the database record map directly to their corresponding HTML elements:
+### 2. 16-Standard Field Output Mapping
+- All 16 locked product fields from the database record map directly to their corresponding HTML elements:
   - `product_name`: Populates the breadcrumb terminal item and the main `<h1>` title element (`#product-name`).
   - `brand`: Renders inside the `.product-brand` container above the title.
   - `model_number`: Renders inside `.product-model` (e.g., `Model: 15s-fq5007TU`).
@@ -240,7 +259,6 @@ The dedicated product detail page (`product-detail.html` / `product-detail.php`)
   - `price`: Formatted with Indian currency formatting and prefixed with the ₹ symbol inside `.product-detail-price`.
   - `mrp`: Formatted with ₹ inside `.product-detail-mrp`. Conditionally rendered only when `mrp` is defined and strictly greater than `price`.
   - Discount Tag: When `mrp` is displayed, calculate the discount percentage as `((mrp - price) / mrp) * 100` and output the rounded value into `.product-detail-discount` (e.g., `15% OFF`).
-  - `availability`: Humanizes the inventory status (e.g., `In Stock • Available in Showroom`) inside `.product-availability` and binds the raw status to the `data-stock-status` attribute.
   - `warranty`: Echoed inside `.product-warranty` alongside the shield icon.
   - `badge`: Rendered conditionally inside `.product-badge` only when the promotional tag is non-empty.
   - `category` & `sub_category`: Used for contextual breadcrumb links and for querying related items.
@@ -273,7 +291,7 @@ The dedicated product detail page (`product-detail.html` / `product-detail.php`)
 
 ---
 
-## 11. Integration Checklist — Step by Step
+## 11. Backend Integration Checklist
 
 Follow this sequence to achieve complete backend integration without breaking frontend behavior:
 
@@ -281,7 +299,7 @@ Follow this sequence to achieve complete backend integration without breaking fr
 2. Verify all 8 tables are created with default collation `utf8mb4_unicode_ci`.
 3. Create a secure database configuration file (`config/db.php`) using PDO with prepared statements.
 4. Convert the 6 public templates (`index.html`, `aboutus.html`, `products.html`, `product-detail.html`, `blog.html`, `blog-detail.html`) into their corresponding `.php` files (`index.php`, `aboutus.php`, `products.php`, `product-detail.php`, `blog.php`, `blog-detail.php`).
-5. Extract reusable components into an `includes/` directory (`header.php`, `footer.php`, `announcement-bar.php`, `promo-popup.php`, `mobile-sticky-bar.php`). Note that `header.php` uses the simplified 7-link navbar (`Home`, `Catalog`, `About Us`, `Services`, `Offers`, `Blogs`, `Contact`) with zero mega-menu markup.
+5. Extract reusable components into an `includes/` directory (`header.php`, `footer.php`, `announcement-bar.php`, `promo-popup.php`, `mobile-sticky-bar.php`). Note that `header.php` uses the simplified 8-link navbar (`Home`, `Catalog`, `About Us`, `Services`, `Offers`, `Blogs`, `Tools`, `Contact`) with zero mega-menu markup.
 6. In `includes/announcement-bar.php`, execute the active announcement query and hydrate the text string.
 7. In `includes/promo-popup.php`, execute the active popup query and hydrate modal image and text.
 8. In `index.php`, wrap the New Arrivals slider track with a foreach loop over `sliders`.
@@ -289,7 +307,7 @@ Follow this sequence to achieve complete backend integration without breaking fr
 10. In `#popular-products`, replace the static cards in the Laptops panel with a foreach loop over active products where `category_id = 1` and `is_popular = 1`.
 11. Replicate this product foreach pattern across the remaining 3 tab panels (Desktop PCs, Gaming, Components).
 12. In `products.php`, read GET parameters (`category`, `sub_category`, `brand`, `min_price`, `max_price`, `q`, `sort`, `page`), construct the SQL query with dynamic WHERE, ORDER BY, and LIMIT clauses, and loop over `$filtered_products`. Note that all top navbar and mobile drawer links route directly to `products.php` with query parameters, completely eliminating the need for dedicated category files. Footer category links also map directly to `products.php?category=<slug>`.
-13. In `product-detail.php`, retrieve the product by `id` or `sku`, populate the 17 standard fields, parse and loop `full_specs`, generate dynamic WhatsApp enquiry links, and query 4 related category items.
+13. In `product-detail.php`, retrieve the product by `id` or `sku`, populate the 16 standard fields, parse and loop `full_specs`, generate dynamic WhatsApp enquiry links, and query 4 related category items.
 14. Create `contact-submit.php` to handle AJAX POST submissions from `#mainContactForm` and insert records into `inquiries`.
 15. Ensure all image paths output valid asset URLs pointing to existing files in `assets/`.
 16. Verify that page speed, responsive breakpoints, and console logs remain completely clean.
@@ -301,7 +319,7 @@ Follow this sequence to achieve complete backend integration without breaking fr
 - **Renaming Field Names:** Never change field names (e.g. changing `product_name` to `title` or `phone_number` to `contact_no`). This breaks data contracts and WhatsApp message formatting.
 - **Changing HTML Classes:** Layouts, CSS grid rules, and responsive media queries rely directly on existing class names (`.product-card`, `.slide`, `.categories-grid`, `.sticky-bar-btn`, `.catalog-filter-form`, `.catalog-topbar`, `.product-detail-layout`, `.product-sticky-bar`). Modifying classes will break styling.
 - **Omitting `name=""` Attributes:** Form submissions will fail silently if `name` attributes are removed from form controls.
-- **Adding Unapproved Fields:** Stick strictly to the 17 locked product fields. New attributes must be added through formal schema migrations.
+- **Adding Unapproved Fields:** Stick strictly to the 16 locked product fields. New attributes must be added through formal schema migrations.
 - **MySQL Version Incompatibilities:** Avoid using MySQL 8.0-only syntax or window functions. Maintain strict compatibility with MySQL 5.7+ shared hosting environments.
 - **Overwriting Mobile Padding:** Do not alter the 70px bottom body padding in mobile media queries, as this prevents the fixed sticky bar from obscuring footer content.
 
@@ -331,14 +349,15 @@ Before deploying the dynamic PHP application to staging or production, confirm e
 
 ## 14. Contact & Governance
 
-This project adheres to the strict **Locked Update Rule** documented in `PROJECT-REPORT.md` Section 16:
+This project adheres to strict architectural governance standards:
 
-- Every future update or backend modification that alters database schema, template structures, or form endpoints must update `PROJECT-REPORT.md` and `AUDIT.md` within the same revision.
 - If a schema alteration is approved by the client, both `FIELD-NAMING-CONVENTION.md` and `FORM-FIELD-MAP.md` must be updated concurrently to maintain architectural synchronization across the entire repository.
+- Any backend adjustments must preserve delivered CSS class names, HTML element IDs, and responsive layout structures intact.
+- For frontend structure clarifications or support inquiries, contact [WhatsApp Support](https://wa.me/918252702699) (+91 8252702699) in accordance with [`SUPPORT-POLICY.md`](SUPPORT-POLICY.md).
 
 ---
 
-## 15. Blog Module Admin Requirements (Phase 5)
+## 15. Blog Module Admin Requirements
 
 This section specifies the operational and administrative requirements for the Blog module. The HTML templates (`blog.html`, `blog-detail.html`) and JavaScript fallback systems have been fully prepared to consume data directly from the MySQL database and administrative interface.
 
@@ -382,7 +401,7 @@ This section specifies the operational and administrative requirements for the B
     - `id`: Unique primary key (`INT UNSIGNED AUTO_INCREMENT PRIMARY KEY`).
     - `slug`: Clean URL slug (`VARCHAR(280) UNIQUE NOT NULL`) used for routing articles (`blog-detail.php?slug=...` or `/blog/...`).
     - `title`: Article headline (`VARCHAR(255) NOT NULL`).
-    - `category`: Article category classification (`VARCHAR(100) DEFAULT NULL`).
+    - `category`: Article category classification (`VARCHAR(100) DEFAULT NULL`). Standard permitted categories: `Buying Guides`, `News`, `Insights`, `Articles`, `Hardware Tips`, `Gaming`, `Services`, `Case study`. Note that legacy categories `Local business` and `General Blogs` have been retired, thumbnail badges ("Latest", "Featured") have been removed from the UI for a clean card design, and the "Sort by" filter dropdown has been eliminated (posts default chronologically newest first).
     - `thumbnail_url`: Relative asset path to article banner image (`VARCHAR(255) NOT NULL`).
     - `author_name`: Author byline (`VARCHAR(100) DEFAULT 'Microsys Team'`).
     - `meta_description`: Search engine snippet and blog card excerpt (`TEXT DEFAULT NULL`).
@@ -454,7 +473,7 @@ The Microsys platform includes a dedicated administrative suite located in the `
 ### 16.2 File & Routing Structure
 The administrative interface consists of the following modular files:
 - `/admin/index.html` (Dashboard — KPI metrics, quick action shortcuts, recent inquiries list).
-- `/admin/manage-products.html` (List view data table + 17-field Add/Edit inventory form).
+- `/admin/manage-products.html` (List view data table + 16-field Add/Edit inventory form).
 - `/admin/manage-blogs.html` (Articles data table + Rich Text Add/Edit article form).
 - `/admin/manage-comments.html` (Pending comment moderation queue and approval controls).
 - `/admin/manage-inquiries.html` (Customer inquiries list with status updates: new, read, contacted, closed).
@@ -498,11 +517,11 @@ All Admin forms currently use `method="POST"`:
 
      if (empty($id)) {
          // INSERT: ID is empty -> Create new record
-         $stmt = $pdo->prepare("INSERT INTO products (sku, category_id, sub_category, brand, title, model_number, key_specs, full_specs, price, mrp, stock_status, warranty, badge, is_popular, image_primary, image_secondary, image_tertiary) VALUES (...)");
+         $stmt = $pdo->prepare("INSERT INTO products (sku, category_id, sub_category, brand, name, model_number, key_specs, full_specs, price, mrp, warranty, badge, is_popular, image_primary, image_secondary, image_tertiary) VALUES (...)");
          $stmt->execute([...]);
      } else {
          // UPDATE: ID exists -> Update existing record
-         $stmt = $pdo->prepare("UPDATE products SET sku = :sku, category_id = :category_id, sub_category = :sub_category, brand = :brand, title = :title, model_number = :model_number, key_specs = :key_specs, full_specs = :full_specs, price = :price, mrp = :mrp, stock_status = :stock_status, warranty = :warranty, badge = :badge, is_popular = :is_popular, image_primary = :image_primary, image_secondary = :image_secondary, image_tertiary = :image_tertiary WHERE id = :id");
+         $stmt = $pdo->prepare("UPDATE products SET sku = :sku, category_id = :category_id, sub_category = :sub_category, brand = :brand, name = :name, model_number = :model_number, key_specs = :key_specs, full_specs = :full_specs, price = :price, mrp = :mrp, warranty = :warranty, badge = :badge, is_popular = :is_popular, image_primary = :image_primary, image_secondary = :image_secondary, image_tertiary = :image_tertiary WHERE id = :id");
          $stmt->execute([... ':id' => $id]);
      }
      ```
@@ -542,9 +561,9 @@ All Admin forms currently use `method="POST"`:
          exit;
      }
      ```
-   - `admin/manage-inquiries.html` is a read-only audit log of customer submissions; inquiries are filtered and read without edit or delete mutations.
+   - `admin/manage-inquiries.html` is a read-only record log of customer submissions; inquiries are filtered and read without edit or delete mutations.
 
-5. **Promotions Type Differentiation & Slider Ordering (Phase 6.7)**:
+5. **Promotions Type Differentiation & Slider Ordering**:
    - **Promotions Type Differentiation**:
      - `admin/manage-banners.html` controls two separate promotional mechanisms distinguished by `promotions.type` ENUM: `'announcement_bar'` and `'popup_modal'`.
      - The backend action handler `admin/actions/save-promotion.php` checks `$_POST['promo_type']`. If a promotion record of that type already exists, execute `UPDATE promotions SET text_content = :text_content, is_active = :is_active ... WHERE type = :type`; otherwise execute an `INSERT`.
@@ -560,7 +579,7 @@ All Admin forms currently use `method="POST"`:
      - For slide editing, check if `$_POST['slider_id']` is populated. If empty, execute `INSERT INTO sliders (...)`; if populated, execute `UPDATE sliders SET ... WHERE id = :slider_id`.
 
 
-6. **Category Taxonomy & Repair Services Integration (Phase 6.8)**:
+6. **Category Taxonomy & Repair Services Integration**:
    - **Category Taxonomy Management & Cover Images**:
      - `admin/manage-categories.html` controls the 12 product categories with fields: `name`, `slug`, `image_url` (file), and `display_order`.
      - Cover image uploads must be stored in the `/uploads/categories/` directory (see Section 16.4), and the relative asset path persisted to `categories.image_url`.
@@ -633,8 +652,8 @@ This section outlines the backend integration requirements for search engine opt
   - Hydrate dynamic values:
     - `<title>`: `<?php echo htmlspecialchars($product['product_name']); ?> in Biharsharif | Microsys</title>`
     - `<meta name="description">`: `<?php echo htmlspecialchars($product['meta_description'] ?? $product['key_specs']); ?> — View complete specifications, live showroom pricing...`
-    - `<link rel="canonical">`: `https://microsys.in/product-detail.php?slug=<?php echo urlencode($product['slug']); ?>`
-    - Open Graph / Twitter images: Use `https://microsys.in/assets/productimage/<?php echo htmlspecialchars($product['image_primary']); ?>`.
+    - `<link rel="canonical">`: `https://microsys.com/product-detail.php?slug=<?php echo urlencode($product['slug']); ?>`
+    - Open Graph / Twitter images: Use `https://microsys.com/assets/productimage/<?php echo htmlspecialchars($product['image_primary']); ?>`.
 - **Blog Article Detail (`blog-detail.php`)**:
   - The `<head>` section contains PHP markers for `<title>`, `<meta name="description">`, `<link rel="canonical">`, and Open Graph tags.
   - The PHP developer must query the article record by `slug` from the `blogs` table:
@@ -652,14 +671,14 @@ This section outlines the backend integration requirements for search engine opt
   - Hydrate dynamic values:
     - `<title>`: `<?php echo htmlspecialchars($post['title']); ?> | Microsys Blog`
     - `<meta name="description">`: `<?php echo htmlspecialchars($post['meta_description']); ?>`
-    - `<link rel="canonical">`: `https://microsys.in/blog-detail.php?slug=<?php echo urlencode($post['slug']); ?>`
-    - `og:image` / `twitter:image`: `https://microsys.in/<?php echo htmlspecialchars($post['thumbnail_url']); ?>`.
+    - `<link rel="canonical">`: `https://microsys.com/blog-detail.php?slug=<?php echo urlencode($post['slug']); ?>`
+    - `og:image` / `twitter:image`: `https://microsys.com/<?php echo htmlspecialchars($post['thumbnail_url']); ?>`.
 
 ### 17.2 Structured Data Schemas (JSON-LD)
 - **Static Schemas on Homepage (`index.php`)**:
   - `LocalBusiness` (`ComputerStore`) and `FAQPage` schemas are pre-rendered with locked showroom information (address, geo-coordinates, telephone, business hours, and Nalanda service areas) and require zero dynamic backend code.
 - **Dynamic Product Schema (`product-detail.php`)**:
-  - The `<script type="application/ld+json">` on `product-detail.php` must be dynamically hydrated using the `$product` record fields: `name`, `image`, `description`, `sku`, `brand.name`, `offers.price` (formatted numeric), `offers.priceCurrency` (`INR`), and `offers.availability` (`InStock` / `OutOfStock`).
+  - The `<script type="application/ld+json">` on `product-detail.php` must be dynamically hydrated using the `$product` record fields: `name`, `image`, `description`, `sku`, `brand.name`, `offers.price` (formatted numeric), and `offers.priceCurrency` (`INR`).
 - **Dynamic BlogPosting Schema (`blog-detail.php`)**:
   - The `<script type="application/ld+json">` on `blog-detail.php` must be dynamically hydrated using the `$post` record fields: `headline`, `description`, `image`, `author.name`, `datePublished`, and `mainEntityOfPage`.
 
@@ -668,7 +687,7 @@ This section outlines the backend integration requirements for search engine opt
   - The root `sitemap.xml` file covers the core static and landing routes (`/`, `/products.html`, `/aboutus.html`, `/blog.html`).
 - **Dynamic Sitemap Generation (`sitemap.php`)**:
   - In production, the PHP developer should implement a dynamic sitemap generator (e.g. `sitemap.php` mapped via `.htaccess` to `/sitemap.xml`):
-    - Query all active products: `SELECT slug, updated_at FROM products WHERE availability != 'discontinued';`
+    - Query all active products: `SELECT slug, updated_at FROM products WHERE is_active = 1;`
     - Query all published blog posts: `SELECT slug, published_date FROM blogs WHERE status = 'published';`
     - Output compliant XML with `<loc>`, `<lastmod>`, `<changefreq>`, and `<priority>` for every individual product and blog route.
 
@@ -677,7 +696,76 @@ This section outlines the backend integration requirements for search engine opt
   - All 10 administrative templates in `/admin/` explicitly contain `<meta name="robots" content="noindex, nofollow">` in their `<head>`.
   - When converting admin templates to PHP, ensure this directive is permanently preserved in the shared `admin/includes/header.php`.
 - **Robots Directives (`robots.txt`)**:
-  - The root `robots.txt` enforces `Disallow: /admin/` to protect admin authentication and CRUD endpoints from crawler indexation, while referencing `Sitemap: https://microsys.in/sitemap.xml`.
+  - The root `robots.txt` enforces `Disallow: /admin/` to protect admin authentication and CRUD endpoints from crawler indexation, while referencing `Sitemap: https://microsys.com/sitemap.xml`.
+
+### 17.5 Promotional Popup Modal Slider & CTA Implementation
+- **Data Model**:
+  - The `promotions` table stores modal promotions with `type = 'popup_modal'`.
+  - When the admin uploads multiple images (`popup_images[]`), the backend handler saves multiple rows in `promotions` with `type = 'popup_modal'` sharing the same `text_content` and `popup_cta_link`, with sequential `display_order` (0, 1, 2...).
+- **Multi-File Upload Processing (`admin/actions/save-promotion.php`)**:
+  ```php
+  if ($_POST['promo_type'] === 'popup_modal' && !empty($_FILES['popup_images']['name'][0])) {
+      $uploadDir = __DIR__ . '/../../uploads/promotions/';
+      if (!is_dir($uploadDir)) {
+          mkdir($uploadDir, 0755, true);
+      }
+      
+      // Optionally deactivate or replace prior active popup slides
+      $order = 0;
+      foreach ($_FILES['popup_images']['name'] as $key => $fileName) {
+          if ($_FILES['popup_images']['error'][$key] === UPLOAD_ERR_OK) {
+              $tmpName = $_FILES['popup_images']['tmp_name'][$key];
+              $ext = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+              $newFileName = uniqid('promo_slide_') . '.' . $ext;
+              $destination = $uploadDir . $newFileName;
+              
+              if (move_uploaded_file($tmpName, $destination)) {
+                  $imagePath = 'uploads/promotions/' . $newFileName;
+                  $stmt = $pdo->prepare("INSERT INTO promotions (type, text_content, image_url, popup_cta_link, display_order, is_active) VALUES ('popup_modal', :text_content, :image_url, :popup_cta_link, :display_order, :is_active)");
+                  $stmt->execute([
+                      ':text_content' => $_POST['text_content'],
+                      ':image_url' => $imagePath,
+                      ':popup_cta_link' => $_POST['popup_cta_link'] ?? '#featured-campaign',
+                      ':display_order' => $order++,
+                      ':is_active' => isset($_POST['is_active']) ? 1 : 0
+                  ]);
+              }
+          }
+      }
+  }
+  ```
+- **Storefront Hydration (`index.php`)**:
+  - Query active popup slides ordered by `display_order`:
+    ```php
+    $stmt = $pdo->prepare("SELECT * FROM promotions WHERE type = 'popup_modal' AND is_active = 1 ORDER BY display_order ASC, id ASC");
+    $stmt->execute();
+    $popup_images = $stmt->fetchAll();
+    $popup_promo = $popup_images[0] ?? null;
+    ```
+  - Hydrate the slider carousel:
+    ```html
+    <div class="popup-slider" id="popup-slider">
+      <?php foreach ($popup_images as $idx => $img): ?>
+        <img src="<?php echo htmlspecialchars($img['image_url']); ?>" 
+             alt="Special Offer — Microsys Biharsharif" 
+             class="popup-slide <?php echo $idx === 0 ? 'active' : ''; ?>">
+      <?php endforeach; ?>
+    </div>
+    ```
+  - Hydrate the "Click Here" CTA:
+    ```html
+    <a href="<?php echo htmlspecialchars($popup_promo['popup_cta_link'] ?? '#featured-campaign'); ?>" 
+       class="btn btn-primary" 
+       id="popup-cta">
+      Click Here
+    </a>
+    ```
+  - JavaScript on `index.html` automatically detects multiple slides and cycles them every 3 seconds, closing the modal and smooth-scrolling to `#featured-campaign` when the CTA button is clicked.
+
+---
+
+Prepared by: Team VYOMARC Technologies  
+© 2026 VYOMARC Technologies. All rights reserved.
 
 
 

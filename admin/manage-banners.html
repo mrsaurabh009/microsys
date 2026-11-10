@@ -179,13 +179,21 @@
               <span class="form-help">Headline copy shown on the popup modal.</span>
             </div>
 
-            <!-- Campaign Artwork Image Upload -->
+            <!-- CTA Button Link -->
             <div class="form-group form-group-full">
-              <label for="popup_image_url">Promo Banner Artwork</label>
-              <input type="file" id="popup_image_url" name="image_url" accept="image/png, image/jpeg, image/webp">
-              <span class="form-help">Recommended resolution: 600x400px (WebP, PNG, or JPEG). Current asset: <!-- PHP: echo htmlspecialchars($promo_popup['image_url'] ?? 'assets/campaign/poster.webp'); --></span>
-              <div class="current-asset" style="margin-top: 6px;">
-                <span class="table-sku">Current Artwork: assets/campaign/poster.webp</span>
+              <label for="popup_cta_link">CTA Button Link ("Click Here")</label>
+              <input type="text" id="popup_cta_link" name="popup_cta_link"
+                     value="<!-- PHP: echo htmlspecialchars($promo_popup['popup_cta_link'] ?? '#featured-campaign'); -->#featured-campaign">
+              <span class="form-help">Destination anchor or URL when visitor clicks the popup CTA button (defaults to #featured-campaign).</span>
+            </div>
+
+            <!-- Campaign Artwork Slider Images Upload -->
+            <div class="form-group form-group-full">
+              <label for="popup_images">Promo Popup Slider Images (Multiple)</label>
+              <input type="file" id="popup_images" name="popup_images[]" multiple accept="image/*">
+              <span class="form-help">Select multiple images to create an auto-sliding popup carousel (600x400px recommended).</span>
+              <div class="current-assets-slider" style="margin-top: 8px;">
+                <!-- PHP: foreach($popup_images as $img) { echo '<img src="'.$img.'" class="preview-thumb">'; } -->
               </div>
             </div>
 

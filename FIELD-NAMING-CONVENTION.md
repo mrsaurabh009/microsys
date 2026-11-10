@@ -1,16 +1,18 @@
 # Field Naming Convention & Specification Standard
 
+> **Prepared by:** Team VYOMARC Technologies  
+
 ## 1. Purpose & Scope
 
-This specification locks the naming standards, data types, HTML form attributes, CSS display classes, and PHP variable bindings for the 17-field product standard across the Microsys web platform. Designed as an onboarding reference for the client's PHP backend developer, this document establishes a direct, 1-to-1 parity between frontend markup and backend database columns. 
+This specification locks the naming standards, data types, HTML form attributes, CSS display classes, and PHP variable bindings for the 16-field product standard across the Microsys web platform. Designed as an onboarding reference for the client's PHP backend developer, this document establishes a direct, 1-to-1 parity between frontend markup and backend database columns. 
 
-This standard locks all 17 product data fields, form control name attributes, card display classes, and PHP variable mappings. It does not dictate database table architecture, indexing algorithms, or server-side framework choice, leaving infrastructure implementation to the backend development team while guaranteeing that frontend templates integrate cleanly without naming friction.
+This standard locks all 16 product data fields, form control name attributes, card display classes, and PHP variable mappings. It does not dictate database table architecture, indexing algorithms, or server-side framework choice, leaving infrastructure implementation to the backend development team while guaranteeing that frontend templates integrate cleanly without naming friction.
 
 ---
 
-## 2. The Locked 17 Fields
+## 2. The Locked 16 Fields
 
-All product-related content across the platform must conform strictly to the following 17 fields in the exact order specified below. Field names are permanently locked in snake_case.
+All product-related content across the platform must conform strictly to the following 16 fields in the exact order specified below. Field names are permanently locked in snake_case.
 
 1. product_id_sku: Unique product identifier / Stock Keeping Unit. Required (NOT NULL). Unique constraint. No default.
 2. category: Primary category slug. Required (NOT NULL). Indexed. No default.
@@ -22,16 +24,15 @@ All product-related content across the platform must conform strictly to the fol
 8. full_specs: Complete technical specifications document or data block. Optional (NULL allowed). Default: NULL.
 9. price: Active selling price in Indian Rupees. Required (NOT NULL). Indexed. No default.
 10. mrp: Maximum Retail Price (list price) in Indian Rupees. Optional (NULL allowed). Default: NULL.
-11. availability: Inventory status classification. Required (NOT NULL). Indexed. Default: 'in_stock'.
-12. image_primary: File path or asset URL for the primary product image. Required (NOT NULL). No default.
-13. image_secondary: File path or asset URL for secondary gallery image. Optional (NULL allowed). Default: NULL.
-14. image_tertiary: File path or asset URL for tertiary gallery image. Optional (NULL allowed). Default: NULL.
-15. warranty: Duration and terms of manufacturer warranty. Optional (NULL allowed). Default: NULL.
-16. badge: Promotional or marketing tag text. Optional (NULL allowed). Default: NULL.
-17. is_popular: Flag determining promotion in homepage Popular Products section. Required (NOT NULL). Indexed. Default: 0.
+11. image_primary: File path or asset URL for the primary product image. Required (NOT NULL). No default.
+12. image_secondary: File path or asset URL for secondary gallery image. Optional (NULL allowed). Default: NULL.
+13. image_tertiary: File path or asset URL for tertiary gallery image. Optional (NULL allowed). Default: NULL.
+14. warranty: Duration and terms of manufacturer warranty. Optional (NULL allowed). Default: NULL.
+15. badge: Promotional or marketing tag text. Optional (NULL allowed). Default: NULL.
+16. is_popular: Flag determining promotion in homepage Popular Products section. Required (NOT NULL). Indexed. Default: 0.
 
 ### Database Infrastructure & Dynamic SEO Columns (Non-Content Metadata)
-The 17 fields above represent core product content. At the database layer, standard operational and dynamic SEO columns are implemented by the backend engineer:
+The 16 fields above represent core product content. At the database layer, standard operational and dynamic SEO columns are implemented by the backend engineer:
 - `id`: INT UNSIGNED AUTO_INCREMENT PRIMARY KEY
 - `slug`: VARCHAR(280) UNIQUE NOT NULL — Canonical URL identifier used for SEO routing to product detail pages (`product-detail.php?slug=<slug>`), breadcrumb linking, and dynamic canonical / Open Graph tag generation.
 - `meta_description`: TEXT DEFAULT NULL — Search engine snippet (150-160 characters) used for dynamic SEO meta description and social card previews on product detail views (fallbacks to `key_specs` when NULL).
@@ -46,7 +47,7 @@ Every locked field is mapped below to its corresponding SQL column type and fron
 
 | Field Name | SQL Column Type & Constraints | HTML Input Type & Mode | Requirement & Defaults | Usage Notes |
 | :--- | :--- | :--- | :--- | :--- |
-| product_id_sku | VARCHAR(64) NOT NULL UNIQUE | text (admin input) / data attribute (display) | Required, Unique, No Default | Alphanumeric SKU (e.g., LAP-HP-15S-001). Exposes primary reference for stock lookups. |
+| product_id_sku | VARCHAR(64) NOT NULL UNIQUE | text (admin input) / data attribute (display) | Required, Unique, No Default | Alphanumeric SKU (e.g., LAP-HP-15S-001). Exposes primary unique product reference. |
 | category | VARCHAR(64) NOT NULL | select dropdown (admin) / data attribute | Required, Indexed, No Default | Permitted slugs: laptops, desktop-pcs (or desktops), components, gaming, etc. Determines where the product appears when filtering the unified Catalog page (`products.html?category=<slug>` / `products.php?category=<slug>`). |
 | sub_category | VARCHAR(64) DEFAULT NULL | select dropdown (admin) / data attribute | Optional, Indexed, Default: NULL | Permitted component slugs: processors, motherboards, graphics-cards, ram, storage, power-supplies, cabinets, cooling. |
 | brand | VARCHAR(64) NOT NULL | select dropdown or text (admin) | Required, Indexed, No Default | Brand title (e.g., HP, Lenovo, Dell, ASUS, Intel, AMD, NVIDIA). Displayed prominently on cards. |
@@ -56,7 +57,6 @@ Every locked field is mapped below to its corresponding SQL column type and fron
 | full_specs | TEXT DEFAULT NULL | textarea or rich text (admin) / detail modal | Optional, Default: NULL [CLIENT TO CONFIRM: TEXT markdown vs JSON] | Detailed hardware breakdown for expanded product views. |
 | price | DECIMAL(10,2) NOT NULL | number (step="0.01", min="0") | Required, Indexed, No Default | Numeric currency figure without symbol. Currency glyph (₹) is added during frontend template rendering. |
 | mrp | DECIMAL(10,2) DEFAULT NULL | number (step="0.01", min="0") | Optional, Default: NULL | Strikethrough list price. When present and greater than price, triggers discount percentage badge. |
-| availability | ENUM('in_stock','out_of_stock','on_order') NOT NULL | select dropdown (admin) / status pill | Required, Indexed, Default: 'in_stock' [CLIENT TO CONFIRM: Additional enum states] | Physical stock status. Must not be confused with promotional badge. Controls purchase/enquiry CTA availability. |
 | image_primary | VARCHAR(255) NOT NULL | file upload (image/*) or asset path text | Required, No Default | Relative path or URL to primary catalog card photo (e.g., assets/productimage/item.webp). |
 | image_secondary | VARCHAR(255) DEFAULT NULL | file upload (image/*) or asset path text | Optional, Default: NULL | Secondary gallery angle. [NOT YET DISPLAYED — reserved for future detail modal]. |
 | image_tertiary | VARCHAR(255) DEFAULT NULL | file upload (image/*) or asset path text | Optional, Default: NULL | Tertiary gallery angle. [NOT YET DISPLAYED — reserved for future detail modal]. |
@@ -75,10 +75,10 @@ All blog and article management entities across `blog.html`, `blog-detail.html`,
 | `id` | INT UNSIGNED AUTO_INCREMENT PRIMARY KEY | hidden input (`blog_id`) | Required, Auto-generated | Unique record identifier for database routing and comment foreign keys. |
 | `title` | VARCHAR(255) NOT NULL | text | Required, No Default | Main article headline displayed on cards and article header. |
 | `slug` | VARCHAR(280) NOT NULL UNIQUE | text | Required, Unique, No Default | Clean URL identifier used in `blog-detail.html?slug=<slug>`. |
-| `category` | VARCHAR(100) DEFAULT NULL | select dropdown (admin) / text | Optional, Default: NULL | Permitted values: 'Buying Guides', 'Local business', 'Hardware Tips', 'Gaming', 'Services', 'Case study', 'General Blogs'. Governs category filtering on blog listing. |
+| `category` | VARCHAR(100) DEFAULT NULL | select dropdown (admin) / text | Optional, Default: NULL | Permitted values: 'Buying Guides', 'News', 'Insights', 'Articles', 'Hardware Tips', 'Gaming', 'Services', 'Case study'. Governs category filtering on blog listing. |
 | `thumbnail_url` | VARCHAR(255) NOT NULL | file upload (`image/*`) / text | Required, No Default | Relative path or URL to 16:9 article banner asset (e.g., `blogs/thumbnails/post.webp`). |
 | `meta_description` | TEXT DEFAULT NULL | textarea (`rows="3"`) | Optional, Default: NULL | 150-160 char SEO snippet used in SERP and blog card previews. |
-| `content_html` | LONGTEXT NOT NULL | textarea (`#rich-text-editor`) | Required, No Default | Full sanitized HTML article body generated by Rich Text Editor (TinyMCE/Quill). |
+| `content_html` | LONGTEXT NOT NULL | textarea (`#rich-text-editor`) | Required, No Default | Full sanitized HTML article body output from Rich Text Editor (TinyMCE/Quill). |
 | `author_name` | VARCHAR(100) DEFAULT 'Microsys Team' | text | Optional, Default: 'Microsys Team' | Author byline displayed on article header and card meta. |
 | `published_date` | TIMESTAMP DEFAULT CURRENT_TIMESTAMP | date / timestamp | Optional, Default: CURRENT_TIMESTAMP | Publication timestamp; governs chronological sorting. |
 | `status` | ENUM('draft', 'published') DEFAULT 'draft' | select dropdown (`Draft`, `Published`) | Required, Default: 'draft' | Visibility state; only 'published' records appear on public storefront. |
@@ -140,14 +140,16 @@ Article visitor discussions and administrative moderation queue records conform 
 
 ## 3.5 Promotion Fields Specification
 
-Top announcement bar and promotional popup modal records conform to the following 6 locked fields:
+Top announcement bar and promotional popup modal records conform to the following 8 locked fields:
 
 | Field Name | SQL Column Type & Constraints | HTML Input Type & Mode | Requirement & Defaults | Usage Notes |
 | :--- | :--- | :--- | :--- | :--- |
 | `id` | INT UNSIGNED AUTO_INCREMENT PRIMARY KEY | hidden input (`promotion_id`) | Required, Auto-generated | Primary promotion identifier. |
 | `type` | ENUM('announcement_bar','popup_modal') NOT NULL | hidden input (`promo_type`) | Required, No Default | Differentiates top banner vs centered modal overlay. |
 | `text_content` | VARCHAR(500) DEFAULT NULL | text | Required, No Default | Headline or banner message copy displayed to customers. |
-| `image_url` | VARCHAR(255) DEFAULT NULL | file upload / text | Optional (Popup modal: Recommended) | Relative path to promotional visual banner asset. |
+| `image_url` | VARCHAR(255) DEFAULT NULL | file upload / text (`popup_images[]`) | Optional (Popup modal: Recommended) | Relative path to promotional visual banner asset. For popups, multiple records with `type='popup_modal'` represent carousel slides. |
+| `popup_cta_link` | VARCHAR(255) DEFAULT '#featured-campaign' | text / url (`popup_cta_link`) | Optional, Default: `#featured-campaign` | Anchor or destination URL for the popup modal "Click Here" CTA button. |
+| `display_order` | TINYINT UNSIGNED DEFAULT 0 | number / sort order (`display_order`) | Optional, Default: 0 | Sequential integer controlling slide rotation order for multi-image popup carousel. |
 | `is_active` | TINYINT(1) DEFAULT 1 | checkbox (value="1") | Required, Default: 1 | Toggle switch controlling active visibility on the public storefront. |
 | `created_at` | TIMESTAMP DEFAULT CURRENT_TIMESTAMP | timestamp / system | Required, Auto-generated | Record creation timestamp. |
 
@@ -214,7 +216,6 @@ To eliminate integration guesswork, every user-facing form input and future admi
 | Comprehensive Technical Specs | full_specs | textarea | full_specs |
 | Active Selling Price (INR) | price | number (step="0.01") | price |
 | Maximum Retail Price (INR) | mrp | number (step="0.01") | mrp |
-| Inventory Stock Status | availability | select | availability |
 | Primary Image Asset | image_primary | file / text | image_primary |
 | Secondary Image Asset | image_secondary | file / text | image_secondary |
 | Tertiary Image Asset | image_tertiary | file / text | image_tertiary |
@@ -226,7 +227,7 @@ To eliminate integration guesswork, every user-facing form input and future admi
 
 ## 5. Canonical CSS Classes
 
-To resolve class name drift identified during the audit, this table locks the canonical CSS display class for each product component. Frontend styles adhere to hyphenated kebab-case, while dynamic data bindings adhere to snake_case.
+To resolve class name drift identified during the final project audit, this table locks the canonical CSS display class for each product component. Frontend styles adhere to hyphenated kebab-case, while dynamic data bindings adhere to snake_case.
 
 | Concept | Canonical CSS Class | Alternative Deprecated Classes | Data Attributes | Notes |
 | :--- | :--- | :--- | :--- | :--- |
@@ -235,13 +236,12 @@ To resolve class name drift identified during the audit, this table locks the ca
 | Product Media Inner | .product-image-inner | None | None | Centers and houses the primary img element. |
 | Product Brand Label | .product-brand | None | None | Small uppercase label for brand identity. |
 | Product Heading Title | .product-name | .card-title, .product_name | data-product-name | Primary title heading. Text used by WhatsApp inquiry scripts. |
-| Product Model Number | .product-model | None [NEW — to add in Phase 0 Step 3] | None | Secondary model identifier placed adjacent to brand or specs. |
+| Product Model Number | .product-model | None | None | Secondary model identifier placed adjacent to brand or specs. |
 | Specifications Line | .product-specs | .product-details, .key-specs | None | Concise summary spec teaser line. |
 | Selling Price | .product-price | None | data-raw-price | Active selling price display with formatted rupee glyph. |
-| List / MRP Price | .product-mrp | None [NEW — to add in Phase 0 Step 3] | data-raw-mrp | Strikethrough price display for discount visualization. |
-| Stock Availability Status | .product-availability | .product-avail, conflated in .product-badge | data-stock-status | Explicit stock condition pill (e.g., In Stock, Out of Stock). Separated from badge. |
+| List / MRP Price | .product-mrp | None | data-raw-mrp | Strikethrough price display for discount visualization. |
 | Promotional Tag / Badge | .product-badge | Conflated with stock status | None | Reserved exclusively for promotional markers (e.g., Bestseller, New Arrival). Hidden if null. |
-| Warranty Badge | .product-warranty | None [NEW — to add in Phase 0 Step 3] | None | Compact warranty trust indicator (e.g., 1 Year Warranty). |
+| Warranty Badge | .product-warranty | None | None | Compact warranty trust indicator (e.g., 1 Year Warranty). |
 | Card Actions Wrapper | .product-actions | None | None | Container for action buttons. |
 | Details Action Button | .btn-secondary | None | None | Button targeting modal or product detail route. |
 | WhatsApp Action Button | .btn-whatsapp | .whatsapp-btn | None | Direct lead generation link with auto-composed message text. |
@@ -267,7 +267,6 @@ This end-to-end traceability table shows how each database column is retrieved v
 | full_specs | TEXT DEFAULT NULL | $product['full_specs'] | Detail modal / expanded drawer | Rendered in specification table [NOT YET DISPLAYED] |
 | price | DECIMAL(10,2) NOT NULL | $product['price'] | Inside .product-price text node | Formatted with Indian number formatting and currency symbol |
 | mrp | DECIMAL(10,2) DEFAULT NULL | $product['mrp'] | Inside .product-mrp text node | Strikethrough text node rendered when mrp > price [NEW] |
-| availability | ENUM('in_stock','out_of_stock','on_order') | $product['availability'] | Inside .product-availability text node | Displays humanized text; sets data-stock-status attribute |
 | image_primary | VARCHAR(255) NOT NULL | $product['image_primary'] | src attribute of img inside .product-image-inner | Main thumbnail image source with alt attribute bound to product_name |
 | image_secondary | VARCHAR(255) DEFAULT NULL | $product['image_secondary'] | data-image-secondary attribute | Secondary thumbnail image [NOT YET DISPLAYED] |
 | image_tertiary | VARCHAR(255) DEFAULT NULL | $product['image_tertiary'] | data-image-tertiary attribute | Tertiary thumbnail image [NOT YET DISPLAYED] |
@@ -277,21 +276,21 @@ This end-to-end traceability table shows how each database column is retrieved v
 
 ---
 
-## 7. Deprecations & Migrations
+## 7. Standardizations & Resolved Migrations
 
-The following naming deviations and structural ambiguities identified during the audit are scheduled for migration during subsequent implementation phases.
+The following naming conventions and markup structures have been permanently standardized across all production templates:
 
-| Current Variant | Canonical Replacement | Affected Files | Priority | Scheduled Phase |
+| Variant | Canonical Standard | Affected Files | Priority | Status |
 | :--- | :--- | :--- | :--- | :--- |
-| Unnamed search inputs | form container with GET method, action="search.php", and name="q" | index.html, aboutus.html, laptops.html, desktop-pcs.html, components.html, gaming.html | High | Phase 0 Step 3 |
-| Unnamed contact form inputs | name="full_name", name="phone_number", name="email", name="enquiry_type", name="product_or_service", name="message" | index.html | High | Phase 0 Step 3 |
-| Conflated .product-badge displaying stock availability | Decouple: .product-badge for marketing tags, .product-availability for inventory state | index.html, laptops.html, desktop-pcs.html, components.html, gaming.html | High | Phase 0 Step 3 |
-| Missing product SKU attributes | Add data-product-id and data-sku attributes to all card wrappers | index.html, laptops.html, desktop-pcs.html, components.html, gaming.html | High | Phase 0 Step 3 |
-| Hardcoded currency text in .product-price without raw data attribute | Add data-raw-price attribute storing unformatted decimal | index.html, laptops.html, desktop-pcs.html, components.html, gaming.html | Medium | Phase 0 Step 3 |
-| Absence of MRP container | Introduce .product-mrp container with strikethrough styling | index.html, laptops.html, desktop-pcs.html, components.html, gaming.html | Medium | Phase 0 Step 3 |
-| Absence of warranty container | Introduce .product-warranty container on product cards | index.html, laptops.html, desktop-pcs.html, components.html, gaming.html | Low | Phase 0 Step 3 |
-| Generic .card class in header mega menu | Replace with .product-card-preview or update mega menu card container | index.html, aboutus.html, laptops.html, desktop-pcs.html, components.html, gaming.html | Medium | Phase 0 Step 3 |
-| Inconsistent placeholder comment tokens (hyphen vs em dash vs slash) | Standardize all template insertion comments to standard dotted notation | index.html, laptops.html, desktop-pcs.html, components.html, gaming.html | Low | Phase 0 Step 3 |
+| Search inputs | Form container with GET method, action="products.php", and name="q" | index.html, aboutus.html, products.html | High | Standardized |
+| Contact form inputs | name="full_name", name="phone_number", name="email", name="enquiry_type", name="product_or_service", name="message" | index.html | High | Standardized |
+| Conflated .product-badge displaying stock availability | Deprecated and removed: stock status system globally removed; .product-badge reserved for marketing tags | index.html, products.html, product-detail.html | Completed | Standardized |
+| Product SKU attributes | Added data-product-id and data-sku attributes to all card wrappers | index.html, products.html, product-detail.html | High | Standardized |
+| Currency text in .product-price | data-raw-price attribute storing unformatted decimal | index.html, products.html, product-detail.html | Medium | Standardized |
+| MRP container | .product-mrp container with strikethrough styling | index.html, products.html, product-detail.html | Medium | Standardized |
+| Warranty container | .product-warranty container on product cards | index.html, products.html, product-detail.html | Low | Standardized |
+| Header mega menu markup | Replaced with streamlined 8-link navigation architecture | index.html, aboutus.html, products.html | Medium | Standardized |
+| Placeholder comment tokens | Standardized template insertion comments to standard dotted notation | index.html, products.html, product-detail.html | Low | Standardized |
 
 ---
 
@@ -303,7 +302,7 @@ The following naming deviations and structural ambiguities identified during the
 2. Associative Array Mapping: In your database fetching layer (PDO or MySQLi), return associative arrays keyed by the exact SQL column names. The template loops expect array keys to match column names directly (e.g., $product['product_name']).
 3. Form Submission Handling: Point your form handlers to receive standard POST variables matching Section 4 (e.g., $_POST['full_name'], $_POST['phone_number']).
 4. Currency & Number Formatting: Store all price and mrp fields as numeric decimals in MySQL (e.g., 33990.00). In PHP templates, format values using Indian numbering conventions prior to rendering into .product-price.
-5. Promotional Badges vs Availability: Treat badge as an optional editorial tag (e.g., "Bestseller"). Treat availability as a required system status (e.g., "in_stock"). Render the badge markup conditionally only when a value exists.
+5. Promotional Badges: Treat badge as an optional editorial tag (e.g., "Bestseller", "New Arrival"). Render the badge markup conditionally only when a value exists. Product stock status has been globally deprecated and removed.
 6. Homepage Popular Tab Filtering: To populate the homepage tabs, query where is_popular = 1, then segment by category (laptops, desktop-pcs, gaming, components) into the respective panel containers.
 
 ---
@@ -311,13 +310,20 @@ The following naming deviations and structural ambiguities identified during the
 ## 9. Lock & Sign-off
 
 - Document Status: Permanently locked as the authoritative field specification. Fully verified and synchronized across all 8 modules (Products, Blogs, Sliders, Inquiries, Comments, Promotions, Categories, and Services).
-- Governance: In accordance with the project governance rules established in PROJECT-REPORT.md, no field names, attributes, or mappings defined in this document may be renamed, removed, or added without formal architectural sign-off.
+- Governance: In accordance with project governance rules, no field names, attributes, or mappings defined in this document may be renamed, removed, or added without formal architectural sign-off.
 - Lock Date: 2026-11-04
-- Phase: Phase 7.7 Complete (Repair Services Frontend, Admin & SQL Schema 100% Parity)
+- Status: Complete (Frontend, Admin & SQL Schema 100% Parity)
 
 ---
 
 ## 10. References
 
-- Audit Source: [AUDIT-FIELDS.md](file:///d:/Frontend%20Projects/microsys/AUDIT-FIELDS.md)
-- Project Governance & Tracking: [PROJECT-REPORT.md](file:///d:/Frontend%20Projects/microsys/PROJECT-REPORT.md)
+- Canonical Product Card Markup: [`COMPONENT-product-card.html`](COMPONENT-product-card.html)
+- Backend Integration Manual: [`PHP-DEV-GUIDE.md`](PHP-DEV-GUIDE.md)
+- Form Field Mapping Dictionary: [`FORM-FIELD-MAP.md`](FORM-FIELD-MAP.md)
+- Post-Handover Support Policy: [`SUPPORT-POLICY.md`](SUPPORT-POLICY.md)
+
+---
+
+Prepared by: Team VYOMARC Technologies  
+© 2026 VYOMARC Technologies. All rights reserved.

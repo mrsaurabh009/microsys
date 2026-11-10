@@ -2,5 +2,5 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 
-Sitemap: https://microsys.in/sitemap.xml
+Sitemap: https://microsys.com/sitemap.xml
 
