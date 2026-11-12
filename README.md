@@ -10,10 +10,13 @@
 
 ## 1. Project Overview
 
-**Microsys** is Bihar Sharif's premier offline retail computer showroom and authorized technology dealer, located at 1st floor of Domino's, near bus stand Ramchandrapur, Biharsharif, Nalanda, Bihar (803216). Established in 2005 (Jai Omkar Traders), Microsys provides branded laptops, desktop PCs, custom gaming rigs, computer hardware components, printers, monitors, peripherals, and technical chip-level repair services.
+**Microsys** is Bihar Sharif's premier offline retail computer showroom and authorized technology dealer, located at 1st floor of Domino's, near bus stand Ramchandrapur, Biharsharif, Nalanda, Bihar (803101). Established in 2006 (Jai Omkar Traders), Microsys provides branded laptops, desktop PCs, custom gaming rigs, computer hardware components, printers, monitors, peripherals, and technical chip-level repair services.
 
 ### Business Model & Storefront Architecture
 - **Inquiry-Led Showroom Model**: Designed specifically to drive customer showroom visits, phone consultations, and direct WhatsApp inquiries without the complexity of an e-commerce cart/checkout.
+- **Manual Discount Overrides**: Flexible promotional pricing engine supporting explicit manual discount percentage overrides with automated fallback to MRP vs. Selling Price calculation.
+- **Cookie Consent & Disclaimer Popups**: Sequential client-side compliance popups managing privacy consent and showroom advisory notices with persistent `localStorage` states.
+- **Complete PWA & Favicon Suite**: Native-like app iconography across modern desktop and mobile browsers (`apple-touch-icon`, `favicon-32x32`, `favicon-16x16`, `site.webmanifest`).
 - **Pure Semantic HTML5 & CSS3**: High-performance, zero-dependency storefront engineered for local search engine dominance, sub-second page loads, and AAA accessibility standards.
 - **Interactive Tools Hub**: Dedicated customer self-service calculation engines (EMI Loan Calculator, B2B Profit Margin Calculator, and CGPA & Percentage Converter).
 - **Administrative Suite**: 10 purpose-built management panels for inventory, blogs, promotional banners, popup carousels, category taxonomies, repair services, comments moderation, and customer lead tracking.
@@ -37,11 +40,10 @@ The client handover package consists of the complete production-grade source cod
    - 10 back-office control panels located in [`admin/`](admin/) (`index.html`, `login.html`, `manage-products.html`, `manage-blogs.html`, `manage-banners.html`, `manage-sliders.html`, `manage-categories.html`, `manage-services.html`, `manage-comments.html`, `manage-inquiries.html`).
 4. **Database DDL**:
    - Production MySQL schema file ([`database/schema.sql`](database/schema.sql)) with all 9 relational tables, indexes, constraints, and initial seed records.
-5. **Backend Developer Integration Documentation**:
-   - [`PHP-DEV-GUIDE.md`](PHP-DEV-GUIDE.md) — Comprehensive technical onboarding manual with step-by-step query hydration, form handling, and PDO setup.
-   - [`FIELD-NAMING-CONVENTION.md`](FIELD-NAMING-CONVENTION.md) — Authoritative 16-field product standard locking database column types, HTML input names, and display classes.
+5. **Backend Developer Integration Documentation (4 Handover Documents)**:
+   - [`PHP-DEV-GUIDE.md`](PHP-DEV-GUIDE.md) — Comprehensive technical onboarding manual with step-by-step query hydration, form handling, manual discount logic, and PDO setup.
+   - [`FIELD-NAMING-CONVENTION.md`](FIELD-NAMING-CONVENTION.md) — Authoritative 17-field product standard locking database column types, HTML input names, and display classes.
    - [`FORM-FIELD-MAP.md`](FORM-FIELD-MAP.md) — Complete mapping dictionary between HTML form controls (`name=""`), HTTP methods (GET/POST), and target MySQL database tables/columns.
-6. **Support & Maintenance Warranty**:
    - [`SUPPORT-POLICY.md`](SUPPORT-POLICY.md) — Authoritative 2-Month post-handover technical support policy specifying free frontend bug fixes, integration guidance, out-of-scope boundaries, response SLAs, and strict 60-day validity.
 
 ---
@@ -52,7 +54,7 @@ The backend database architecture is formally defined in [`database/schema.sql`]
 
 1. **`categories`**: Primary product taxonomy (`id`, `name`, `slug`, `icon`, `image_url`, `display_order`, `is_active`).
 2. **`subcategories`**: Granular product classifications linked via foreign key to `categories`.
-3. **`products`**: Master product inventory implementing the 16 canonical fields locked in [`FIELD-NAMING-CONVENTION.md`](FIELD-NAMING-CONVENTION.md).
+3. **`products`**: Master product inventory implementing the 17 canonical fields locked in [`FIELD-NAMING-CONVENTION.md`](FIELD-NAMING-CONVENTION.md).
 4. **`blogs`**: Article publication engine supporting rich-text HTML markup and editorial metadata.
 5. **`comments`**: Moderated reader discussions linked by foreign key to `blogs`.
 6. **`promotions`**: Promotional system supporting top announcement banners and modal popup carousels.
@@ -87,7 +89,7 @@ microsys/
 ├── sitemap.xml                   # XML Sitemap for Search Engines
 ├── README.md                     # Master Deployment & Handover Guide
 ├── PHP-DEV-GUIDE.md              # Technical PHP Developer Integration Manual
-├── FIELD-NAMING-CONVENTION.md    # 16-Field Product Standard & DB Mapping
+├── FIELD-NAMING-CONVENTION.md    # 17-Field Product Standard & DB Mapping
 ├── FORM-FIELD-MAP.md             # HTML Form Fields to MySQL Columns Dictionary
 ├── SUPPORT-POLICY.md             # 2-Month Post-Handover Support Policy
 │
@@ -103,7 +105,7 @@ microsys/
 ├── admin/                        # Administrative Control Panel (Secured UI)
 │   ├── index.html                # Admin Dashboard (KPI Metrics & Navigation)
 │   ├── login.html                # Admin Login Form with CSRF Token Marker
-│   ├── manage-products.html      # Product Inventory Management Table & 16-Field Form
+│   ├── manage-products.html      # Product Inventory Management Table & 17-Field Form
 │   ├── manage-blogs.html         # Blog Articles Table & Rich-Text Editor Form
 │   ├── manage-banners.html       # Announcement Bar & Promo Popup Slider Management
 │   ├── manage-sliders.html       # Homepage Hero/New Arrivals Slider Management
@@ -194,7 +196,7 @@ try {
 Once database connectivity is established, refer to [`PHP-DEV-GUIDE.md`](PHP-DEV-GUIDE.md) to integrate the frontend templates in the recommended order:
 1. **Dynamic Loops**: Replace marked template loops (`$categories`, `$popular_laptops`, `$filtered_products`) with PDO query results.
 2. **Catalog Filters**: Connect `products.php` GET filters using the locked query parameter names (`q`, `category[]`, `brand[]`, `min_price`, `max_price`).
-3. **Product Detail**: Route `product-detail.php?slug=...` and display the 16 canonical fields.
+3. **Product Detail**: Route `product-detail.php?slug=...` and display the 17 canonical fields.
 4. **Form Handlers**: Configure POST endpoints for `#mainContactForm` (`submit-enquiry.php`), admin logins, and inventory management.
 5. **Editorial Management**: Hydrate blogs, announcements, and promotional popup slides.
 

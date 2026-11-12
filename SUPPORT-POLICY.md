@@ -1,7 +1,7 @@
 # 2-Month Post-Handover Support Policy — Microsys Website
 
 > **Official Post-Handover Technical Support & Warranty Agreement**  
-> **Client:** Microsys Computer & Accessories (Jai Omkar Traders)  
+> **Client:** Microsys Computer & Accessories  
 > **Development Agency:** [Team VYOMARC Technologies](https://vyomarctech.com)  
 > **Effective Duration:** 60 Calendar Days Post-Handover  
 > **Status:** Active & Locked  
@@ -37,7 +37,7 @@ During the 60-day support window, Team VYOMARC Technologies provides technical a
 - **Architecture & Workflow Consultation**: Explaining the structure of delivered static HTML files, CSS design tokens, and modular components to the client's backend engineer.
 - **Specification Clarification**: Assisting the backend developer in navigating the project integration manuals:
   - [`PHP-DEV-GUIDE.md`](PHP-DEV-GUIDE.md) (PDO connection standards, SQL queries, dynamic loop hydration, and form handling).
-  - [`FIELD-NAMING-CONVENTION.md`](FIELD-NAMING-CONVENTION.md) (Standardized 16-field product attributes, data types, and display bindings).
+  - [`FIELD-NAMING-CONVENTION.md`](FIELD-NAMING-CONVENTION.md) (Standardized 17-field product attributes, data types, and display bindings).
   - [`FORM-FIELD-MAP.md`](FORM-FIELD-MAP.md) (Exact mappings between HTML form input `name=""` attributes and MySQL database columns).
   - [`database/schema.sql`](database/schema.sql) (Database structure, indexes, and relational integrity).
 - **Dynamic Placeholder Markers**: Clarifying the placement and purpose of `<!-- PHP LOOP START -->`, `<!-- PHP: echo ... -->`, and form endpoints so backend loops can be inserted without altering layout integrity.

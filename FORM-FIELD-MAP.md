@@ -106,6 +106,7 @@ Administrative panel interfaces are located in `/admin/`. This section locks all
 | Detailed Specifications | `full_specs` | textarea | Optional | `full_specs` | Detailed technical specs block |
 | Active Selling Price | `price` | number | Required | `price` | DECIMAL(10,2) NOT NULL. Two decimal places (0.01 increments), Minimum 0 |
 | Maximum Retail Price | `mrp` | number | Optional | `mrp` | DECIMAL(10,2) DEFAULT NULL. Two decimal places (0.01 increments), Minimum 0 |
+| Manual Discount Override (%) | `manual_discount` | number | Optional | `manual_discount` | INT DEFAULT NULL. Integer between 0 and 100. Leave blank to auto-calculate from MRP and Price |
 | Primary Card Image | `image_primary` | file | Required | `image_primary` | Accepts `image/*`, stored as relative asset path |
 | Secondary Gallery Image | `image_secondary` | file | Optional | `image_secondary` | Accepts `image/*`, stored as relative asset path |
 | Tertiary Gallery Image | `image_tertiary` | file | Optional | `image_tertiary` | Accepts `image/*`, stored as relative asset path |
@@ -273,6 +274,7 @@ This master table brings together every form field across public storefront page
 | Admin Product Form | Full Technical Specs | full_specs | textarea | Optional | products | full_specs | Complete hardware specifications block |
 | Admin Product Form | Active Selling Price | price | number | Required | products | price | Numeric decimal in INR |
 | Admin Product Form | Maximum Retail Price | mrp | number | Optional | products | mrp | Strikethrough list price in INR |
+| Admin Product Form | Manual Discount Override (%) | manual_discount | number | Optional | products | manual_discount | Integer percentage (0-100); overrides auto discount |
 | Admin Product Form | Primary Catalog Image | image_primary | file | Required | products | image_primary | File upload path for main catalog thumbnail |
 | Admin Product Form | Secondary Image Asset | image_secondary | file | Optional | products | image_secondary | Optional gallery angle photo |
 | Admin Product Form | Tertiary Image Asset | image_tertiary | file | Optional | products | image_tertiary | Optional gallery angle photo |

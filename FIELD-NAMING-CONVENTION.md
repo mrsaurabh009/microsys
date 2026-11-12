@@ -4,15 +4,15 @@
 
 ## 1. Purpose & Scope
 
-This specification locks the naming standards, data types, HTML form attributes, CSS display classes, and PHP variable bindings for the 16-field product standard across the Microsys web platform. Designed as an onboarding reference for the client's PHP backend developer, this document establishes a direct, 1-to-1 parity between frontend markup and backend database columns. 
+This specification locks the naming standards, data types, HTML form attributes, CSS display classes, and PHP variable bindings for the 17-field product standard across the Microsys web platform. Designed as an onboarding reference for the client's PHP backend developer, this document establishes a direct, 1-to-1 parity between frontend markup and backend database columns. 
 
-This standard locks all 16 product data fields, form control name attributes, card display classes, and PHP variable mappings. It does not dictate database table architecture, indexing algorithms, or server-side framework choice, leaving infrastructure implementation to the backend development team while guaranteeing that frontend templates integrate cleanly without naming friction.
+This standard locks all 17 product data fields, form control name attributes, card display classes, and PHP variable mappings. It does not dictate database table architecture, indexing algorithms, or server-side framework choice, leaving infrastructure implementation to the backend development team while guaranteeing that frontend templates integrate cleanly without naming friction.
 
 ---
 
-## 2. The Locked 16 Fields
+## 2. The Locked 17 Fields
 
-All product-related content across the platform must conform strictly to the following 16 fields in the exact order specified below. Field names are permanently locked in snake_case.
+All product-related content across the platform must conform strictly to the following 17 fields in the exact order specified below. Field names are permanently locked in snake_case.
 
 1. product_id_sku: Unique product identifier / Stock Keeping Unit. Required (NOT NULL). Unique constraint. No default.
 2. category: Primary category slug. Required (NOT NULL). Indexed. No default.
@@ -24,15 +24,16 @@ All product-related content across the platform must conform strictly to the fol
 8. full_specs: Complete technical specifications document or data block. Optional (NULL allowed). Default: NULL.
 9. price: Active selling price in Indian Rupees. Required (NOT NULL). Indexed. No default.
 10. mrp: Maximum Retail Price (list price) in Indian Rupees. Optional (NULL allowed). Default: NULL.
-11. image_primary: File path or asset URL for the primary product image. Required (NOT NULL). No default.
-12. image_secondary: File path or asset URL for secondary gallery image. Optional (NULL allowed). Default: NULL.
-13. image_tertiary: File path or asset URL for tertiary gallery image. Optional (NULL allowed). Default: NULL.
-14. warranty: Duration and terms of manufacturer warranty. Optional (NULL allowed). Default: NULL.
-15. badge: Promotional or marketing tag text. Optional (NULL allowed). Default: NULL.
-16. is_popular: Flag determining promotion in homepage Popular Products section. Required (NOT NULL). Indexed. Default: 0.
+11. manual_discount: Optional manual discount percentage override (0-100). Optional (NULL allowed). Default: NULL. When provided, overrides automatic calculation from MRP and price.
+12. image_primary: File path or asset URL for the primary product image. Required (NOT NULL). No default.
+13. image_secondary: File path or asset URL for secondary gallery image. Optional (NULL allowed). Default: NULL.
+14. image_tertiary: File path or asset URL for tertiary gallery image. Optional (NULL allowed). Default: NULL.
+15. warranty: Duration and terms of manufacturer warranty. Optional (NULL allowed). Default: NULL.
+16. badge: Promotional or marketing tag text. Optional (NULL allowed). Default: NULL.
+17. is_popular: Flag determining promotion in homepage Popular Products section. Required (NOT NULL). Indexed. Default: 0.
 
 ### Database Infrastructure & Dynamic SEO Columns (Non-Content Metadata)
-The 16 fields above represent core product content. At the database layer, standard operational and dynamic SEO columns are implemented by the backend engineer:
+The 17 fields above represent core product content. At the database layer, standard operational and dynamic SEO columns are implemented by the backend engineer:
 - `id`: INT UNSIGNED AUTO_INCREMENT PRIMARY KEY
 - `slug`: VARCHAR(280) UNIQUE NOT NULL — Canonical URL identifier used for SEO routing to product detail pages (`product-detail.php?slug=<slug>`), breadcrumb linking, and dynamic canonical / Open Graph tag generation.
 - `meta_description`: TEXT DEFAULT NULL — Search engine snippet (150-160 characters) used for dynamic SEO meta description and social card previews on product detail views (fallbacks to `key_specs` when NULL).
@@ -57,6 +58,7 @@ Every locked field is mapped below to its corresponding SQL column type and fron
 | full_specs | TEXT DEFAULT NULL | textarea or rich text (admin) / detail modal | Optional, Default: NULL [CLIENT TO CONFIRM: TEXT markdown vs JSON] | Detailed hardware breakdown for expanded product views. |
 | price | DECIMAL(10,2) NOT NULL | number (step="0.01", min="0") | Required, Indexed, No Default | Numeric currency figure without symbol. Currency glyph (₹) is added during frontend template rendering. |
 | mrp | DECIMAL(10,2) DEFAULT NULL | number (step="0.01", min="0") | Optional, Default: NULL | Strikethrough list price. When present and greater than price, triggers discount percentage badge. |
+| manual_discount | INT DEFAULT NULL | number (min="0", max="100", step="1") | Optional, Default: NULL | Manual discount percentage override (0-100). When present, overrides automatic calculation ((mrp - price) / mrp * 100). |
 | image_primary | VARCHAR(255) NOT NULL | file upload (image/*) or asset path text | Required, No Default | Relative path or URL to primary catalog card photo (e.g., assets/productimage/item.webp). |
 | image_secondary | VARCHAR(255) DEFAULT NULL | file upload (image/*) or asset path text | Optional, Default: NULL | Secondary gallery angle. [NOT YET DISPLAYED — reserved for future detail modal]. |
 | image_tertiary | VARCHAR(255) DEFAULT NULL | file upload (image/*) or asset path text | Optional, Default: NULL | Tertiary gallery angle. [NOT YET DISPLAYED — reserved for future detail modal]. |
@@ -216,6 +218,7 @@ To eliminate integration guesswork, every user-facing form input and future admi
 | Comprehensive Technical Specs | full_specs | textarea | full_specs |
 | Active Selling Price (INR) | price | number (step="0.01") | price |
 | Maximum Retail Price (INR) | mrp | number (step="0.01") | mrp |
+| Manual Discount Override (%) | manual_discount | number (min="0", max="100") | manual_discount |
 | Primary Image Asset | image_primary | file / text | image_primary |
 | Secondary Image Asset | image_secondary | file / text | image_secondary |
 | Tertiary Image Asset | image_tertiary | file / text | image_tertiary |
@@ -240,6 +243,7 @@ To resolve class name drift identified during the final project audit, this tabl
 | Specifications Line | .product-specs | .product-details, .key-specs | None | Concise summary spec teaser line. |
 | Selling Price | .product-price | None | data-raw-price | Active selling price display with formatted rupee glyph. |
 | List / MRP Price | .product-mrp | None | data-raw-mrp | Strikethrough price display for discount visualization. |
+| Discount Badge / Percent | .product-discount | None | None | Discount percentage badge (e.g., 15% OFF). Rendered when manual_discount is set or calculated from MRP and price. |
 | Promotional Tag / Badge | .product-badge | Conflated with stock status | None | Reserved exclusively for promotional markers (e.g., Bestseller, New Arrival). Hidden if null. |
 | Warranty Badge | .product-warranty | None | None | Compact warranty trust indicator (e.g., 1 Year Warranty). |
 | Card Actions Wrapper | .product-actions | None | None | Container for action buttons. |
@@ -267,6 +271,7 @@ This end-to-end traceability table shows how each database column is retrieved v
 | full_specs | TEXT DEFAULT NULL | $product['full_specs'] | Detail modal / expanded drawer | Rendered in specification table [NOT YET DISPLAYED] |
 | price | DECIMAL(10,2) NOT NULL | $product['price'] | Inside .product-price text node | Formatted with Indian number formatting and currency symbol |
 | mrp | DECIMAL(10,2) DEFAULT NULL | $product['mrp'] | Inside .product-mrp text node | Strikethrough text node rendered when mrp > price [NEW] |
+| manual_discount | INT DEFAULT NULL | $product['manual_discount'] | Inside .product-discount / .product-detail-discount | Manual override; if empty, fallback calculates round((($mrp - $price) / $mrp) * 100) |
 | image_primary | VARCHAR(255) NOT NULL | $product['image_primary'] | src attribute of img inside .product-image-inner | Main thumbnail image source with alt attribute bound to product_name |
 | image_secondary | VARCHAR(255) DEFAULT NULL | $product['image_secondary'] | data-image-secondary attribute | Secondary thumbnail image [NOT YET DISPLAYED] |
 | image_tertiary | VARCHAR(255) DEFAULT NULL | $product['image_tertiary'] | data-image-tertiary attribute | Tertiary thumbnail image [NOT YET DISPLAYED] |

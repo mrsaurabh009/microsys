@@ -72,6 +72,9 @@
     <!-- PHP: if (!empty($row['mrp']) && $row['mrp'] > $row['price']) { echo '<span class="product-mrp" data-raw-mrp="' . htmlspecialchars($row['mrp']) . '">[MRP]</span>'; } -->
     <!-- Note: .product-mrp is [NEW — CSS NOT YET DEFINED — to be added] -->
     <span class="product-mrp" data-raw-mrp="[Raw MRP]">[MRP — optional]</span>
+
+    <!-- PHP: if (!empty($product['manual_discount'])) { echo $product['manual_discount'] . '% OFF'; } else { echo round((($product['mrp'] - $product['price']) / $product['mrp']) * 100) . '% OFF'; } -->
+    <span class="product-discount">[Discount — e.g. 15% OFF]</span>
   </div>
 
   <!-- 7. Manufacturer Warranty -->

@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `full_specs` TEXT DEFAULT NULL,
   `price` DECIMAL(10,2) NOT NULL,
   `mrp` DECIMAL(10,2) DEFAULT NULL,
+  `manual_discount` INT DEFAULT NULL,
   `image_primary` VARCHAR(255) DEFAULT NULL,
   `image_secondary` VARCHAR(255) DEFAULT NULL,
   `image_tertiary` VARCHAR(255) DEFAULT NULL,

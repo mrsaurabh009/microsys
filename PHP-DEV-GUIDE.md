@@ -41,7 +41,7 @@ Follow these 5 core execution steps to take the project live:
 
 Before writing code or executing migrations, review the documentation files in this sequence:
 - **1.** Read this guide (`PHP-DEV-GUIDE.md`) for the architectural roadmap.
-- **2.** Read `FIELD-NAMING-CONVENTION.md` for the locked 16-field product standard, data types, and PHP variable bindings.
+- **2.** Read `FIELD-NAMING-CONVENTION.md` for the locked 17-field product standard, data types, and PHP variable bindings.
 - **3.** Read `FORM-FIELD-MAP.md` for form control name attributes, target columns, validation criteria, and submission endpoints.
 - **4.** Read `COMPONENT-product-card.html` for the canonical product card reference markup.
 - **5.** Read `database/schema.sql` for the formal MySQL table definitions, constraints, and column structures.
@@ -49,9 +49,9 @@ Before writing code or executing migrations, review the documentation files in t
 
 ---
 
-## 3. The 16 Locked Product Fields
+## 3. The 17 Locked Product Fields
 
-Every product entity displayed across the website conforms to a standardized 16-field contract. These field names are permanently locked in snake_case and must match between MySQL columns, PHP associative array keys, and HTML data attributes.
+Every product entity displayed across the website conforms to a standardized 17-field contract. These field names are permanently locked in snake_case and must match between MySQL columns, PHP associative array keys, and HTML data attributes.
 
 | Index | Field Identifier | Data Type & Constraint | Usage & Frontend Mapping |
 | :--- | :--- | :--- | :--- |
@@ -65,12 +65,13 @@ Every product entity displayed across the website conforms to a standardized 16-
 | 8 | `full_specs` | TEXT DEFAULT NULL | Comprehensive hardware specifications |
 | 9 | `price` | DECIMAL(10,2) NOT NULL | Active selling price; ₹ currency glyph prefixed in template |
 | 10 | `mrp` | DECIMAL(10,2) DEFAULT NULL | Maximum Retail Price; triggers discount calculation if > price |
-| 11 | `image_primary` | VARCHAR(255) NOT NULL | Relative asset path to primary catalog image WebP |
-| 12 | `image_secondary` | VARCHAR(255) DEFAULT NULL | Secondary gallery angle asset path |
-| 13 | `image_tertiary` | VARCHAR(255) DEFAULT NULL | Tertiary gallery angle asset path |
-| 14 | `warranty` | VARCHAR(100) DEFAULT NULL | Manufacturer warranty terms (e.g. 1 Year Onsite Warranty) |
-| 15 | `badge` | VARCHAR(50) DEFAULT NULL | Promotional pill text (e.g. Bestseller, New Arrival, Hot Deal) |
-| 16 | `is_popular` | TINYINT(1) DEFAULT 0 | Flag governing display on homepage Popular Products tabs |
+| 11 | `manual_discount` | INT DEFAULT NULL | Optional manual discount percentage override (0-100) |
+| 12 | `image_primary` | VARCHAR(255) NOT NULL | Relative asset path to primary catalog image WebP |
+| 13 | `image_secondary` | VARCHAR(255) DEFAULT NULL | Secondary gallery angle asset path |
+| 14 | `image_tertiary` | VARCHAR(255) DEFAULT NULL | Tertiary gallery angle asset path |
+| 15 | `warranty` | VARCHAR(100) DEFAULT NULL | Manufacturer warranty terms (e.g. 1 Year Onsite Warranty) |
+| 16 | `badge` | VARCHAR(50) DEFAULT NULL | Promotional pill text (e.g. Bestseller, New Arrival, Hot Deal) |
+| 17 | `is_popular` | TINYINT(1) DEFAULT 0 | Flag governing display on homepage Popular Products tabs |
 
 *Note: For complete constraint rules and admin form mappings, cross-reference `FIELD-NAMING-CONVENTION.md`.*
 
@@ -78,10 +79,11 @@ Every product entity displayed across the website conforms to a standardized 16-
 
 ## 4. Database Schema Overview
 
-The database definition is located in `database/schema.sql`. It is written with MySQL 5.7+ compatibility (using InnoDB engine and utf8mb4 encoding) and contains 8 tables:
+The database definition is located in `database/schema.sql`. It is written with MySQL 5.7+ compatibility (using InnoDB engine and utf8mb4 encoding) and contains 9 tables:
 
 - **`categories`**: Product classifications (`id`, `name`, `slug`, `image_url`, `display_order`, `is_active`, `created_at`).
-- **`products`**: Catalog hardware records adhering to the locked field standard (`id`, `category_id`, `brand`, `name`, `slug`, `model_number`, `key_specs`, `full_specs`, `price`, `mrp`, `image_primary`, `image_secondary`, `image_tertiary`, `badge`, `sku`, `warranty`, `is_popular`, `is_featured`, `created_at`).
+- **`subcategories`**: Granular product classifications linked via foreign key to `categories` (`id`, `category_id`, `name`, `slug`, `display_order`, `is_active`, `created_at`).
+- **`products`**: Catalog hardware records adhering to the locked 17-field standard (`id`, `category_id`, `sub_category`, `brand`, `name`, `slug`, `model_number`, `key_specs`, `full_specs`, `price`, `mrp`, `manual_discount`, `image_primary`, `image_secondary`, `image_tertiary`, `badge`, `sku`, `warranty`, `is_popular`, `is_featured`, `created_at`).
 - **`blogs`**: Article management with rich text HTML and admin parity (`id`, `title`, `slug`, `category`, `thumbnail_url`, `author_name`, `meta_description`, `content_html`, `status`, `is_featured`, `published_date`, `created_at`).
 - **`comments`**: Moderated reader discussions (`id`, `blog_id`, `commenter_name`, `commenter_email`, `body`, `is_approved`, `created_at`).
 - **`promotions`**: Announcement bar and promo modal content (`id`, `type`, `text_content`, `image_url`, `popup_cta_link`, `display_order`, `is_active`, `created_at`).
@@ -129,7 +131,8 @@ The master product card reference is stored in `COMPONENT-product-card.html`. Al
 - Brand Label: `.product-brand` displaying the manufacturer name.
 - Title Heading: `.product-name` carrying the `data-product-name` attribute.
 - Spec Summary: `.product-specs` displaying slash-delimited specifications.
-- Price Row: `.product-price` rendering formatted price with the rupee symbol.
+- Price Row: `.product-price` rendering formatted price with the rupee symbol, optional `.product-mrp` strikethrough price, and `.product-discount` badge.
+- Manual Discount Logic: Check if `manual_discount` is set in the DB. If yes, display it. If null, calculate `(mrp - price) / mrp * 100`.
 - Action Buttons: `.product-actions` wrapping View Details button (`.btn.btn-secondary`) and WhatsApp Enquiry trigger (`.btn.btn-whatsapp.whatsapp-btn`).
 
 *Important: Never modify these CSS classes or omit `data-*` attributes during backend templating. Styling and client-side interactions depend directly on these selectors.*
@@ -150,7 +153,7 @@ The frontend templates utilize standardized comment markers to guide backend var
 
 ## 8. Storefront Interactive Enhancements — Backend Requirements
 
-The homepage features 5 high-impact interactive components. The backend developer should integrate them as follows:
+The storefront features 6 high-impact interactive components. The backend developer should integrate them as follows:
 
 ### 1. Top Announcement Bar (`#announcement-bar`)
 - **Database Table:** `promotions`.
@@ -178,6 +181,12 @@ The homepage features 5 high-impact interactive components. The backend develope
 - **Backend Requirement:** Create an endpoint (e.g. `contact-submit.php`) to accept POST submissions.
 - **Processing Flow:** Validate input fields, insert a row into the `inquiries` table, and return a JSON status response (`{ success: true }`).
 - **Client Behavior:** The frontend script prevents default page reload, shows a loading state, opens WhatsApp with a formatted message in a new tab, and resets the form.
+
+### 6. Cookie Consent & Disclaimer Popups (`#cookie-popup`, `#disclaimer-popup`)
+- **Frontend Behavior:** Sequential fixed bottom popups rendered in `index.html` managing user privacy consent and store disclaimer notices with persistent `localStorage` states (`cookie-consent`).
+- **Backend Consent Logging:**
+  - Where user consent audit trails or IP compliance records are required, the PHP developer should configure an endpoint (e.g. `api/log-consent.php`) triggered upon cookie acceptance.
+  - The PHP developer should capture the user's IP address (`$_SERVER['REMOTE_ADDR']`), User-Agent header (`$_SERVER['HTTP_USER_AGENT']`), and consent timestamp (`date('Y-m-d H:i:s')`), storing the consent record into a database compliance log table.
 
 ---
 
@@ -249,8 +258,8 @@ The dedicated product detail page (`product-detail.html` / `product-detail.php`)
 - Sanitize the incoming parameter and execute a prepared statement lookup against the `products` table matching the identifier.
 - If the parameter is missing, invalid, or yields zero matching rows, respond with an HTTP 404 header and render a friendly not-found template or redirect back to the catalog page.
 
-### 2. 16-Standard Field Output Mapping
-- All 16 locked product fields from the database record map directly to their corresponding HTML elements:
+### 2. 17-Standard Field Output Mapping
+- All 17 locked product fields from the database record map directly to their corresponding HTML elements:
   - `product_name`: Populates the breadcrumb terminal item and the main `<h1>` title element (`#product-name`).
   - `brand`: Renders inside the `.product-brand` container above the title.
   - `model_number`: Renders inside `.product-model` (e.g., `Model: 15s-fq5007TU`).
@@ -258,7 +267,8 @@ The dedicated product detail page (`product-detail.html` / `product-detail.php`)
   - `key_specs`: Echoed into `.product-detail-specs-summary` as a slash-delimited summary.
   - `price`: Formatted with Indian currency formatting and prefixed with the ₹ symbol inside `.product-detail-price`.
   - `mrp`: Formatted with ₹ inside `.product-detail-mrp`. Conditionally rendered only when `mrp` is defined and strictly greater than `price`.
-  - Discount Tag: When `mrp` is displayed, calculate the discount percentage as `((mrp - price) / mrp) * 100` and output the rounded value into `.product-detail-discount` (e.g., `15% OFF`).
+  - `manual_discount`: Optional discount percentage override (0–100).
+  - Discount Tag: Check if `manual_discount` is set in the DB. If yes, display it. If null, calculate `(mrp - price) / mrp * 100` and output the rounded value into `.product-discount` or `.product-detail-discount` (e.g., `15% OFF`).
   - `warranty`: Echoed inside `.product-warranty` alongside the shield icon.
   - `badge`: Rendered conditionally inside `.product-badge` only when the promotional tag is non-empty.
   - `category` & `sub_category`: Used for contextual breadcrumb links and for querying related items.
@@ -307,7 +317,7 @@ Follow this sequence to achieve complete backend integration without breaking fr
 10. In `#popular-products`, replace the static cards in the Laptops panel with a foreach loop over active products where `category_id = 1` and `is_popular = 1`.
 11. Replicate this product foreach pattern across the remaining 3 tab panels (Desktop PCs, Gaming, Components).
 12. In `products.php`, read GET parameters (`category`, `sub_category`, `brand`, `min_price`, `max_price`, `q`, `sort`, `page`), construct the SQL query with dynamic WHERE, ORDER BY, and LIMIT clauses, and loop over `$filtered_products`. Note that all top navbar and mobile drawer links route directly to `products.php` with query parameters, completely eliminating the need for dedicated category files. Footer category links also map directly to `products.php?category=<slug>`.
-13. In `product-detail.php`, retrieve the product by `id` or `sku`, populate the 16 standard fields, parse and loop `full_specs`, generate dynamic WhatsApp enquiry links, and query 4 related category items.
+13. In `product-detail.php`, retrieve the product by `id` or `sku`, populate the 17 standard fields, parse and loop `full_specs`, generate dynamic WhatsApp enquiry links, and query 4 related category items.
 14. Create `contact-submit.php` to handle AJAX POST submissions from `#mainContactForm` and insert records into `inquiries`.
 15. Ensure all image paths output valid asset URLs pointing to existing files in `assets/`.
 16. Verify that page speed, responsive breakpoints, and console logs remain completely clean.
@@ -319,7 +329,7 @@ Follow this sequence to achieve complete backend integration without breaking fr
 - **Renaming Field Names:** Never change field names (e.g. changing `product_name` to `title` or `phone_number` to `contact_no`). This breaks data contracts and WhatsApp message formatting.
 - **Changing HTML Classes:** Layouts, CSS grid rules, and responsive media queries rely directly on existing class names (`.product-card`, `.slide`, `.categories-grid`, `.sticky-bar-btn`, `.catalog-filter-form`, `.catalog-topbar`, `.product-detail-layout`, `.product-sticky-bar`). Modifying classes will break styling.
 - **Omitting `name=""` Attributes:** Form submissions will fail silently if `name` attributes are removed from form controls.
-- **Adding Unapproved Fields:** Stick strictly to the 16 locked product fields. New attributes must be added through formal schema migrations.
+- **Adding Unapproved Fields:** Stick strictly to the 17 locked product fields. New attributes must be added through formal schema migrations.
 - **MySQL Version Incompatibilities:** Avoid using MySQL 8.0-only syntax or window functions. Maintain strict compatibility with MySQL 5.7+ shared hosting environments.
 - **Overwriting Mobile Padding:** Do not alter the 70px bottom body padding in mobile media queries, as this prevents the fixed sticky bar from obscuring footer content.
 

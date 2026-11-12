@@ -107,22 +107,16 @@ h1, h2, h3, h4, h5, h6 { font-weight: var(--fw-bold); }
   z-index: 100;
   border-bottom: none;
 }
-.header-logo {
+.header-logo,
+.header__brand {
   font-family: var(--font-display);
   font-size: 20px;
   font-weight: var(--fw-bold);
   text-decoration: none;
   color: var(--color-text-primary);
-  display: inline-grid;
-  grid-template-columns: auto auto;
+  display: flex;
   align-items: center;
-  column-gap: var(--space-s);
-  row-gap: 2px;
-}
-.header-logo .desktop-only {
-  grid-column: 2;
-  grid-row: 1;
-  align-self: center;
+  gap: var(--space-s);
 }
 .search-wrapper { position: relative; width: 400px; display: flex; align-items: center; }
 .search-wrapper .search-icon { position: absolute; left: 14px; display: flex; align-items: center; pointer-events: none; }
@@ -466,7 +460,7 @@ span.desktop-only { display: none; }
     font-weight: 600;
   }
 
-  /* 3rd Tag: Since 2005 - Light Yellow / Amber */
+  /* 3rd Tag: Since 2006 - Light Yellow / Amber */
   .hero-trust-badge:nth-child(3) {
     background-color: #FFFBEB;
     border-color: #FDE68A;
@@ -3664,6 +3658,112 @@ span.desktop-only { display: none; }
     height: 320px;
   }
 }
+
+/* ==========================================================================
+   26. Cookie & Disclaimer Bottom Popups, Brand Icon & Play Store Hover
+   ========================================================================== */
+.bottom-popup {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  max-width: 600px;
+  width: 92%;
+  z-index: 9999;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: all 0.4s ease;
+  background: var(--color-white, #ffffff);
+  color: var(--color-text-primary, #1e293b);
+  border-top-left-radius: var(--radius-card, 12px);
+  border-top-right-radius: var(--radius-card, 12px);
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.18);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-bottom: none;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.bottom-popup.show {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.bottom-popup__text {
+  font-size: var(--type-body, 0.95rem);
+  line-height: 1.5;
+  color: var(--color-text-primary, #1e293b);
+  margin: 0;
+}
+
+.bottom-popup__actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.bottom-popup__btn {
+  padding: 8px 18px;
+  border-radius: var(--radius-button, 8px);
+  font-size: var(--type-supporting, 0.875rem);
+  font-weight: var(--fw-semibold, 600);
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.bottom-popup__btn--primary {
+  background: var(--color-blue-primary, #0056b3);
+  color: var(--color-white, #ffffff);
+}
+
+.bottom-popup__btn--primary:hover {
+  background: var(--color-blue-hover, #004085);
+}
+
+.bottom-popup__btn--secondary {
+  background: var(--color-gray-soft, #f1f5f9);
+  color: var(--color-text-secondary, #475569);
+  border: 1px solid var(--color-border, #cbd5e1);
+}
+
+.bottom-popup__btn--secondary:hover {
+  background: #e2e8f0;
+}
+
+.brand-icon {
+  height: 48px;
+  width: 48px;
+  object-fit: contain;
+  margin-right: 12px;
+  display: block;
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .brand-icon {
+    height: 38px;
+    width: 38px;
+    margin-right: 8px;
+  }
+}
+
+.footer__social img {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.footer__social:hover img,
+.footer__social a:hover img {
+  opacity: 0.8;
+  transform: scale(1.08);
+}
+
 
 
 
