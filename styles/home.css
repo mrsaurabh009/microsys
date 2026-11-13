@@ -1696,6 +1696,13 @@ span.desktop-only { display: none; }
   margin-bottom: 8px;
   font-weight: 500;
   letter-spacing: 0.02em;
+  display: inline-block;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.footer-gem {
+  display: inline-block;
 }
 
 .footer-credit {
